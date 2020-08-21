@@ -48,4 +48,8 @@ return [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
     ],
+    'facebook' => [
+        'client_id' => '290526925585850',
+        'client_secret' => 'b70abcb4af00d1c9c186595b349d668a',
+    ],
 ];

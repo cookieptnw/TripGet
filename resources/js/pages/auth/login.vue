@@ -7,7 +7,13 @@
           <div class="form-group row">
             <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
             <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
+              <input
+                v-model="form.email"
+                :class="{ 'is-invalid': form.errors.has('email') }"
+                class="form-control"
+                type="email"
+                name="email"
+              />
               <has-error :form="form" field="email" />
             </div>
           </div>
@@ -16,7 +22,13 @@
           <div class="form-group row">
             <label class="col-md-3 col-form-label text-md-right">{{ $t('password') }}</label>
             <div class="col-md-7">
-              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password">
+              <input
+                v-model="form.password"
+                :class="{ 'is-invalid': form.errors.has('password') }"
+                class="form-control"
+                type="password"
+                name="password"
+              />
               <has-error :form="form" field="password" />
             </div>
           </div>
@@ -25,73 +37,77 @@
           <div class="form-group row">
             <div class="col-md-3" />
             <div class="col-md-7 d-flex">
-              <checkbox v-model="remember" name="remember">
-                {{ $t('remember_me') }}
-              </checkbox>
+              <checkbox v-model="remember" name="remember">{{ $t('remember_me') }}</checkbox>
 
-              <router-link :to="{ name: 'password.request' }" class="small ml-auto my-auto">
-                {{ $t('forgot_password') }}
-              </router-link>
+              <router-link
+                :to="{ name: 'password.request' }"
+                class="small ml-auto my-auto"
+              >{{ $t('forgot_password') }}</router-link>
             </div>
           </div>
 
           <div class="form-group row">
             <div class="col-md-7 offset-md-3 d-flex">
               <!-- Submit Button -->
-              <v-button :loading="form.busy">
-                {{ $t('login') }}
-              </v-button>
+              <v-button :loading="form.busy">{{ $t('login') }}</v-button>
 
               <!-- GitHub Login Button -->
               <login-with-github />
             </div>
           </div>
         </form>
+        <div class="text-center">
+          <hr />
+          <div class="text-secondary">Or</div>
+          <login-with-facebook class="mt-2" />
+        </div>
       </card>
     </div>
   </div>
 </template>
 
 <script>
-import Form from 'vform'
-import LoginWithGithub from '~/components/LoginWithGithub'
+import Form from "vform";
+import LoginWithGithub from "~/components/LoginWithGithub";
+import LoginWithFacebook from "~/components/LoginWithFacebook";
 
 export default {
-  middleware: 'guest',
+  middleware: "guest",
 
   components: {
-    LoginWithGithub
+    LoginWithGithub,
+    LoginWithFacebook,
   },
 
-  metaInfo () {
-    return { title: this.$t('login') }
+  metaInfo() {
+    return { title: this.$t("login") };
   },
 
   data: () => ({
     form: new Form({
-      email: '',
-      password: ''
+      email: "",
+      password: "",
     }),
-    remember: false
+    remember: false,
   }),
 
   methods: {
-    async login () {
+    async login() {
       // Submit the form.
-      const { data } = await this.form.post('/api/login')
+      const { data } = await this.form.post("/api/login");
 
       // Save the token.
-      this.$store.dispatch('auth/saveToken', {
+      this.$store.dispatch("auth/saveToken", {
         token: data.token,
-        remember: this.remember
-      })
+        remember: this.remember,
+      });
 
       // Fetch the user.
-      await this.$store.dispatch('auth/fetchUser')
+      await this.$store.dispatch("auth/fetchUser");
 
       // Redirect home.
-      this.$router.push({ name: 'home' })
-    }
-  }
-}
+      this.$router.push({ name: "home" });
+    },
+  },
+};
 </script>

@@ -1,41 +1,41 @@
 <template>
-  <div>
-    <div class="top-right links">
+  <div class="text-center ">
+    <img src="/images/logo.png" class="w-75" />
+
+    <div class="mt-4">
       <template v-if="authenticated">
-        <router-link :to="{ name: 'home' }">
-          {{ $t('home') }}
-        </router-link>
+        <div>
+          <router-link :to="{ name: 'home' }">
+            <button class="btn btn-primary w-100 ">home</button>
+          </router-link>
+        </div>
       </template>
       <template v-else>
-        <router-link :to="{ name: 'login' }">
-          {{ $t('login') }}
-        </router-link>
-        <router-link :to="{ name: 'register' }">
-          {{ $t('register') }}
-        </router-link>
+        <div class="container py-5">
+          <div>
+            <router-link :to="{ name: 'register' }">
+              <button class="btn btn-primary w-100 ">Signup</button>
+            </router-link>
+          </div>
+          <div class="mt-2">
+            <router-link :to="{ name: 'login' }" class="mt-4">
+              <button class=" btn btn-outline-primary w-100">Login</button>
+            </router-link>
+          </div>
+        </div>
       </template>
-    </div>
-
-    <div class="text-center">
-      <div class="title mb-4">
-        {{ title }}
-      </div>
-
-      <div class="links">
-        <a href="https://github.com/cretueusebiu/laravel-vue-spa">github.com/cretueusebiu/laravel-vue-spa</a>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
-  layout: 'basic',
+  layout: "basic",
 
-  metaInfo () {
-    return { title: this.$t('home') }
+  metaInfo() {
+    return { title: this.$t("home") };
   },
 
   data: () => ({
@@ -43,9 +43,9 @@ export default {
   }),
 
   computed: mapGetters({
-    authenticated: 'auth/check'
+    authenticated: "auth/check"
   })
-}
+};
 </script>
 
 <style scoped>
