@@ -7,7 +7,7 @@
     style="background:#3b5998; "
   >
     <i class="fa fa-facebook-square" aria-hidden="true"></i>
-    {{ $t('login_with') }} Facebook
+    {{ $t("login_with") }} Facebook
   </button>
 </template>
 
@@ -17,7 +17,7 @@ export default {
 
   computed: {
     facebookAuth: () => window.config.facebookAuth,
-    url: () => `/api/oauth/facebook`,
+    url: () => `/api/oauth/facebook`
   },
 
   mounted() {
@@ -33,7 +33,7 @@ export default {
       const newWindow = openWindow("", this.$t("login"));
 
       const url = await this.$store.dispatch("auth/fetchOauthUrl", {
-        provider: "facebook",
+        provider: "facebook"
       });
 
       newWindow.location.href = url;
@@ -48,12 +48,12 @@ export default {
       }
 
       this.$store.dispatch("auth/saveToken", {
-        token: e.data.token,
+        token: e.data.token
       });
 
-      this.$router.push({ name: "home" });
-    },
-  },
+      this.$router.push({ name: "lifestyle" });
+    }
+  }
 };
 
 /**

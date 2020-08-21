@@ -54,6 +54,14 @@
                 {{ $t("settings") }}
               </router-link>
 
+              <router-link
+                :to="{ name: 'lifestyle' }"
+                class="dropdown-item pl-3"
+              >
+                <fa icon="cog" fixed-width />
+                Lifestyle Setting
+              </router-link>
+
               <div class="dropdown-divider" />
               <a href="#" class="dropdown-item pl-3" @click.prevent="logout">
                 <fa icon="sign-out-alt" fixed-width />

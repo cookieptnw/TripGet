@@ -35,3 +35,12 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::post('oauth/{driver}', 'Auth\OAuthController@redirectToProvider');
     Route::get('oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback')->name('oauth.callback');
 });
+
+use PA\ProvinceTh\Factory;
+
+Route::resource('lifestyle', 'LifestyleController');
+Route::post('lifestyle/set/{id}', 'LifestyleController@set');
+
+Route::get('province', function () {
+    return  $provinces = Factory::province();
+});

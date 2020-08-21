@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('tel')->unique()->nullable();
             $table->string('id_no')->nullable();
             $table->string('card_image_url')->nullable();
+            $table->datetime('birthdate')->nullable();
             $table->bigInteger('role_id')->unsigned()->default(1);
             $table->foreign('role_id')
                 ->references('id')
