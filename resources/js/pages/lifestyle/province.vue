@@ -36,6 +36,7 @@
         v-for="(item, index) in getProvinceByGeo('ภาคเหนือ')"
         v-if="index <= g2"
         :key="item.id"
+        @click="setActive(item.id)"
       >
         {{ item.name }}
       </button>
@@ -59,6 +60,7 @@
         v-for="(item, index) in getProvinceByGeo('ภาคตะวันออกเฉียงเหนือ')"
         v-if="index <= g3"
         :key="item.id"
+        @click="setActive(item.id)"
       >
         {{ item.name }}
       </button>
@@ -81,6 +83,7 @@
         v-for="(item, index) in getProvinceByGeo('ภาคใต้')"
         v-if="index <= g4"
         :key="item.id"
+        @click="setActive(item.id)"
       >
         {{ item.name }}
       </button>
