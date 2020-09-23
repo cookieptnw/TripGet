@@ -14,7 +14,7 @@
         <div class="container py-5">
           <div>
             <router-link :to="{ name: 'register' }">
-              <button class="btn btn-primary w-100 ">Signup</button>
+              <button class="btn btn-primary w-100 ">Sign Up</button>
             </router-link>
           </div>
           <div class="mt-2">

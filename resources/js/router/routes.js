@@ -1,16 +1,36 @@
 function page(path) {
   return () =>
-    import(/* webpackChunkName: '' */ `~/pages/${path}`).then(
+    import( /* webpackChunkName: '' */ `~/pages/${path}`).then(
       m => m.default || m
     );
 }
 
-export default [
-  { path: "/", name: "welcome", component: page("welcome.vue") },
+export default [{
+    path: "/",
+    name: "welcome",
+    component: page("welcome.vue")
+  },
 
-  { path: "/login", name: "login", component: page("auth/login.vue") },
-  { path: "/register", name: "register", component: page("auth/register.vue") },
-  { path: "/home", name: "home", component: page("home.vue") },
+  {
+    path: "/login",
+    name: "login",
+    component: page("auth/login.vue")
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: page("auth/register.vue")
+  },
+  {
+    path: "/home",
+    name: "home",
+    component: page("home.vue")
+  },
+  {
+    path: "/home/:id",
+    name: "home.detail",
+    component: page("home_detail.vue")
+  },
 
   {
     path: "/password/reset",
@@ -71,8 +91,12 @@ export default [
   {
     path: "/settings",
     component: page("settings/index.vue"),
-    children: [
-      { path: "", redirect: { name: "settings.profile" } },
+    children: [{
+        path: "",
+        redirect: {
+          name: "settings.profile"
+        }
+      },
       {
         path: "profile",
         name: "settings.profile",
@@ -86,5 +110,8 @@ export default [
     ]
   },
 
-  { path: "*", component: page("errors/404.vue") }
+  {
+    path: "*",
+    component: page("errors/404.vue")
+  }
 ];

@@ -5,6 +5,30 @@
     </h2>
     <hr />
     <section>
+      <h3>ภาคเหนือ</h3>
+      <button
+        class="btn  mr-2 mb-2"
+        :class="activeClass(item.active)"
+        v-for="(item, index) in getProvinceByGeo('ภาคเหนือ')"
+        v-if="index <= g2"
+        :key="item.id"
+        @click="setActive(item.id)"
+      >
+        {{ item.name }}
+      </button>
+      <div class="w-100">
+        <button
+          class="btn btn-outline-secondary w-100"
+          @click="g2 += 6"
+          v-if="g2 <= getProvinceByGeo('ภาคเหนือ').length"
+        >
+          Other
+        </button>
+      </div>
+    </section>
+    <hr />
+
+    <section>
       <h3>ภาคกลาง</h3>
       <button
         class="btn  mr-2 mb-2"
@@ -29,11 +53,11 @@
     <hr />
 
     <section>
-      <h3>ภาคเหนือ</h3>
+      <h3>ภาคตะวันออก</h3>
       <button
         class="btn  mr-2 mb-2"
         :class="activeClass(item.active)"
-        v-for="(item, index) in getProvinceByGeo('ภาคเหนือ')"
+        v-for="(item, index) in getProvinceByGeo('ภาคตะวันออก')"
         v-if="index <= g2"
         :key="item.id"
         @click="setActive(item.id)"
@@ -44,7 +68,7 @@
         <button
           class="btn btn-outline-secondary w-100"
           @click="g2 += 6"
-          v-if="g2 <= getProvinceByGeo('ภาคเหนือ').length"
+          v-if="g2 <= getProvinceByGeo('ภาคตะวันออก').length"
         >
           Other
         </button>

@@ -1,15 +1,20 @@
 <template>
-  <card :title="$t('home')">
-    {{ $t('you_are_logged_in') }}
-  </card>
+  <div>
+    <routerLink :to="{ name: 'home.detail', params: { id: 1 } }">
+      <button class="btn btn-primary">1</button>
+    </routerLink>
+    <routerLink :to="{ name: 'home.detail', params: { id: 2 } }">
+      <button class="btn btn-primary">2</button>
+    </routerLink>
+  </div>
 </template>
 
 <script>
 export default {
-  middleware: 'auth',
+  middleware: "auth",
 
-  metaInfo () {
-    return { title: this.$t('home') }
-  }
-}
+  metaInfo() {
+    return { title: this.$t("home") };
+  },
+};
 </script>
