@@ -32,49 +32,39 @@ export default [{
     component: page("home_detail.vue")
   },
   {
-    path: "/hotel",
-    name: "hotel",
-    component: page("hotel/hotel.vue")
+    path: "/category/:key",
+    name: "category",
+    component: page("vouchers/category.vue")
   },
   {
-    path: "/hotel/:id",
+    path: "/voucher/:id",
     name: "hotel.detail",
-    component: page("hotel/hotel_detail.vue")
+    component: page("vouchers/hotel_detail.vue")
   },
   {
-    path: "/hotel/:id/:id",
+    path: "/voucher/:id/stock",
     name: "hotel.stock",
-    component: page("hotel/hotel_stock.vue")
+    component: page("vouchers/hotel_stock.vue")
   },
   {
-    path: "/hotel/:id/:id",
+    path: "/voucher/:id/shop",
     name: "hotel.shop",
-    component: page("hotel/hotel_shop.vue")
+    component: page("vouchers/hotel_shop.vue")
   },
   {
-    path: "/hotel/:id/:id",
+    path: "/voucher/:id/chat",
     name: "hotel.chat",
-    component: page("hotel/hotel_chat.vue")
-  },
-  {
-    path: "/restaurant",
-    name: "restaurant",
-    component: page("restaurant/restaurant.vue")
-  },
-  {
-    path: "/tourist",
-    name: "tourist",
-    component: page("tourist/tourist.vue")
-  },
-  {
-    path: "/travel_guide",
-    name: "travel_guide",
-    component: page("travel_guide/travel_guide.vue")
+    component: page("vouchers/hotel_chat.vue")
   },
   {
     path: "/content",
     name: "content",
-    component: page("content.vue")
+    component: page("content/content.vue")
+  },
+  {
+    path: "/content/:id",
+    name: "content.detail",
+    component: page("content/content_detail.vue")
   },
 
 

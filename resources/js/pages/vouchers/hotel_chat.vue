@@ -3,15 +3,14 @@
     <div class="hotel-list shadow mb-3">
       <div class="row">
         <div class="col-md-3">
-          <img src="/images/img1.jpg" width="100%" />
+          <img src="/images/img1.jpg" width="100%" height="100%" />
         </div>
         <div class="col-md-9">
           <b-card-text>
             <div class="card-body">
-              <h5 class="card-title">Monna Padong</h5>
+              <h5 class="card-title">{{ voucher.title }}</h5>
               <p class="card-text">
-                Enjoy the beautiful scenery of wooden canna, decorated with
-                simple bamboo works.
+                {{ voucher.description }}
               </p>
             </div>
           </b-card-text>
@@ -158,11 +157,28 @@
 </template>
 
 <script>
+import { vouchers } from "../../dataMockup";
+
 export default {
   middleware: "auth",
+  data: () => ({
+    vouchers,
+  }),
+  computed: {
+    id() {
+      return this.$route.params.id;
+    },
+    voucher() {
+      let vouchersItems = [];
+      this.vouchers.forEach((el) => {
+        let v = el.vouchers;
 
-  metaInfo() {
-    return { title: "Hotel" };
+        if (v) {
+          vouchersItems.push(...v);
+        }
+      });
+      return vouchersItems.find((el) => el.id == this.id);
+    },
   },
 };
 </script>

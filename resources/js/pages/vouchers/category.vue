@@ -55,7 +55,7 @@
           <div class="col-md-3 col-sm-12">
             <div class="form-group">
               <select class="form-control" id="exampleFormControlSelect1">
-                <option>Country</option>
+                <option>จังหวัด</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
@@ -66,7 +66,7 @@
           <div class="col-md-3 col-sm-12">
             <div class="form-group">
               <select class="form-control" id="exampleFormControlSelect1">
-                <option>Price</option>
+                <option>ราคา</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
@@ -77,7 +77,7 @@
           <div class="col-md-3 col-sm-12">
             <div class="form-group">
               <select class="form-control" id="exampleFormControlSelect1">
-                <option>Holiday</option>
+                <option>วัน</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
@@ -91,32 +91,35 @@
                 type="text"
                 class="form-control"
                 id="validationDefault03"
-                placeholder="Search"
+                placeholder="ค้นหา"
               />
             </div>
             <button
               class="btn btn-warning form-group-submit float-left"
               type="submit"
             >
-              OK
+              +
             </button>
           </div>
         </div>
       </div>
     </form>
 
-    <div class="hotel-list shadow mb-3">
+    <div
+      class="hotel-list shadow mb-4"
+      v-for="(item, index) in category.vouchers"
+      :key="index"
+    >
       <div class="row">
         <div class="col-md-3">
-          <img src="/images/img1.jpg" width="100%" />
+          <img :src="item.image_url" width="100%" height="100%" />
         </div>
         <div class="col-md-9">
           <b-card-text>
             <div class="card-body">
-              <h5 class="card-title">Monna Padong</h5>
+              <h5 class="card-title">{{ item.title }}</h5>
               <p class="card-text">
-                Enjoy the beautiful scenery of wooden canna, decorated with
-                simple bamboo works.
+                {{ item.description }}
               </p>
             </div>
             <div class="card-footer">
@@ -134,114 +137,20 @@
                 </div>
                 <div class="col-md-3 col-sm-6">
                   <div class="hotel-price">
-                    <h6 class="text-right mt-3 mb-3 w-100">499$</h6>
+                    <h6 class="text-right mt-3 mb-3 w-100">
+                      {{ item.price }} บาท
+                    </h6>
                   </div>
                 </div>
                 <div class="col-md-3 col-sm-12">
                   <div class="hotel-voucher">
                     <h6 class="text-right">
                       <router-link
-                        :to="{ name: 'hotel.detail', params: { id: 1 } }"
+                        :to="{ name: 'hotel.detail', params: { id: item.id } }"
                         ><button class="btn btn-outline-primary btn-buy">
-                          Buy Voucher
+                          ซื้อเลย
                         </button></router-link
                       >
-                    </h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </b-card-text>
-        </div>
-      </div>
-    </div>
-
-    <div class="hotel-list shadow mb-3">
-      <div class="row">
-        <div class="col-md-3">
-          <img src="/images/img2.jpg" width="100%" />
-        </div>
-        <div class="col-md-9">
-          <b-card-text>
-            <div class="card-body">
-              <h5 class="card-title">Monna Padong</h5>
-              <p class="card-text">
-                Enjoy the beautiful scenery of wooden canna, decorated with
-                simple bamboo works.
-              </p>
-            </div>
-            <div class="card-footer">
-              <div class="row">
-                <div class="col-md-6 col-sm-6">
-                  <div class="hotel-rating-bar">
-                    <div>
-                      <b-form-rating
-                        id="rating-inline"
-                        inline
-                        value="4"
-                      ></b-form-rating>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                  <div class="hotel-price">
-                    <h6 class="text-right mt-3 mb-3 w-100">499$</h6>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-12">
-                  <div class="hotel-voucher">
-                    <h6 class="text-right">
-                      <button class="btn btn-outline-primary btn-buy">
-                        Buy Voucher
-                      </button>
-                    </h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </b-card-text>
-        </div>
-      </div>
-    </div>
-
-    <div class="hotel-list shadow mb-3">
-      <div class="row">
-        <div class="col-md-3">
-          <img src="/images/img3.jpg" width="100%" />
-        </div>
-        <div class="col-md-9">
-          <b-card-text>
-            <div class="card-body">
-              <h5 class="card-title">Monna Padong</h5>
-              <p class="card-text">
-                Enjoy the beautiful scenery of wooden canna, decorated with
-                simple bamboo works.
-              </p>
-            </div>
-            <div class="card-footer">
-              <div class="row">
-                <div class="col-md-6 col-sm-6">
-                  <div class="hotel-rating-bar">
-                    <div>
-                      <b-form-rating
-                        id="rating-inline"
-                        inline
-                        value="4"
-                      ></b-form-rating>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                  <div class="hotel-price">
-                    <h6 class="text-right mt-3 mb-3 w-100">499$</h6>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-12">
-                  <div class="hotel-voucher">
-                    <h6 class="text-right">
-                      <button class="btn btn-outline-primary btn-buy">
-                        Buy Voucher
-                      </button>
                     </h6>
                   </div>
                 </div>
@@ -255,9 +164,20 @@
 </template>
 
 <script>
+import { vouchers } from "../../dataMockup";
 export default {
   middleware: "auth",
-
+  data: () => ({
+    categories: vouchers,
+  }),
+  computed: {
+    key() {
+      return this.$route.params.key;
+    },
+    category() {
+      return this.categories.find((el) => el.key == this.key);
+    },
+  },
   metaInfo() {
     return { title: "Hotel" };
   },

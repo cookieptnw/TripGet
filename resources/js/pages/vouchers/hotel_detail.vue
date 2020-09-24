@@ -52,7 +52,7 @@
     <div class="row">
       <div class="col-md-6">
         <div class="head-content text-center">
-          <h3>Monna Padong</h3>
+          <h3>{{ voucher.title }}</h3>
         </div>
       </div>
       <div class="col-md-6">
@@ -69,21 +69,18 @@
       <div class="row">
         <div class="adult col-md-8 detail-list">
           <b-list-group>
-            <b-list-group-item>✅ Breakfast free </b-list-group-item>
-            <b-list-group-item>✅ Free Wi-Fi</b-list-group-item>
+            <b-list-group-item>✅ ฟรีอาหารเช้า </b-list-group-item>
+            <b-list-group-item>✅ ฟรีไวไฟ</b-list-group-item>
 
+            <b-list-group-item>✅ ราคาพิเศษ</b-list-group-item>
+            <b-list-group-item>✅ หมดอายุ: 31/12/2021</b-list-group-item>
             <b-list-group-item
-              >✅ Extra low price! (non-refundable)</b-list-group-item
-            >
-            <b-list-group-item>✅ Expire: 31/12/2021</b-list-group-item>
-            <b-list-group-item
-              >✅ Can stay everyday Except for long holidays and public
-              holidays</b-list-group-item
+              >✅ พักได้ยาวแม้เป็นวันหยุดนักขัตฤกษ์</b-list-group-item
             >
           </b-list-group>
         </div>
         <div class="col-md-4 detail-price">
-          <h3 class="mt-5">Adult | $699</h3>
+          <h3 class="mt-5">ผู้ใหญ่ | {{ voucher.price }} บาท</h3>
         </div>
       </div>
     </div>
@@ -94,22 +91,19 @@
       <div class="row">
         <div class="adult col-md-8 detail-list">
           <b-list-group>
-            <b-list-group-item>✅ Children 4-10 years </b-list-group-item>
-            <b-list-group-item>✅ Breakfast free</b-list-group-item>
-            <b-list-group-item>✅ Free Wi-Fi</b-list-group-item>
+            <b-list-group-item>✅ เด็กอายุ 4-10 ปี </b-list-group-item>
+            <b-list-group-item>✅ ฟรีอาหารเช้า</b-list-group-item>
+            <b-list-group-item>✅ ไลฟ์สไตล์ท่องเที่ยว</b-list-group-item>
 
+            <b-list-group-item>✅ ราคาพิเศษ</b-list-group-item>
+            <b-list-group-item>✅ หมดอายุ: 31/12/2021</b-list-group-item>
             <b-list-group-item
-              >✅ Extra low price! (non-refundable)</b-list-group-item
-            >
-            <b-list-group-item>✅ Expire: 31/12/2021</b-list-group-item>
-            <b-list-group-item
-              >✅ Can stay everyday Except for long holidays and public
-              holidays</b-list-group-item
+              >✅ พักได้ยาวแม้เป็นวันหยุดนักขัตฤกษ์</b-list-group-item
             >
           </b-list-group>
         </div>
         <div class="col-md-4 detail-price">
-          <h3 class="mt-5">Child | $499</h3>
+          <h3 class="mt-5">เด็ก | {{ voucher.child_price }} บาท</h3>
         </div>
       </div>
     </div>
@@ -120,18 +114,18 @@
           <img src="/images/img4.jpg" alt="" width="100%" />
         </div>
         <div class="col-md-5 mt-2">
-          <p>VoucherChiang Mai</p>
-          <p>🚩 Chiang Mai</p>
+          <p>VoucherChiangMai</p>
+          <p>🚩 เชียงใหม่</p>
         </div>
         <div class="col-md-4 mt-2">
           <router-link :to="{ name: 'hotel.detail', params: { id: 1 } }"
             ><button class="btn btn-outline-primary btn-buy">
-              VIEW
+              ดูรายละเอียดร้านค้า
             </button></router-link
           >
           <router-link :to="{ name: 'hotel.shop', params: { id: 2 } }"
             ><button class="btn btn-outline-primary btn-buy">
-              SHOP
+              ดูร้านค้าเพิ่มเติม
             </button></router-link
           >
         </div>
@@ -142,38 +136,38 @@
       <div class="row">
         <div class="col-md-4 text-center mb-2">
           <h6>20</h6>
-          <small class="text-muted">Product</small>
+          <small class="text-muted">รายการ</small>
         </div>
         <div class="col-md-4 text-center mb-2">
           <h6>4</h6>
-          <small class="text-muted">Rating</small>
+          <small class="text-muted">คะแนนร้านค้า</small>
         </div>
         <div class="col-md-4 text-center mb-2">
           <h6>98%</h6>
-          <small class="text-muted">Chat Response</small>
+          <small class="text-muted">การตอบกลับ</small>
         </div>
       </div>
     </div>
 
     <div class="head-content text-center mt-5">
-      <h3>From The Same Shop</h3>
+      <h3>รายการอื่น ๆ จากร้านค้านี้</h3>
       <hr />
       <div class="row">
         <div class="col-md-3 same-shop-img mb-2">
           <img src="/images/img3.jpg" />
-          <div class="same-shop-price">399$</div>
+          <div class="same-shop-price">1,200 บาท</div>
         </div>
         <div class="col-md-3 same-shop-img mb-2">
           <img src="/images/img4.jpg" />
-          <div class="same-shop-price">499$</div>
+          <div class="same-shop-price">1,590 บาท</div>
         </div>
         <div class="col-md-3 same-shop-img mb-2">
           <img src="/images/img5.jpg" />
-          <div class="same-shop-price">599$</div>
+          <div class="same-shop-price">1,100 บาท</div>
         </div>
         <div class="col-md-3 same-shop-img mb-2">
           <img src="/images/img6.jpg" />
-          <div class="same-shop-price">699$</div>
+          <div class="same-shop-price">1,090 บาท</div>
         </div>
       </div>
       <hr />
@@ -182,23 +176,23 @@
     <div class="vc-box shadow mt-5 mb-5">
       <div class="row">
         <div class="col-md-4 text-center mb-2">
-          <router-link :to="{ name: 'hotel.chat', params: { id: 3 } }"
+          <router-link :to="{ name: 'hotel.chat', params: { id: id } }"
             ><button class="btn btn-primary btn-buy">
-              Chat now
+              ติดต่อร้านค้า
             </button></router-link
           >
         </div>
         <div class="col-md-4 text-center mb-2">
-          <router-link :to="{ name: 'hotel.stock', params: { id: 1 } }"
+          <router-link :to="{ name: 'hotel.stock', params: { id: id } }"
             ><button class="btn btn-primary btn-buy">
-              Add to Cart
+              เพิ่มลงตะกร้า
             </button></router-link
           >
         </div>
         <div class="col-md-4 text-center mb-2">
-          <router-link :to="{ name: 'hotel.detail', params: { id: 1 } }"
+          <router-link :to="{ name: 'hotel.detail', params: { id: id } }"
             ><button class="btn btn-primary btn-buy">
-              Buy Now
+              ซื้อเลย
             </button></router-link
           >
         </div>
@@ -208,11 +202,28 @@
 </template>
 
 <script>
+import { vouchers } from "../../dataMockup";
+
 export default {
   middleware: "auth",
+  data: () => ({
+    vouchers,
+  }),
+  computed: {
+    id() {
+      return this.$route.params.id;
+    },
+    voucher() {
+      let vouchersItems = [];
+      this.vouchers.forEach((el) => {
+        let v = el.vouchers;
 
-  metaInfo() {
-    return { title: "Hotel" };
+        if (v) {
+          vouchersItems.push(...v);
+        }
+      });
+      return vouchersItems.find((el) => el.id == this.id);
+    },
   },
 };
 </script>

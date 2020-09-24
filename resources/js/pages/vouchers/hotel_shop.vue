@@ -210,11 +210,28 @@
 </template>
 
 <script>
+import { vouchers } from "../../dataMockup";
+
 export default {
   middleware: "auth",
+  data: () => ({
+    vouchers,
+  }),
+  computed: {
+    id() {
+      return this.$route.params.id;
+    },
+    voucher() {
+      let vouchersItems = [];
+      this.vouchers.forEach((el) => {
+        let v = el.vouchers;
 
-  metaInfo() {
-    return { title: "Hotel" };
+        if (v) {
+          vouchersItems.push(...v);
+        }
+      });
+      return vouchersItems.find((el) => el.id == this.id);
+    },
   },
 };
 </script>
