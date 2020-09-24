@@ -31,6 +31,26 @@ export default [{
     name: "home.detail",
     component: page("home_detail.vue")
   },
+  {
+    path: "/hotel",
+    name: "hotel",
+    component: page("hotel/hotel.vue")
+  },
+  {
+    path: "/restaurant",
+    name: "restaurant",
+    component: page("restaurant/restaurant.vue")
+  },
+  {
+    path: "/tourist",
+    name: "tourist",
+    component: page("tourist/tourist.vue")
+  },
+  {
+    path: "/travel_guide",
+    name: "travel_guide",
+    component: page("travel_guide/travel_guide.vue")
+  },
 
   {
     path: "/password/reset",

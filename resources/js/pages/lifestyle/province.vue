@@ -1,13 +1,11 @@
 <template>
   <div>
-    <h2 class="text-primary">
-      Province
-    </h2>
+    <h2 class="text-primary">Province</h2>
     <hr />
     <section>
       <h3>ภาคเหนือ</h3>
       <button
-        class="btn  mr-2 mb-2"
+        class="btn mr-2 mb-2"
         :class="activeClass(item.active)"
         v-for="(item, index) in getProvinceByGeo('ภาคเหนือ')"
         v-if="index <= g2"
@@ -31,7 +29,7 @@
     <section>
       <h3>ภาคกลาง</h3>
       <button
-        class="btn  mr-2 mb-2"
+        class="btn mr-2 mb-2"
         :class="activeClass(item.active)"
         v-for="(item, index) in getProvinceByGeo('ภาคกลาง')"
         v-if="index <= g1"
@@ -55,7 +53,7 @@
     <section>
       <h3>ภาคตะวันออก</h3>
       <button
-        class="btn  mr-2 mb-2"
+        class="btn mr-2 mb-2"
         :class="activeClass(item.active)"
         v-for="(item, index) in getProvinceByGeo('ภาคตะวันออก')"
         v-if="index <= g2"
@@ -137,7 +135,7 @@ export default {
     g1: 6,
     g2: 6,
     g3: 6,
-    g4: 6
+    g4: 6,
   }),
   methods: {
     async getProvince() {
@@ -145,22 +143,26 @@ export default {
       this.provinces = data.result;
     },
     getProvinceByGeo(geo) {
-      return this.provinces.filter(el => el.group == geo);
+      return this.provinces.filter((el) => el.group == geo);
     },
     async setActive(id) {
-      let i = findIndex(this.provinces, el => el.id == id);
+      let i = findIndex(this.provinces, (el) => el.id == id);
       this.provinces[i].active = !this.provinces[i].active;
       console.log(this.provinces[i]);
       const { data } = await axios.post(`/api/lifestyle/set/${id}`);
     },
     activeClass(status) {
       return status ? "btn-primary" : "btn-outline-primary";
-    }
+    },
   },
   created() {
     this.getProvince();
-  }
+  },
 };
 </script>
 
-<style></style>
+<style>
+.btn {
+  font-family: "K2D", "Roboto" !important;
+}
+</style>
