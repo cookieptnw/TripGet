@@ -8,6 +8,6 @@ export default {
 
   metaInfo() {
     return { title: this.$t("home") };
-  }
+  },
 };
 </script>

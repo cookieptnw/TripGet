@@ -37,6 +37,26 @@ export default [{
     component: page("hotel/hotel.vue")
   },
   {
+    path: "/hotel/:id",
+    name: "hotel.detail",
+    component: page("hotel/hotel_detail.vue")
+  },
+  {
+    path: "/hotel/:id/:id",
+    name: "hotel.stock",
+    component: page("hotel/hotel_stock.vue")
+  },
+  {
+    path: "/hotel/:id/:id",
+    name: "hotel.shop",
+    component: page("hotel/hotel_shop.vue")
+  },
+  {
+    path: "/hotel/:id/:id",
+    name: "hotel.chat",
+    component: page("hotel/hotel_chat.vue")
+  },
+  {
     path: "/restaurant",
     name: "restaurant",
     component: page("restaurant/restaurant.vue")
@@ -51,6 +71,12 @@ export default [{
     name: "travel_guide",
     component: page("travel_guide/travel_guide.vue")
   },
+  {
+    path: "/content",
+    name: "content",
+    component: page("content.vue")
+  },
+
 
   {
     path: "/password/reset",

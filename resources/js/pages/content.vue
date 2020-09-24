@@ -49,73 +49,6 @@
       </a>
     </div>
 
-    <form>
-      <div class="form-filter">
-        <div class="row">
-          <div class="col-md-2 col-sm-12">
-            <div class="form-group">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>Hotel</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-12">
-            <div class="form-group">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>Country</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-12">
-            <div class="form-group">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>Price</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-12">
-            <div class="form-group">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>Holiday</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-12">
-            <div class="form-group-search float-left">
-              <input
-                type="text"
-                class="form-control"
-                id="validationDefault03"
-                placeholder="Search"
-              />
-            </div>
-            <button
-              class="btn btn-warning form-group-submit float-left"
-              type="submit"
-            >
-              OK
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
-
     <div class="head-content">
       <div class="row">
         <div class="col col-md-8">
@@ -301,7 +234,7 @@ export default {
   middleware: "auth",
 
   metaInfo() {
-    return { title: this.$t("home") };
+    return { title: this.$t("Content") };
   },
 };
 </script>
