@@ -1,5 +1,5 @@
 <template>
-  <div>hotel</div>
+  <div>tourist</div>
 </template>
 
 <script>
@@ -7,7 +7,7 @@ export default {
   middleware: "auth",
 
   metaInfo() {
-    return { title: "Hotel" };
+    return { title: "Tourist" };
   },
 };
 </script>
