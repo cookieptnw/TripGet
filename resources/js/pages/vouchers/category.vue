@@ -168,21 +168,20 @@ import { vouchers } from "../../dataMockup";
 export default {
   middleware: "auth",
   data: () => ({
-    categories: vouchers,
+    categories: vouchers
   }),
   computed: {
     key() {
       return this.$route.params.key;
     },
     category() {
-      return this.categories.find((el) => el.key == this.key);
-    },
+      return this.categories.find(el => el.key == this.key);
+    }
   },
   metaInfo() {
     return { title: "Hotel" };
-  },
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -116,6 +116,22 @@
       </div>
     </form>
 
+    <div class="mt-5 mb-5">
+      <div class="row">
+        <div
+          class="col col-md-6"
+          v-for="category in categories"
+          :key="category.path"
+        >
+          <div class="category-home text-center shadow mb-3">
+            <routerLink :to="category.path">
+              <h3 class="text-white">{{ category.name }}</h3>
+            </routerLink>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="head-content">
       <div class="row">
         <div class="col col-md-8">
@@ -226,11 +242,11 @@
       </div>
     </div>
 
-    <div class="head-content">
+    <div class="head-content mt-5">
       <h3>ไลฟ์สไตล์ท่องเที่ยว</h3>
     </div>
 
-    <div class="card-deck">
+    <div class="card-deck mb-5">
       <div class="card shadow">
         <img
           class="card-img-top"
@@ -299,22 +315,6 @@
         </div>
       </div>
     </div>
-
-    <div class="mt-5 mb-5">
-      <div class="row">
-        <div
-          class="col col-md-6"
-          v-for="category in categories"
-          :key="category.path"
-        >
-          <div class="category-home text-center shadow mb-3">
-            <routerLink :to="category.path">
-              <h3 class="text-white">{{ category.name }}</h3>
-            </routerLink>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -323,14 +323,13 @@ import { vouchers } from "../dataMockup";
 export default {
   middleware: "auth",
   data: () => ({
-    categories: vouchers,
+    categories: vouchers
   }),
 
   metaInfo() {
     return { title: this.$t("home") };
-  },
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>

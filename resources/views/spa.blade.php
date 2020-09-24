@@ -181,6 +181,7 @@ config('services.facebook.client_id'),]; @endphp
       padding: 15px;
       border: 1px solid #ff7d7d;
       border-radius: 0px 0px 5px 5px;
+      background-color: #ffececd8;
     }
 
     .total {
@@ -192,6 +193,10 @@ config('services.facebook.client_id'),]; @endphp
       padding: 5px;
       border: 1px solid #195dfc;
       border-radius: 5px;
+    }
+
+    .flash-sale {
+      color: #ff7d7d;
     }
 
   </style>
