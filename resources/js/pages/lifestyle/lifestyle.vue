@@ -27,11 +27,12 @@
 export default {
   data: () => ({
     types: [
-      { type: "Province", name: "province" },
-      { type: "Number of tourists", name: "number_of_tourists" },
-      { type: "Lifestyle Travel", name: "lifestyle_travel" },
-      { type: "What do you travel ?", name: "what_do_you_travel" },
-      { type: "How to get there ?", name: "how_to_get_there" }
+      { type: "พฤติกรรมการท่องเที่ยว", name: "lifestyle_travel" },
+      { type: "จังหวัด", name: "province" },
+      { type: "จำนวนของนักท่องเที่ยว", name: "number_of_tourists" },
+      { type: "ประเภทห้องพัก", name: "room_type" },
+      { type: "ช่วงเวลาที่ทำการท่องเที่ยว", name: "what_do_you_travel" },
+      { type: "วิธีการเดินทาง", name: "how_to_get_there" }
     ]
   })
 };

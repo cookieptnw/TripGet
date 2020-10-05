@@ -1,11 +1,12 @@
 function page(path) {
   return () =>
-    import( /* webpackChunkName: '' */ `~/pages/${path}`).then(
+    import(/* webpackChunkName: '' */ `~/pages/${path}`).then(
       m => m.default || m
     );
 }
 
-export default [{
+export default [
+  {
     path: "/",
     name: "welcome",
     component: page("welcome.vue")
@@ -67,7 +68,6 @@ export default [{
     component: page("content/content_detail.vue")
   },
 
-
   {
     path: "/password/reset",
     name: "password.request",
@@ -120,6 +120,11 @@ export default [{
     component: page("lifestyle/how_to_get_there.vue")
   },
   {
+    path: "/lifestyle/room_type",
+    name: "lifestyle.room_type",
+    component: page("lifestyle/room_type.vue")
+  },
+  {
     path: "/lifestyle/province",
     name: "lifestyle.province",
     component: page("lifestyle/province.vue")
@@ -127,7 +132,8 @@ export default [{
   {
     path: "/settings",
     component: page("settings/index.vue"),
-    children: [{
+    children: [
+      {
         path: "",
         redirect: {
           name: "settings.profile"

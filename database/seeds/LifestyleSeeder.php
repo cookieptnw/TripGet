@@ -54,12 +54,6 @@ class LifestyleSeeder extends Seeder
             ],
 
             [
-                "name" => 'ชอบผจญภัย',
-                "group" => '',
-                'type' => 'lifestyle_travel'
-            ],
-
-            [
                 "name" => 'เดินทางระหว่างวันหยุด',
                 "group" => '',
                 'type' => 'lifestyle_travel'
@@ -96,16 +90,45 @@ class LifestyleSeeder extends Seeder
                 "group" => '',
                 'type' => 'what_do_you_travel'
             ],
+
+
+            [
+                "name" => 'สแตนดาร์ด',
+                "group" => '',
+                'type' => 'room_type'
+            ],
+            [
+                "name" => 'ดีลักซ์',
+                "group" => '',
+                'type' => 'room_type'
+            ],
+            [
+                "name" => 'ซีวิว',
+                "group" => '',
+                'type' => 'room_type'
+            ],
+            [
+                "name" => 'แฟมิลี่รูม',
+                "group" => '',
+                'type' => 'room_type'
+            ],
+            [
+                "name" => 'พูล เอกเซส',
+                "group" => '',
+                'type' => 'room_type'
+            ],
             [
                 "name" => 'เหมาจ่าย',
                 "group" => '',
                 'type' => 'how_to_get_there'
             ],
             [
+
                 "name" => 'เบ็ดเสร็จ',
                 "group" => '',
                 'type' => 'how_to_get_there'
-            ]
+            ],
+
         ]);
     }
 }
