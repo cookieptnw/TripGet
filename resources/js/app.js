@@ -6,7 +6,10 @@ import App from "~/components/App";
 
 import "~/plugins";
 import "~/components";
-import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+import {
+  BootstrapVue,
+  IconsPlugin
+} from "bootstrap-vue";
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 import "bootstrap/dist/css/bootstrap.css";

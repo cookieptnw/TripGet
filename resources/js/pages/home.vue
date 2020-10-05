@@ -119,7 +119,7 @@
     <div class="mt-5 mb-5">
       <div class="row">
         <div
-          class="col col-md-6"
+          class="col-md-6"
           v-for="category in categories"
           :key="category.path"
         >
