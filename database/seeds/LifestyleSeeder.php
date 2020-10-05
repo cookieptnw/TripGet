@@ -28,67 +28,81 @@ class LifestyleSeeder extends Seeder
 
         Lifestyle::insert([
             [
-                "name" => 'Group Tour',
+                "name" => 'ส่วนบุคคล (1-2คน)',
                 "group" => '',
                 'type' => 'number_of_tourists'
             ],
             [
-                "name" => 'Indepedent Tour',
+                "name" => 'เป็นกลุ่ม (3-4คนขึ้นไป)',
                 "group" => '',
                 'type' => 'number_of_tourists'
             ],
+
+
+
+
             [
-                "name" => 'Adventure',
+                "name" => 'นักท่องเที่ยวแบบประหยัด',
+                "group" => '',
+                'type' => 'lifestyle_travel'
+            ],
+
+            [
+                "name" => 'ชอบผจญภัย',
+                "group" => '',
+                'type' => 'lifestyle_travel'
+            ],
+
+            [
+                "name" => 'ชอบผจญภัย',
+                "group" => '',
+                'type' => 'lifestyle_travel'
+            ],
+
+            [
+                "name" => 'เดินทางระหว่างวันหยุด',
+                "group" => '',
+                'type' => 'lifestyle_travel'
+            ],
+
+            [
+                "name" => 'ชอบชมธรรมชาติ',
                 "group" => '',
                 'type' => 'lifestyle_travel'
             ],
             [
-                "name" => 'Family',
+                "name" => 'หลงใหลในทะเล',
                 "group" => '',
                 'type' => 'lifestyle_travel'
             ],
             [
-                "name" => 'Vacationers',
+                "name" => 'เดินทางพร้อมครอบครัว',
                 "group" => '',
                 'type' => 'lifestyle_travel'
             ],
             [
-                "name" => 'Nature',
+                "name" => 'รักสัตว์',
                 "group" => '',
                 'type' => 'lifestyle_travel'
             ],
+
             [
-                "name" => 'Budget',
-                "group" => '',
-                'type' => 'lifestyle_travel'
-            ],
-            [
-                "name" => 'Sea lover',
-                "group" => '',
-                'type' => 'lifestyle_travel'
-            ],
-            [
-                "name" => 'Animal Lover',
-                "group" => '',
-                'type' => 'lifestyle_travel'
-            ],
-            [
-                "name" => 'Holiday',
+                "name" => 'วันหยุด',
                 "group" => '',
                 'type' => 'what_do_you_travel'
             ],
             [
-                "name" => 'Weekend',
+                "name" => 'วันหยุดยาว',
                 "group" => '',
                 'type' => 'what_do_you_travel'
             ],
             [
-                "name" => 'Package Tour',
+                "name" => 'เหมาจ่าย',
                 "group" => '',
                 'type' => 'how_to_get_there'
             ],
             [
-                "name" => 'Inclusive Tour',
+                "name" => 'เบ็ดเสร็จ',
                 "group" => '',
                 'type' => 'how_to_get_there'
             ]

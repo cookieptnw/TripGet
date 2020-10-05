@@ -1,15 +1,18 @@
 <template>
-  <card :title="$t('home')">
-    {{ $t('you_are_logged_in') }}
-  </card>
+  <div>
+    <bannerSlider />
+  </div>
 </template>
 
 <script>
+import bannerSlider from "~/components/home/Slider";
 export default {
-  middleware: 'auth',
-
-  metaInfo () {
-    return { title: this.$t('home') }
+  middleware: "auth",
+  components: {
+    bannerSlider
+  },
+  metaInfo() {
+    return { title: this.$t("home") };
   }
-}
+};
 </script>

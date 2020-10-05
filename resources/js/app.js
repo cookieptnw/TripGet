@@ -12,7 +12,8 @@ Vue.use(IconsPlugin);
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 Vue.config.productionTip = false;
-
+import VueCarousel from "vue-carousel";
+Vue.use(VueCarousel);
 /* eslint-disable no-new */
 new Vue({
   i18n,
