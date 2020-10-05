@@ -80,7 +80,11 @@
           </b-list-group>
         </div>
         <div class="col-md-4 detail-price">
-          <h3 class="mt-5">ผู้ใหญ่ | {{ voucher.price }} บาท</h3>
+          <h3 class="mt-5">
+            Two Bedroom Pool Villa
+            <hr />
+            {{ voucher.price }} บาท
+          </h3>
         </div>
       </div>
     </div>
@@ -103,7 +107,11 @@
           </b-list-group>
         </div>
         <div class="col-md-4 detail-price">
-          <h3 class="mt-5">เด็ก | {{ voucher.child_price }} บาท</h3>
+          <h3 class="mt-5">
+            One Bedroom Duplex Pool Suit
+            <hr />
+            {{ voucher.child_price }} บาท
+          </h3>
         </div>
       </div>
     </div>
