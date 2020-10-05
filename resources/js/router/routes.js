@@ -1,16 +1,72 @@
 function page(path) {
   return () =>
-    import(/* webpackChunkName: '' */ `~/pages/${path}`).then(
+    import( /* webpackChunkName: '' */ `~/pages/${path}`).then(
       m => m.default || m
     );
 }
 
-export default [
-  { path: "/", name: "welcome", component: page("welcome.vue") },
+export default [{
+    path: "/",
+    name: "welcome",
+    component: page("welcome.vue")
+  },
 
-  { path: "/login", name: "login", component: page("auth/login.vue") },
-  { path: "/register", name: "register", component: page("auth/register.vue") },
-  { path: "/home", name: "home", component: page("home.vue") },
+  {
+    path: "/login",
+    name: "login",
+    component: page("auth/login.vue")
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: page("auth/register.vue")
+  },
+  {
+    path: "/home",
+    name: "home",
+    component: page("home.vue")
+  },
+  {
+    path: "/home/:id",
+    name: "home.detail",
+    component: page("home_detail.vue")
+  },
+  {
+    path: "/category/:key",
+    name: "category",
+    component: page("vouchers/category.vue")
+  },
+  {
+    path: "/voucher/:id",
+    name: "hotel.detail",
+    component: page("vouchers/hotel_detail.vue")
+  },
+  {
+    path: "/voucher/:id/stock",
+    name: "hotel.stock",
+    component: page("vouchers/hotel_stock.vue")
+  },
+  {
+    path: "/voucher/:id/shop",
+    name: "hotel.shop",
+    component: page("vouchers/hotel_shop.vue")
+  },
+  {
+    path: "/voucher/:id/chat",
+    name: "hotel.chat",
+    component: page("vouchers/hotel_chat.vue")
+  },
+  {
+    path: "/content",
+    name: "content",
+    component: page("content/content.vue")
+  },
+  {
+    path: "/content/:id",
+    name: "content.detail",
+    component: page("content/content_detail.vue")
+  },
+
 
   {
     path: "/password/reset",
@@ -71,8 +127,12 @@ export default [
   {
     path: "/settings",
     component: page("settings/index.vue"),
-    children: [
-      { path: "", redirect: { name: "settings.profile" } },
+    children: [{
+        path: "",
+        redirect: {
+          name: "settings.profile"
+        }
+      },
       {
         path: "profile",
         name: "settings.profile",
@@ -86,5 +146,8 @@ export default [
     ]
   },
 
-  { path: "*", component: page("errors/404.vue") }
+  {
+    path: "*",
+    component: page("errors/404.vue")
+  }
 ];

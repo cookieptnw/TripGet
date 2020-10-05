@@ -15,13 +15,10 @@ export default {
   name: "MainLayout",
 
   components: {
-    Navbar
-  }
+    Navbar,
+  },
 };
 </script>
 
 <style>
-.fit {
-  object-fit: cover;
-}
 </style>
