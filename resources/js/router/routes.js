@@ -181,6 +181,8 @@ export default [
         component: page("admin/adminDashboard.vue")
       },
       ...cruGen("voucher_categories", "voucherCategory"),
+      ...cruGen("hotels", "hotel"),
+      ...cruGen("main_hotels", "mainHotel"),
       ...cruGen("vouchers", "voucher")
     ]
   },

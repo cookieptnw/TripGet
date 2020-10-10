@@ -50,6 +50,20 @@ export default {
       },
 
       {
+        title: "Hotel",
+        icon: "fas fa-home",
+        child: [
+          {
+            href: "/admin/main_hotels",
+            title: "Main Hotel"
+          },
+          {
+            href: "/admin/hotels",
+            title: "Hotel Branch"
+          }
+        ]
+      },
+      {
         title: "Voucher",
         icon: "fas fa-folder",
         child: [

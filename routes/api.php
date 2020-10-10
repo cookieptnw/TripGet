@@ -27,6 +27,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     crud('voucher_categories', 'VoucherCategoryController');
     crud('vouchers', 'VoucherController');
+    crud('main_hotels', 'MainHotelController');
+    crud('hotels', 'HotelController');
 
     Route::post('image/upload', 'UploadController@imageUploadPost');
 

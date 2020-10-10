@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Hotel;
+use App\MainHotel;
 use Illuminate\Http\Request;
 
-class HotelController extends Controller
+class MainHotelController extends Controller
 {
     private $mainModel;
 
     public function __construct()
     {
-        $this->mainModel = new Hotel();
+        $this->mainModel = new MainHotel();
     }
 
     public function index(Request $request)
@@ -33,7 +33,9 @@ class HotelController extends Controller
 
     public function store(Request $request)
     {
-        $item = $this->mainModel::create($request->all());
+        $req = $request->all();
+        $req['user_id'] = $request->user()->id;
+        $item = $this->mainModel::create($req);
 
         if (!$item) {
             return response()->json([

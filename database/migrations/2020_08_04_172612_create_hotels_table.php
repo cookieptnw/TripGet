@@ -13,6 +13,13 @@ class CreateHotelsTable extends Migration
      */
     public function up()
     {
+        Schema::create('main_hotels', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('description');
+            $table->bigInteger('user_id')->nullable();
+            $table->timestamps();
+        });
         Schema::create('hotels', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -25,6 +32,7 @@ class CreateHotelsTable extends Migration
             $table->string('sub_district');
             $table->string('district');
             $table->string('province');
+            $table->bigInteger('main_hotel_id')->nullable();
             $table->timestamps();
         });
     }

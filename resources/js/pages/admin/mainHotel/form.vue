@@ -109,16 +109,9 @@ export default {
     }),
     item: {},
     isCreate: true,
-    pageTitle: "Voucher",
+    pageTitle: "Main Hotel",
     uploadName: "",
     inputs: [
-      {
-        title: "Category",
-        name: "category_id",
-        type: "relationSelect",
-        relationName: "voucher_categories",
-        items: []
-      },
       {
         title: "Name",
         name: "name",
@@ -128,58 +121,6 @@ export default {
         title: "Description",
         name: "description",
         type: "textarea"
-      },
-      {
-        title: "Price",
-        name: "price",
-        type: "number",
-        step: "0.01"
-      },
-      {
-        title: "Price Child",
-        name: "price_child",
-        type: "number",
-        step: "0.01"
-      },
-      {
-        title: "Start Date",
-        name: "start_date",
-        type: "date"
-      },
-      {
-        title: "End Date",
-        name: "end_date",
-        type: "date"
-      },
-      {
-        title: "Holiday Open",
-        name: "holiday_open",
-        type: "checkbox"
-      },
-      {
-        title: "weekend_open",
-        name: "weekend_open",
-        type: "checkbox"
-      },
-      {
-        title: "discount",
-        name: "discount",
-        type: "number"
-      },
-      {
-        title: "day_use",
-        name: "day_use",
-        type: "number"
-      },
-      {
-        title: "not_refund",
-        name: "not_refund",
-        type: "checkbox"
-      },
-      {
-        title: "pet_allow",
-        name: "pet_allow",
-        type: "checkbox"
       }
     ]
   }),

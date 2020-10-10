@@ -27,6 +27,7 @@
                 v-if="
                   input.type == 'text' ||
                     input.type == 'number' ||
+                    input.type == 'tel' ||
                     input.type == 'date'
                 "
               >
@@ -105,18 +106,18 @@ import { findIndex } from "lodash";
 export default {
   data: () => ({
     form: new Form({
-      category_id: null
+      main_hotel_id: null
     }),
     item: {},
     isCreate: true,
-    pageTitle: "Voucher",
+    pageTitle: "Hotel Branch",
     uploadName: "",
     inputs: [
       {
-        title: "Category",
-        name: "category_id",
+        title: "Main Hotel",
+        name: "main_hotel_id",
         type: "relationSelect",
-        relationName: "voucher_categories",
+        relationName: "main_hotels",
         items: []
       },
       {
@@ -130,56 +131,44 @@ export default {
         type: "textarea"
       },
       {
-        title: "Price",
-        name: "price",
-        type: "number",
-        step: "0.01"
+        title: "google_map_url",
+        name: "google_map_url",
+        type: "text"
       },
       {
-        title: "Price Child",
-        name: "price_child",
-        type: "number",
-        step: "0.01"
+        title: "tel_no",
+        name: "tel_no",
+        type: "tel"
       },
       {
-        title: "Start Date",
-        name: "start_date",
+        title: "lat",
+        name: "lat",
+        type: "text"
+      },
+      {
+        title: "long",
+        name: "long",
+        type: "text"
+      },
+      {
+        title: "approved_at",
+        name: "approved_at",
         type: "date"
       },
       {
-        title: "End Date",
-        name: "end_date",
-        type: "date"
+        title: "sub_district",
+        name: "sub_district",
+        type: "text"
       },
       {
-        title: "Holiday Open",
-        name: "holiday_open",
-        type: "checkbox"
+        title: "district",
+        name: "district",
+        type: "text"
       },
       {
-        title: "weekend_open",
-        name: "weekend_open",
-        type: "checkbox"
-      },
-      {
-        title: "discount",
-        name: "discount",
-        type: "number"
-      },
-      {
-        title: "day_use",
-        name: "day_use",
-        type: "number"
-      },
-      {
-        title: "not_refund",
-        name: "not_refund",
-        type: "checkbox"
-      },
-      {
-        title: "pet_allow",
-        name: "pet_allow",
-        type: "checkbox"
+        title: "province",
+        name: "province",
+        type: "text"
       }
     ]
   }),
