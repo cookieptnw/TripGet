@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::insert([[
-            'first_name' => 'admin', 'last_name' => 'admin', 'email' => 'admin@cms.com', 'password' => bcrypt('123456')
+            'first_name' => 'admin', 'last_name' => 'admin', 'email' => 'admin@cms.com', 'password' => bcrypt('123456'), "role_id" => 2
 
         ]]);
     }

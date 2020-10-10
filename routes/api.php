@@ -13,10 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+function crud($name, $controller)
+{
+    Route::resource("{$name}", "{$controller}");
+    Route::post("{$name}/{id}/delete", "{$controller}@destroy");
+    Route::post("{$name}/{id}/update", "{$controller}@update");
+}
+
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', 'Auth\LoginController@logout');
 
     Route::get('/user', 'Auth\UserController@current');
+
+    crud('voucher_categories', 'VoucherCategoryController');
+    crud('vouchers', 'VoucherController');
+
+    Route::post('image/upload', 'UploadController@imageUploadPost');
 
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');

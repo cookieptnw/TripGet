@@ -5,6 +5,26 @@ function page(path) {
     );
 }
 
+function cruGen(path, name) {
+  return [
+    {
+      path: `${path}`,
+      name: path,
+      component: page(`admin/${name}/${name}.vue`)
+    },
+    {
+      path: `${path}/create`,
+      name: `${path}.create`,
+      component: page(`admin/${name}/form.vue`)
+    },
+    {
+      path: `${path}/:id/edit`,
+      name: `${path}.edit`,
+      component: page(`admin/${name}/form.vue`)
+    }
+  ];
+}
+
 export default [
   {
     path: "/",
@@ -149,6 +169,19 @@ export default [
         name: "settings.password",
         component: page("settings/password.vue")
       }
+    ]
+  },
+  {
+    path: "/admin",
+    component: page("admin/index.vue"),
+    children: [
+      {
+        path: "",
+        name: "adminHome",
+        component: page("admin/adminDashboard.vue")
+      },
+      ...cruGen("voucher_categories", "voucherCategory"),
+      ...cruGen("vouchers", "voucher")
     ]
   },
 

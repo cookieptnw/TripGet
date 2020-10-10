@@ -12,8 +12,14 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        Role::insert([[
-            "name" => 'member'
-        ]]);
+        Role::insert([
+            [
+                "name" => 'member'
+            ],
+            [
+                "name" => 'admin'
+            ]
+
+        ]);
     }
 }

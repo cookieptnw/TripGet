@@ -9,7 +9,6 @@ export default {
     })
   },
   methods: {
-    aUrl: p => `${folderDirectory}${p}`,
-    aAssetUrl: (p2, p1) => `${assetDirectory}assets/${p1 ? p1 + "/" : ""}${p2}`
+    aUrl: p => `${folderDirectory}${p}`
   }
 };
