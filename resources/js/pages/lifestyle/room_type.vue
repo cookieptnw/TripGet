@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="text-primary">
-      How to get there ?
+      ประเภทห้อง
     </h2>
     <hr />
 

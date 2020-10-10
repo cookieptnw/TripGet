@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="text-primary">
-      Lifestyle Travel
+      พฤติกรรมการท่องเที่ยว
     </h2>
     <hr />
 

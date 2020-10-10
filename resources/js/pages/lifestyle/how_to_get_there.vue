@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="text-primary">
-      How to get there ?
+      วิธีการเดินทาง
     </h2>
     <hr />
 

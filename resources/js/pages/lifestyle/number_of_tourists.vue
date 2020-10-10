@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="text-primary">
-      Number of tourists
+      จำนวนของนักท่องเที่ยว
     </h2>
     <hr />
 

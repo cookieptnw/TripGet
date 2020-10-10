@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="text-primary">
-      What do you travel ?
+      ช่วงเวลาที่ทำการท่องเที่ยว
     </h2>
     <hr />
 
