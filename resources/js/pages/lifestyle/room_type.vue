@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <h2 class="text-primary">
-      ประเภทห้อง
-    </h2>
+  <div class="container">
+    <h2 class="text-primary">ประเภทห้อง</h2>
     <hr />
 
     <button
-      class="w-100 btn  mb-2"
+      class="w-100 btn mb-2"
       v-for="item in items"
       :class="activeClass(item.active)"
       :key="item.id"
@@ -23,7 +21,7 @@ import { findIndex, find } from "lodash";
 
 export default {
   data: () => ({
-    items: []
+    items: [],
   }),
   methods: {
     async getData() {
@@ -31,17 +29,17 @@ export default {
       this.items = data.result;
     },
     async setActive(id) {
-      let i = findIndex(this.items, el => el.id == id);
+      let i = findIndex(this.items, (el) => el.id == id);
       this.items[i].active = !this.items[i].active;
       const { data } = await axios.post(`/api/lifestyle/set/${id}`);
     },
     activeClass(status) {
       return status ? "btn-primary" : "btn-outline-primary";
-    }
+    },
   },
   created() {
     this.getData();
-  }
+  },
 };
 </script>
 

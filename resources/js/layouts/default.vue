@@ -1,8 +1,8 @@
 <template>
   <div class="main-layout">
     <div class="mh-800">
-      <Navbar />
       <div>
+        <Navbar />
         <child />
       </div>
     </div>
@@ -11,11 +11,11 @@
 
 <script>
 import Navbar from "~/components/Navbar";
-
+console.log("wef");
 export default {
   name: "MainLayout",
-
   components: {
     Navbar,
   },
 };
+</script>

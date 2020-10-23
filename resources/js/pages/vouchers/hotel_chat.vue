@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="hotel-list shadow mb-3">
       <div class="row">
         <div class="col-md-3">

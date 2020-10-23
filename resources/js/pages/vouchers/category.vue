@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <h1 class="py-3">{{ show.name }}</h1>
+    <hr />
     <form class="mb-5">
       <div class="form-filter">
         <div class="row">
@@ -69,7 +71,7 @@
           <div class="col-md-9">
             <b-card-text>
               <div class="card-body">
-                <h5 class="card-title">{{ item.title }}</h5>
+                <h5 class="card-title">{{ item.name }}</h5>
                 <p class="card-text">
                   {{ item.description }}
                 </p>

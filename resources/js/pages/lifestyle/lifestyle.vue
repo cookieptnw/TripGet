@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <b-card>
       <b-list-group flush>
         <b-list-group-item
@@ -7,7 +7,7 @@
           @click="
             $router.push({
               name: `lifestyle.${item.name}`,
-              params: { type: item.name }
+              params: { type: item.name },
             })
           "
           v-for="(item, index) in types"
@@ -32,9 +32,9 @@ export default {
       { type: "จำนวนของนักท่องเที่ยว", name: "number_of_tourists" },
       { type: "ประเภทห้องพัก", name: "room_type" },
       { type: "ช่วงเวลาที่ทำการท่องเที่ยว", name: "what_do_you_travel" },
-      { type: "วิธีการเดินทาง", name: "how_to_get_there" }
-    ]
-  })
+      { type: "วิธีการเดินทาง", name: "how_to_get_there" },
+    ],
+  }),
 };
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="vc-box shadow mt-5">
       <div class="row">
         <div class="col-md-3">
@@ -176,7 +176,7 @@ import { vouchers } from "../../dataMockup";
 export default {
   middleware: "auth",
   data: () => ({
-    vouchers
+    vouchers,
   }),
   computed: {
     id() {
@@ -184,16 +184,16 @@ export default {
     },
     voucher() {
       let vouchersItems = [];
-      this.vouchers.forEach(el => {
+      this.vouchers.forEach((el) => {
         let v = el.vouchers;
 
         if (v) {
           vouchersItems.push(...v);
         }
       });
-      return vouchersItems.find(el => el.id == this.id);
-    }
-  }
+      return vouchersItems.find((el) => el.id == this.id);
+    },
+  },
 };
 </script>
 

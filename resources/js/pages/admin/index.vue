@@ -2,7 +2,6 @@
   <div>
     <div class="clearfix">
       <div class="wrapper-abc">
-        <navbar />
         <div
           class="float-left"
           style="width: 300px; abackground-color: #2a2a2e; height: 100vh"
@@ -10,9 +9,7 @@
           <div class="wrapper-sidebar">
             <sidebar-menu :menu="menu" width="300" class="bg-admin">
               <div slot="header" class="text-center pt-3 text-white">
-                <img src="/images/logo.png" width="50%" />
-                <span style="font-size: 8px"> For Admin</span>
-
+                <div style="height: 50px"></div>
                 <hr />
               </div>
             </sidebar-menu>
@@ -74,7 +71,7 @@ export default {
           // },
           {
             href: "/admin/vouchers",
-            title: "Voucher Listk",
+            title: "Voucher List",
           },
         ],
       },

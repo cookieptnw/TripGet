@@ -116,7 +116,7 @@ import axios from "axios";
 
 export default {
   data: () => ({
-    pageTitle: "Voucher Listk",
+    pageTitle: "Voucher List",
     items: {},
     showItem: 10,
     showItemOptions: [

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div
       id="carouselExampleIndicators"
       class="carousel slide"
