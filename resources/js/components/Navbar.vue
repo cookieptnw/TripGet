@@ -101,16 +101,17 @@ import { mapGetters } from "vuex";
 import LocaleDropdown from "./LocaleDropdown";
 
 export default {
+  name: "Navbar",
   components: {
-    LocaleDropdown
+    LocaleDropdown,
   },
 
   data: () => ({
-    appName: window.config.appName
+    appName: window.config.appName,
   }),
 
   computed: mapGetters({
-    user: "auth/user"
+    user: "auth/user",
   }),
 
   methods: {
@@ -120,8 +121,8 @@ export default {
 
       // Redirect to login.
       this.$router.push({ name: "login" });
-    }
-  }
+    },
+  },
 };
 </script>
 

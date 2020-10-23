@@ -17,17 +17,18 @@ class CreateVouchersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->string('image_url');
             $table->float('price', 10, 2);
             $table->float('price_child', 10, 2);
             $table->date('start_date');
             $table->date('end_date');
-            $table->boolean('holiday_open');
-            $table->boolean('weekend_open');
-            $table->integer('discount');
+            $table->boolean('holiday_open')->default(0);
+            $table->boolean('weekend_open')->default(0);
+            $table->integer('discount')->default(0);
             $table->integer('discount_promotion')->nullable();
-            $table->integer('day_use');
-            $table->boolean('not_refund');
-            $table->boolean('pet_allow');
+            $table->integer('day_use')->default(1);
+            $table->boolean('not_refund')->default(0);
+            $table->boolean('pet_allow')->default(0);
             $table->bigInteger('category_id')->unsigned()->default(1);
             $table->foreign('category_id')
                 ->references('id')

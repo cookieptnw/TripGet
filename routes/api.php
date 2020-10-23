@@ -58,3 +58,5 @@ Route::post('lifestyle/set/{id}', 'LifestyleController@set');
 Route::get('province', function () {
     return  $provinces = Factory::province();
 });
+
+Route::resource('photos', 'Test');

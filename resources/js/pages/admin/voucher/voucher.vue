@@ -27,8 +27,9 @@
                 :value="item.v"
                 v-for="item in showItemOptions"
                 :key="item.v"
-                >{{ item.t }}</option
               >
+                {{ item.t }}
+              </option>
             </select>
             <label>entries</label>
           </div>
@@ -49,7 +50,7 @@
           <!-- ////////// SEARCH AND SORT //////////-->
         </div>
       </div>
-      <div class="clear-fix paginate-group ">
+      <div class="clear-fix paginate-group">
         <div class="float-left form-inline">
           <div class="form-group mb-4">
             <label>Search:</label>
@@ -115,14 +116,14 @@ import axios from "axios";
 
 export default {
   data: () => ({
-    pageTitle: "Voucher List",
+    pageTitle: "Voucher Listk",
     items: {},
     showItem: 10,
     showItemOptions: [
       { v: 10, t: "10" },
       { v: 25, t: "25" },
       { v: 50, t: "50" },
-      { v: 100, t: "100" }
+      { v: 100, t: "100" },
     ],
     q: "",
     sortBy: "desc",
@@ -134,13 +135,13 @@ export default {
       "start_date",
       "end_date",
       { key: "created_at_text", label: "Created At" },
-      "actions"
-    ]
+      "actions",
+    ],
   }),
   computed: {
     pageName() {
       return this.$route.name.split(".")[0];
-    }
+    },
   },
   methods: {
     async fetch(page = 1) {
@@ -149,8 +150,8 @@ export default {
           page,
           item: this.showItem,
           q: this.q,
-          sortBy: this.sortBy
-        }
+          sortBy: this.sortBy,
+        },
       });
       this.items = data.items;
     },
@@ -160,16 +161,16 @@ export default {
         const { data } = await axios.post(
           this.$api(this.pageName + `/${id}/delete`),
           {
-            id
+            id,
           }
         );
 
         this.fetch();
       }
-    }
+    },
   },
   created() {
     this.fetch();
-  }
+  },
 };
 </script>

@@ -12,4 +12,10 @@ class VoucherCategory extends Model
     {
         return $this->created_at ? \Carbon\Carbon::parse($this->created_at)->format('d/m/Y H:i:s') : '-';
     }
+
+
+    public function vouchers()
+    {
+        return $this->hasMany(Voucher::class, 'category_id', 'id');
+    }
 }

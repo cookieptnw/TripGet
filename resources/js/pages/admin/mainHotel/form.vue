@@ -26,8 +26,8 @@
                 class="inputText"
                 v-if="
                   input.type == 'text' ||
-                    input.type == 'number' ||
-                    input.type == 'date'
+                  input.type == 'number' ||
+                  input.type == 'date'
                 "
               >
                 <div class="input-group mb-3">
@@ -77,7 +77,7 @@
                   class="w-100 form-control mb-3"
                   v-if="input.items"
                 >
-                  <option :value="null">-- Please Select -- </option>
+                  <option :value="null">-- Please Select --</option>
                   <option
                     v-for="item in input.items.data"
                     :key="item.id"
@@ -105,7 +105,7 @@ import { findIndex } from "lodash";
 export default {
   data: () => ({
     form: new Form({
-      category_id: null
+      category_id: null,
     }),
     item: {},
     isCreate: true,
@@ -115,14 +115,29 @@ export default {
       {
         title: "Name",
         name: "name",
-        type: "text"
+        type: "text",
+      },
+      {
+        title: "ชื่อจังหวัด",
+        name: "province",
+        type: "text",
+      },
+      {
+        title: "จำนวนคน",
+        name: "peoplenum",
+        type: "number",
+      },
+      {
+        title: "รหัสไปรษณีย์",
+        name: "zipcod",
+        type: "text",
       },
       {
         title: "Description",
         name: "description",
-        type: "textarea"
-      }
-    ]
+        type: "textarea",
+      },
+    ],
   }),
   methods: {
     async fetchShow() {
@@ -135,8 +150,8 @@ export default {
       const { data } = await this.form
         .get(this.$api(name), {
           params: {
-            item: 99
-          }
+            item: 99,
+          },
         })
         .catch();
 
@@ -146,7 +161,7 @@ export default {
       this.inputs[index]["items"] = data.items;
     },
     async checkRelation() {
-      let inputs = this.inputs.filter(el => el.type == "relationSelect");
+      let inputs = this.inputs.filter((el) => el.type == "relationSelect");
       if (inputs.length) {
         let _this = this;
         inputs.forEach(async (el, index) => {
@@ -178,7 +193,7 @@ export default {
     },
     setUploadName(a) {
       this.uploadName = a;
-    }
+    },
   },
   computed: {
     pageName() {
@@ -186,7 +201,7 @@ export default {
     },
     id() {
       return this.$route.params.id;
-    }
+    },
   },
   async created() {
     this.checkRelation();
@@ -194,7 +209,7 @@ export default {
     if (this.id) {
       this.isCreate = false;
       await this.fetchShow();
-      this.form.keys().forEach(key => {
+      this.form.keys().forEach((key) => {
         this.form[key] = this.item[key];
       });
 
@@ -206,7 +221,7 @@ export default {
         }
       });
     }
-  }
+  },
 };
 </script>
 

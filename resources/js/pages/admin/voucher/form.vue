@@ -26,8 +26,8 @@
                 class="inputText"
                 v-if="
                   input.type == 'text' ||
-                    input.type == 'number' ||
-                    input.type == 'date'
+                  input.type == 'number' ||
+                  input.type == 'date'
                 "
               >
                 <div class="input-group mb-3">
@@ -77,7 +77,7 @@
                   class="w-100 form-control mb-3"
                   v-if="input.items"
                 >
-                  <option :value="null">-- Please Select -- </option>
+                  <option :value="null">-- Please Select --</option>
                   <option
                     v-for="item in input.items.data"
                     :key="item.id"
@@ -105,7 +105,20 @@ import { findIndex } from "lodash";
 export default {
   data: () => ({
     form: new Form({
-      category_id: null
+      category_id: null,
+      hotel_id: null,
+      name: "",
+      description: "",
+      price: "",
+      price_child: "",
+      start_date: "",
+      end_date: "",
+      holiday_open: "",
+      weekend_open: "",
+      discount: "",
+      day_use: "",
+      not_refund: "",
+      pet_allow: "",
     }),
     item: {},
     isCreate: true,
@@ -113,75 +126,87 @@ export default {
     uploadName: "",
     inputs: [
       {
+        title: "Image",
+        name: "image_url",
+        type: "image",
+      },
+      {
+        title: "hotel",
+        name: "hotel_id",
+        type: "relationSelect",
+        relationName: "hotels",
+        items: [],
+      },
+      {
         title: "Category",
         name: "category_id",
         type: "relationSelect",
         relationName: "voucher_categories",
-        items: []
+        items: [],
       },
       {
         title: "Name",
         name: "name",
-        type: "text"
+        type: "text",
       },
       {
         title: "Description",
         name: "description",
-        type: "textarea"
+        type: "textarea",
       },
       {
         title: "Price",
         name: "price",
         type: "number",
-        step: "0.01"
+        step: "0.01",
       },
       {
         title: "Price Child",
         name: "price_child",
         type: "number",
-        step: "0.01"
+        step: "0.01",
       },
       {
         title: "Start Date",
         name: "start_date",
-        type: "date"
+        type: "date",
       },
       {
         title: "End Date",
         name: "end_date",
-        type: "date"
+        type: "date",
       },
       {
         title: "Holiday Open",
         name: "holiday_open",
-        type: "checkbox"
+        type: "checkbox",
       },
       {
         title: "weekend_open",
         name: "weekend_open",
-        type: "checkbox"
+        type: "checkbox",
       },
       {
         title: "discount",
         name: "discount",
-        type: "number"
+        type: "number",
       },
       {
         title: "day_use",
         name: "day_use",
-        type: "number"
+        type: "number",
       },
       {
         title: "not_refund",
         name: "not_refund",
-        type: "checkbox"
+        type: "checkbox",
       },
       {
         title: "pet_allow",
         name: "pet_allow",
-        type: "checkbox"
-      }
-    ]
+        type: "checkbox",
+      },
+    ],
   }),
   methods: {
     async fetchShow() {
@@ -194,8 +219,8 @@ export default {
       const { data } = await this.form
         .get(this.$api(name), {
           params: {
-            item: 99
-          }
+            item: 99,
+          },
         })
         .catch();
 
@@ -205,14 +230,16 @@ export default {
       this.inputs[index]["items"] = data.items;
     },
     async checkRelation() {
-      let inputs = this.inputs.filter(el => el.type == "relationSelect");
+      let inputs = this.inputs;
       if (inputs.length) {
         let _this = this;
         inputs.forEach(async (el, index) => {
-          if (el.relationName) {
-            await _this.fetchRelation(el.relationName, index);
-          } else {
-            console.log(`${el.name} need relationName`);
+          if (el.type == "relationSelect") {
+            if (el.relationName) {
+              await _this.fetchRelation(el.relationName, index);
+            } else {
+              console.log(`${el.name} need relationName`);
+            }
           }
         });
       }
@@ -237,7 +264,7 @@ export default {
     },
     setUploadName(a) {
       this.uploadName = a;
-    }
+    },
   },
   computed: {
     pageName() {
@@ -245,7 +272,7 @@ export default {
     },
     id() {
       return this.$route.params.id;
-    }
+    },
   },
   async created() {
     this.checkRelation();
@@ -253,7 +280,7 @@ export default {
     if (this.id) {
       this.isCreate = false;
       await this.fetchShow();
-      this.form.keys().forEach(key => {
+      this.form.keys().forEach((key) => {
         this.form[key] = this.item[key];
       });
 
@@ -265,7 +292,7 @@ export default {
         }
       });
     }
-  }
+  },
 };
 </script>
 

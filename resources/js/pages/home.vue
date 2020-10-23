@@ -115,16 +115,11 @@
         </div>
       </div>
     </form>
-
     <div class="mt-5 mb-5">
       <div class="row">
-        <div
-          class="col-md-6"
-          v-for="category in categories"
-          :key="category.path"
-        >
+        <div class="col-md-6" v-for="category in items.data" :key="category.id">
           <div class="category-home text-center shadow mb-3">
-            <routerLink :to="category.path">
+            <routerLink :to="`/category/${category.id}`">
               <h3 class="text-white">{{ category.name }}</h3>
             </routerLink>
           </div>
@@ -319,12 +314,23 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import { vouchers } from "../dataMockup";
 export default {
   middleware: "auth",
-  data: () => ({
-    categories: vouchers,
-  }),
+  computed: {
+    ...mapGetters({
+      items: "category/items",
+    }),
+  },
+  methods: {
+    ...mapActions({
+      fetch: "category/fetch",
+    }),
+  },
+  created() {
+    this.fetch();
+  },
 
   metaInfo() {
     return { title: this.$t("home") };

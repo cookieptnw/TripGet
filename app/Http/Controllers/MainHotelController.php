@@ -16,6 +16,7 @@ class MainHotelController extends Controller
 
     public function index(Request $request)
     {
+
         $showItem = $request->item ? $request->item : 10;
         $keyword = $request->q ? $request->q : '';
         $sortBy = $request->sortBy ? $request->sortBy : 'desc';

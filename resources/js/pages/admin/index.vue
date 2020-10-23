@@ -5,13 +5,13 @@
         <navbar />
         <div
           class="float-left"
-          style="width:300px; abackground-color:#2a2a2e;height: 100vh;"
+          style="width: 300px; abackground-color: #2a2a2e; height: 100vh"
         >
           <div class="wrapper-sidebar">
             <sidebar-menu :menu="menu" width="300" class="bg-admin">
               <div slot="header" class="text-center pt-3 text-white">
                 <img src="/images/logo.png" width="50%" />
-                <span style="font-size:8px;"> For Admin</span>
+                <span style="font-size: 8px"> For Admin</span>
 
                 <hr />
               </div>
@@ -20,7 +20,7 @@
         </div>
         <div
           class="float-left"
-          style="width:calc(100% - 300px); height:100vh; overflow: scroll;"
+          style="width: calc(100% - 300px); height: 100vh; overflow: scroll"
         >
           <child />
         </div>
@@ -34,19 +34,19 @@ import { SidebarMenu } from "vue-sidebar-menu";
 
 export default {
   components: {
-    SidebarMenu
+    SidebarMenu,
   },
   data: () => ({
     menu: [
       {
         header: true,
         title: "Main Navigation",
-        hiddenOnCollapse: true
+        hiddenOnCollapse: true,
       },
       {
         href: "/admin",
         title: "Dashboard",
-        icon: "fas fa-home"
+        icon: "fas fa-home",
       },
 
       {
@@ -55,31 +55,31 @@ export default {
         child: [
           {
             href: "/admin/main_hotels",
-            title: "Main Hotel"
+            title: "Main Hotel",
           },
           {
             href: "/admin/hotels",
-            title: "Hotel Branch"
-          }
-        ]
+            title: "Hotel Branch",
+          },
+        ],
       },
       {
         title: "Voucher",
         icon: "fas fa-folder",
         child: [
-          {
-            href: "/admin/voucher_categories",
-            title: "Category",
-            icon: ""
-          },
+          // {
+          //   href: "/admin/voucher_categories",
+          //   title: "Category",
+          //   icon: ""
+          // },
           {
             href: "/admin/vouchers",
-            title: "Voucher List"
-          }
-        ]
-      }
-    ]
-  })
+            title: "Voucher Listk",
+          },
+        ],
+      },
+    ],
+  }),
 };
 </script>
 

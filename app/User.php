@@ -22,6 +22,8 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
         'first_name', 'last_name', 'email', 'password', 'tel', 'id_no', 'card_image_url', 'birthdate'
     ];
 
+
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -104,5 +106,10 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('App\Role', 'role_id', 'id');
     }
 }
