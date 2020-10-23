@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-6">
         <div class="head-content text-center">
-          <h3>{{ voucher.title }}</h3>
+          <h3>{{ voucher.name }}</h3>
         </div>
       </div>
       <div class="col-md-6">
@@ -20,19 +20,17 @@
       <div class="row">
         <div class="adult col-md-8 detail-list">
           <b-list-group>
-            <b-list-group-item>✅ ฟรีอาหารเช้า </b-list-group-item>
-            <b-list-group-item>✅ ฟรีไวไฟ</b-list-group-item>
-
-            <b-list-group-item>✅ ราคาพิเศษ</b-list-group-item>
-            <b-list-group-item>✅ หมดอายุ: 31/12/2021</b-list-group-item>
             <b-list-group-item
-              >✅ พักได้ยาวแม้เป็นวันหยุดนักขัตฤกษ์</b-list-group-item
-            >
+              v-for="detail in voucher.details"
+              :key="detail.id"
+              >✅ {{ detail.description }}
+              {{ detail.amount ? `x ${detail.amount}` : "" }}
+            </b-list-group-item>
           </b-list-group>
         </div>
         <div class="col-md-4 detail-price">
           <h3 class="mt-5">
-            Two Bedroom Pool Villa
+            ราคาห้องพัก
             <hr />
             {{ voucher.price }} บาท
           </h3>
@@ -42,39 +40,14 @@
 
     <hr />
 
-    <div class="hotel-detail-content">
-      <div class="row">
-        <div class="adult col-md-8 detail-list">
-          <b-list-group>
-            <b-list-group-item>✅ เด็กอายุ 4-10 ปี </b-list-group-item>
-            <b-list-group-item>✅ ฟรีอาหารเช้า</b-list-group-item>
-            <b-list-group-item>✅ ไลฟ์สไตล์ท่องเที่ยว</b-list-group-item>
-
-            <b-list-group-item>✅ ราคาพิเศษ</b-list-group-item>
-            <b-list-group-item>✅ หมดอายุ: 31/12/2021</b-list-group-item>
-            <b-list-group-item
-              >✅ พักได้ยาวแม้เป็นวันหยุดนักขัตฤกษ์</b-list-group-item
-            >
-          </b-list-group>
-        </div>
-        <div class="col-md-4 detail-price">
-          <h3 class="mt-5">
-            One Bedroom Duplex Pool Suit
-            <hr />
-            {{ voucher.child_price }} บาท
-          </h3>
-        </div>
-      </div>
-    </div>
-
     <div class="vc-box shadow mt-5">
       <div class="row">
         <div class="col-md-3">
           <img src="/images/img4.jpg" alt="" width="100%" />
         </div>
         <div class="col-md-5 mt-2">
-          <p>VoucherChiangMai</p>
-          <p>🚩 เชียงใหม่</p>
+          <p>{{ voucher.hotel.name }}</p>
+          <p>🚩 {{ voucher.hotel.province.name }}</p>
         </div>
         <div class="col-md-4 mt-2">
           <router-link :to="{ name: 'hotel.detail', params: { id: 1 } }"
@@ -112,21 +85,17 @@
       <h3>รายการอื่น ๆ จากร้านค้านี้</h3>
       <hr />
       <div class="row">
-        <div class="col-md-3 same-shop-img mb-2">
-          <img src="/images/img3.jpg" />
-          <div class="same-shop-price">1,200 บาท</div>
-        </div>
-        <div class="col-md-3 same-shop-img mb-2">
-          <img src="/images/img4.jpg" />
-          <div class="same-shop-price">1,590 บาท</div>
-        </div>
-        <div class="col-md-3 same-shop-img mb-2">
-          <img src="/images/img5.jpg" />
-          <div class="same-shop-price">1,100 บาท</div>
-        </div>
-        <div class="col-md-3 same-shop-img mb-2">
-          <img src="/images/img6.jpg" />
-          <div class="same-shop-price">1,090 บาท</div>
+        <div
+          class="col-md-3 same-shop-img mb-2 d-flex"
+          v-for="item in voucher.hotel.vouchers"
+          :key="item.id"
+        >
+          <img :src="item.image_url" />
+          <div class="same-shop-price">
+            <h5>{{ item.name }}</h5>
+
+            {{ item.price }} บาท
+          </div>
         </div>
       </div>
       <hr />
@@ -161,28 +130,37 @@
 </template>
 
 <script>
-import { vouchers } from "../../dataMockup";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   middleware: "auth",
   data: () => ({
-    vouchers,
+    name: "Loading..",
   }),
   computed: {
-    id() {
+    key() {
       return this.$route.params.id;
     },
-    voucher() {
-      let vouchersItems = [];
-      this.vouchers.forEach((el) => {
-        let v = el.vouchers;
-
-        if (v) {
-          vouchersItems.push(...v);
-        }
-      });
-      return vouchersItems.find((el) => el.id == this.id);
+    query() {
+      return this.$route.query;
     },
+
+    ...mapGetters({
+      voucher: "voucher/item",
+    }),
+  },
+  methods: {
+    ...mapActions({
+      fetch: "voucher/show",
+    }),
+  },
+  async created() {
+    console.log(this.query);
+    await this.fetch({ id: this.key, query: this.query });
+    this.name = this.voucher.name;
+  },
+  metaInfo() {
+    return { title: this.name };
   },
 };
 </script>

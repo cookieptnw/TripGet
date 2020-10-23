@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-        <card :title="$t('settings')" class="settings-card">
+        <card title="ตั้งค่า" class="settings-card">
           <ul class="nav flex-column nav-pills">
             <li v-for="tab in tabs" :key="tab.route" class="nav-item">
               <router-link

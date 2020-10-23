@@ -17,6 +17,7 @@ class CreateMyVoucherUsesTable extends Migration
             $table->id();
             $table->bigInteger('voucher_detail_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('my_voucher_id')->unsigned();
 
             $table->foreign('voucher_detail_id')
                 ->references('id')

@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', 'Auth\LoginController@logout');
 
     Route::get('/user', 'Auth\UserController@current');
+    Route::get('/voucher_categories/search', 'VoucherCategoryController@searchq');
 
     crud('voucher_categories', 'VoucherCategoryController');
     crud('vouchers', 'VoucherController');

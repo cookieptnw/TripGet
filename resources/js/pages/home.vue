@@ -49,72 +49,8 @@
       </a>
     </div>
 
-    <form>
-      <div class="form-filter">
-        <div class="row">
-          <div class="col-md-2 col-sm-12">
-            <div class="form-group">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>โรงแรม</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-12">
-            <div class="form-group">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>จังหวัด</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-12">
-            <div class="form-group">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>ราคา</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-12">
-            <div class="form-group">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>วัน</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-12">
-            <div class="form-group-search float-left">
-              <input
-                type="text"
-                class="form-control"
-                id="validationDefault03"
-                placeholder="ค้นหา"
-              />
-            </div>
-            <button
-              class="btn btn-warning form-group-submit float-left"
-              type="submit"
-            >
-              +
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
+    <CatSearch />
+
     <div class="mt-5 mb-5">
       <div class="row">
         <div class="col-md-6" v-for="category in items.data" :key="category.id">
@@ -323,6 +259,7 @@ export default {
       items: "category/items",
     }),
   },
+
   methods: {
     ...mapActions({
       fetch: "category/fetch",

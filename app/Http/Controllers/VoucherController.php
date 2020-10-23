@@ -54,6 +54,9 @@ class VoucherController extends Controller
     {
         $show = $this->mainModel::find($id);
         $show->details;
+        $show->hotel;
+        $show->hotel->vouchers;
+        $show->hotel->province;
         return [
             "result" => $show
         ];

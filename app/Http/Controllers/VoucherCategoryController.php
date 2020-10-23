@@ -31,6 +31,30 @@ class VoucherCategoryController extends Controller
         ];
     }
 
+
+
+    public function searchq(Request $request)
+    {
+        $province_id = $request->province_id ? $request->province_id : false;
+        $keyword = $request->q ? $request->q : '';
+        $price_id = $request->price_id ? $request->price_id : false;
+
+        $show = $this->mainModel::whereId($request->category_id)->with(['vouchers_approves' => function ($qx) use ($province_id, $keyword, $price_id) {
+
+            if ($province_id) {
+                $qx->whereHas('hotel', function ($x) use ($province_id) {
+                    return $x->where('province_id', $province_id);
+                });
+            }
+            return $qx;
+        }])->first();
+
+
+        return [
+            "result" => $show,
+        ];
+    }
+
     public function store(Request $request)
     {
         $item = $this->mainModel::create($request->all());

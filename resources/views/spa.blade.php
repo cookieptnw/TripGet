@@ -1,6 +1,7 @@
 @php $config = [ 'appName' => config('app.name'), 'locale' => $locale =
 app()->getLocale(), 'locales' => config('app.locales'), 'githubAuth' =>
-config('services.github.client_id'), 'fDir' => env('FDIR'), 'aDir' =>
+config('services.github.client_id'),'facebookAuth' =>
+config('services.facebook.client_id'), 'fDir' => env('FDIR'), 'aDir' =>
 env('ADIR'),'apiUrl' => env('API_URL'),]; @endphp
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">

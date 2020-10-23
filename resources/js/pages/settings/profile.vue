@@ -4,7 +4,7 @@
       <alert-success :form="form" :message="$t('info_updated')" />
 
       <div class="form-group row">
-        <label class="col-md-3 col-form-label text-md-right">Firstname</label>
+        <label class="col-md-3 col-form-label text-md-right">ชื่อ</label>
         <div class="col-md-7">
           <input
             v-model="form.first_name"
@@ -19,7 +19,7 @@
 
       <!-- LName -->
       <div class="form-group row">
-        <label class="col-md-3 col-form-label text-md-right">Lastname</label>
+        <label class="col-md-3 col-form-label text-md-right">นามสกุล</label>
         <div class="col-md-7">
           <input
             v-model="form.last_name"
@@ -34,7 +34,7 @@
 
       <!-- LName -->
       <div class="form-group row">
-        <label class="col-md-3 col-form-label text-md-right">Birthday</label>
+        <label class="col-md-3 col-form-label text-md-right">วันเกิด</label>
         <div class="col-md-7">
           <input
             v-model="form.birth_date"
@@ -49,7 +49,9 @@
 
       <!-- Email -->
       <div class="form-group row">
-        <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
+        <label class="col-md-3 col-form-label text-md-right">{{
+          $t("email")
+        }}</label>
         <div class="col-md-7">
           <input
             v-model="form.email"
@@ -64,7 +66,7 @@
 
       <!-- Mobile -->
       <div class="form-group row">
-        <label class="col-md-3 col-form-label text-md-right">Mobile</label>
+        <label class="col-md-3 col-form-label text-md-right">เบอร์โทร</label>
         <div class="col-md-7">
           <input
             v-model="form.tel"
@@ -80,7 +82,7 @@
       <!-- Submit Button -->
       <div class="form-group row">
         <div class="col-md-9 ml-md-auto">
-          <v-button :loading="form.busy" type="success">{{ $t('update') }}</v-button>
+          <v-button :loading="form.busy" type="success">อัพเดท</v-button>
         </div>
       </div>
     </form>

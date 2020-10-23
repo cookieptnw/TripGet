@@ -12,4 +12,13 @@ class Hotel extends Model
     {
         return $this->created_at ? \Carbon\Carbon::parse($this->created_at)->format('d/m/Y H:i:s') : '-';
     }
+
+    public function province()
+    {
+        return $this->belongsTo('App\Lifestyle', 'province_id', 'id');
+    }
+    public function vouchers()
+    {
+        return $this->hasMany('App\Voucher');
+    }
 }

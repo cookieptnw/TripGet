@@ -2,61 +2,7 @@
   <div class="container">
     <h1 class="py-3">{{ show.name }}</h1>
     <hr />
-    <form class="mb-5">
-      <div class="form-filter">
-        <div class="row">
-          <div class="col-md-3 col-sm-12">
-            <div class="form-group">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>จังหวัด</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-12">
-            <div class="form-group">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>ราคา</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-12">
-            <div class="form-group">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>วัน</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-12">
-            <div class="form-group-search float-left">
-              <input
-                type="text"
-                class="form-control"
-                id="validationDefault03"
-                placeholder="ค้นหา"
-              />
-            </div>
-            <button
-              class="btn btn-warning form-group-submit float-left"
-              type="submit"
-            >
-              +
-            </button>
-          </div>
-        </div>
-      </div>
-    </form>
+    <CatSearch />
 
     <div v-if="show.vouchers_approves && show.vouchers_approves.length">
       <div
@@ -133,6 +79,9 @@ export default {
     key() {
       return this.$route.params.key;
     },
+    query() {
+      return this.$route.query;
+    },
 
     ...mapGetters({
       show: "category/item",
@@ -144,7 +93,8 @@ export default {
     }),
   },
   async created() {
-    await this.fetch({ id: this.key });
+    console.log(this.query);
+    await this.fetch({ id: this.key, query: this.query });
     this.name = this.show.name;
   },
   metaInfo() {

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let name = "voucher_categories";
+let name = "vouchers";
 
 // state
 export const state = {
