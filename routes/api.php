@@ -13,10 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+function crud($name, $controller)
+{
+    Route::resource("{$name}", "{$controller}");
+    Route::post("{$name}/{id}/delete", "{$controller}@destroy");
+    Route::post("{$name}/{id}/update", "{$controller}@update");
+}
+
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', 'Auth\LoginController@logout');
 
     Route::get('/user', 'Auth\UserController@current');
+    Route::get('/voucher_categories/search', 'VoucherCategoryController@searchq');
+
+    crud('voucher_categories', 'VoucherCategoryController');
+    crud('vouchers', 'VoucherController');
+    crud('main_hotels', 'MainHotelController');
+    crud('hotels', 'HotelController');
+
+    Route::post('image/upload', 'UploadController@imageUploadPost');
 
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');
@@ -35,3 +50,14 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::post('oauth/{driver}', 'Auth\OAuthController@redirectToProvider');
     Route::get('oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback')->name('oauth.callback');
 });
+
+use PA\ProvinceTh\Factory;
+
+Route::resource('lifestyle', 'LifestyleController');
+Route::post('lifestyle/set/{id}', 'LifestyleController@set');
+
+Route::get('province', function () {
+    return  $provinces = Factory::province();
+});
+
+Route::resource('photos', 'Test');

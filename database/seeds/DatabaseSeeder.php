@@ -1,5 +1,6 @@
 <?php
 
+use App\MainHotel;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(RoleSeeder::class);
+        $this->call([RoleSeeder::class, LifestyleSeeder::class, VoucherCategorySeeder::class, UserSeeder::class, MainHotelSeeder::class, HotelSeeder::class]);
     }
 }

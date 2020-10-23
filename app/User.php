@@ -19,8 +19,10 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password',
+        'first_name', 'last_name', 'email', 'password', 'tel', 'id_no', 'card_image_url', 'birthdate'
     ];
+
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -56,7 +58,7 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
      */
     public function getPhotoUrlAttribute()
     {
-        return 'https://www.gravatar.com/avatar/' . md5(strtolower($this->email)) . '.jpg?s=200&d=mm';
+        return 'https://www.gravatar.com/avatar/' . md5(time()) . '.jpg?s=200&d=mm';
     }
 
     /**
@@ -104,5 +106,10 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('App\Role', 'role_id', 'id');
     }
 }

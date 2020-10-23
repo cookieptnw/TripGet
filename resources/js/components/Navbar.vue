@@ -1,91 +1,114 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white">
-    <div class="container">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarToggler"
-        aria-controls="navbarToggler"
-        aria-expanded="false"
-      >
-        <span class="navbar-toggler-icon" />
-      </button>
-
-      <div class="m-auto">
-        <router-link
-          :to="{ name: user ? 'home' : 'welcome' }"
-          class="navbar-brand"
+  <div>
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white position-fixed w-100"
+      style="z-index: 99"
+    >
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarToggler"
+          aria-controls="navbarToggler"
+          aria-expanded="false"
         >
-          <img src="/images/logo.png" height="40" />
-        </router-link>
-      </div>
+          <span class="navbar-toggler-icon" />
+        </button>
 
-      <div id="navbarToggler" class="collapse navbar-collapse">
-        <ul class="navbar-nav">
-          <!-- <li class="nav-item">
+        <div class="m-auto">
+          <router-link
+            :to="{ name: user ? 'home' : 'welcome' }"
+            class="navbar-brand"
+          >
+            <img src="/images/logo.png" height="40" />
+          </router-link>
+        </div>
+
+        <div id="navbarToggler" class="collapse navbar-collapse">
+          <ul class="navbar-nav">
+            <!-- <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li> -->
-        </ul>
+          </ul>
 
-        <ul class="navbar-nav ml-auto">
-          <!-- Authenticated -->
-          <li v-if="user" class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle text-dark"
-              href="#"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <img
-                :src="user.photo_url"
-                class="rounded-circle profile-photo mr-1"
-              />
-              {{ user.name }}
-            </a>
-            <div class="dropdown-menu">
-              <router-link
-                :to="{ name: 'settings.profile' }"
-                class="dropdown-item pl-3"
+          <ul class="navbar-nav ml-auto">
+            <!-- Authenticated -->
+            <li v-if="user" class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle text-dark"
+                href="#"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
               >
-                <fa icon="cog" fixed-width />
-                {{ $t("settings") }}
-              </router-link>
-
-              <div class="dropdown-divider" />
-              <a href="#" class="dropdown-item pl-3" @click.prevent="logout">
-                <fa icon="sign-out-alt" fixed-width />
-                {{ $t("logout") }}
+                <img
+                  :src="user.photo_url"
+                  class="rounded-circle profile-photo mr-1"
+                />
+                {{ user.name }}
               </a>
-            </div>
-          </li>
-          <!-- Guest -->
-          <template v-else>
-            <li class="nav-item">
-              <router-link
-                :to="{ name: 'login' }"
-                class="nav-link"
-                active-class="active"
-              >
-                {{ $t("login") }}
-              </router-link>
+              <div class="dropdown-menu">
+                <router-link
+                  :to="{ name: 'settings.profile' }"
+                  class="dropdown-item pl-3"
+                >
+                  <fa icon="cog" fixed-width />
+                  {{ $t("settings") }}
+                </router-link>
+
+                <router-link
+                  :to="{ name: 'lifestyle' }"
+                  class="dropdown-item pl-3"
+                >
+                  <fa icon="cog" fixed-width />
+                  Lifestyle Setting
+                </router-link>
+
+                <router-link
+                  :to="{ name: 'adminHome' }"
+                  class="dropdown-item pl-3"
+                  v-if="user.role_id == 2"
+                >
+                  <fa icon="cog" fixed-width />
+                  Admin
+                </router-link>
+
+                <div class="dropdown-divider" />
+                <a href="#" class="dropdown-item pl-3" @click.prevent="logout">
+                  <fa icon="sign-out-alt" fixed-width />
+                  {{ $t("logout") }}
+                </a>
+              </div>
             </li>
-            <li class="nav-item">
-              <router-link
-                :to="{ name: 'register' }"
-                class="nav-link"
-                active-class="active"
-              >
-                {{ $t("register") }}
-              </router-link>
-            </li>
-          </template>
-        </ul>
+            <!-- Guest -->
+            <template v-else>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'login' }"
+                  class="nav-link"
+                  active-class="active"
+                >
+                  {{ $t("login") }}
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link
+                  :to="{ name: 'register' }"
+                  class="nav-link"
+                  active-class="active"
+                >
+                  {{ $t("register") }}
+                </router-link>
+              </li>
+            </template>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+    <div style="height: 90px"></div>
+  </div>
 </template>
 
 <script>
@@ -94,15 +117,15 @@ import LocaleDropdown from "./LocaleDropdown";
 
 export default {
   components: {
-    LocaleDropdown
+    LocaleDropdown,
   },
 
   data: () => ({
-    appName: window.config.appName
+    appName: window.config.appName,
   }),
 
   computed: mapGetters({
-    user: "auth/user"
+    user: "auth/user",
   }),
 
   methods: {
@@ -112,8 +135,8 @@ export default {
 
       // Redirect to login.
       this.$router.push({ name: "login" });
-    }
-  }
+    },
+  },
 };
 </script>
 

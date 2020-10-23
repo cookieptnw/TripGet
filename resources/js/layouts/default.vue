@@ -1,21 +1,21 @@
 <template>
   <div class="main-layout">
-    <navbar />
-
-    <div class="container mt-4">
-      <child />
+    <div class="mh-800">
+      <div>
+        <Navbar />
+        <child />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Navbar from '~/components/Navbar'
-
+import Navbar from "~/components/Navbar";
+console.log("wef");
 export default {
-  name: 'MainLayout',
-
+  name: "MainLayout",
   components: {
-    Navbar
-  }
-}
+    Navbar,
+  },
+};
 </script>

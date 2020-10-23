@@ -7,79 +7,99 @@ use Illuminate\Http\Request;
 
 class VoucherCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    private $mainModel;
+
+    public function __construct()
     {
-        //
+        $this->mainModel = new VoucherCategory();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function index(Request $request)
     {
-        //
+        $showItem = $request->item ? $request->item : 10;
+        $keyword = $request->q ? $request->q : '';
+        $sortBy = $request->sortBy ? $request->sortBy : 'desc';
+
+
+        $items = $this->mainModel::where(function ($q) use ($keyword) {
+            $q->orWhere('name', 'LIKE', "%$keyword%");
+        })->orderBy('created_at', $sortBy)->paginate($showItem);
+
+        return [
+            "items" =>
+            $items
+        ];
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
+    public function searchq(Request $request)
+    {
+        $province_id = $request->province_id ? $request->province_id : false;
+        $keyword = $request->q ? $request->q : '';
+        $price_id = $request->price_id ? $request->price_id : false;
+
+        $show = $this->mainModel::whereId($request->category_id)->with(['vouchers_approves' => function ($qx) use ($province_id, $keyword, $price_id) {
+
+            if ($province_id) {
+                $qx->whereHas('hotel', function ($x) use ($province_id) {
+                    return $x->where('province_id', $province_id);
+                });
+            }
+            return $qx;
+        }])->first();
+
+
+        return [
+            "result" => $show,
+        ];
+    }
+
     public function store(Request $request)
     {
-        //
+        $item = $this->mainModel::create($request->all());
+
+        if (!$item) {
+            return response()->json([
+                "message" => 'create failed'
+            ], 400);
+        }
+        return ["message" => 'success'];
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\VoucherCategory  $voucherCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(VoucherCategory $voucherCategory)
+
+    public function show($id)
     {
-        //
+        $show = $this->mainModel::find($id);
+        $show->vouchers;
+        $show->vouchers_approves;
+
+        return [
+            "result" => $show,
+        ];
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\VoucherCategory  $voucherCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(VoucherCategory $voucherCategory)
+
+    public function update($id, Request $request)
     {
-        //
+        $item = $this->mainModel::find($id);
+
+        $update = $item->update($request->all());
+
+
+        if (!$update) {
+            return response()->json([
+                "message" => 'update failed'
+            ], 400);
+        }
+
+        return 'ok';
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\VoucherCategory  $voucherCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, VoucherCategory $voucherCategory)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\VoucherCategory  $voucherCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(VoucherCategory $voucherCategory)
-    {
-        //
+        $item = $this->mainModel::find($id);
+        $item->delete();
+        return 'ok';
     }
 }

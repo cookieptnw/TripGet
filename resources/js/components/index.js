@@ -1,9 +1,10 @@
-import Vue from 'vue'
-import Card from './Card'
-import Child from './Child'
-import Button from './Button'
-import Checkbox from './Checkbox'
-import { HasError, AlertError, AlertSuccess } from 'vform'
+import Vue from "vue";
+import Card from "./Card";
+import Child from "./Child";
+import Button from "./Button";
+import Checkbox from "./Checkbox";
+import { HasError, AlertError, AlertSuccess } from "vform";
+import CatSearch from "./CatSearch";
 
 // Components that are registered globaly.
 [
@@ -13,7 +14,8 @@ import { HasError, AlertError, AlertSuccess } from 'vform'
   Checkbox,
   HasError,
   AlertError,
-  AlertSuccess
+  AlertSuccess,
+  CatSearch
 ].forEach(Component => {
-  Vue.component(Component.name, Component)
-})
+  Vue.component(Component.name, Component);
+});

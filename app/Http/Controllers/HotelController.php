@@ -1,85 +1,79 @@
-><?php
+<?php
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    use App\Hotel;
-    use Illuminate\Http\Request;
+use App\Hotel;
+use Illuminate\Http\Request;
 
-    class HotelController extends Controller
+class HotelController extends Controller
+{
+    private $mainModel;
+
+    public function __construct()
     {
-        /**
-         * Display a listing of the resource.
-         *
-         * @return \Illuminate\Http\Response
-         */
-        public function index()
-        {
-            //
-        }
-
-        /**
-         * Show the form for creating a new resource.
-         *
-         * @return \Illuminate\Http\Response
-         */
-        public function create()
-        {
-            //
-        }
-
-        /**
-         * Store a newly created resource in storage.
-         *
-         * @param  \Illuminate\Http\Request  $request
-         * @return \Illuminate\Http\Response
-         */
-        public function store(Request $request)
-        {
-            //
-        }
-
-        /**
-         * Display the specified resource.
-         *
-         * @param  \App\Hotel  $hotel
-         * @return \Illuminate\Http\Response
-         */
-        public function show(Hotel $hotel)
-        {
-            //
-        }
-
-        /**
-         * Show the form for editing the specified resource.
-         *
-         * @param  \App\Hotel  $hotel
-         * @return \Illuminate\Http\Response
-         */
-        public function edit(Hotel $hotel)
-        {
-            //
-        }
-
-        /**
-         * Update the specified resource in storage.
-         *
-         * @param  \Illuminate\Http\Request  $request
-         * @param  \App\Hotel  $hotel
-         * @return \Illuminate\Http\Response
-         */
-        public function update(Request $request, Hotel $hotel)
-        {
-            //
-        }
-
-        /**
-         * Remove the specified resource from storage.
-         *
-         * @param  \App\Hotel  $hotel
-         * @return \Illuminate\Http\Response
-         */
-        public function destroy(Hotel $hotel)
-        {
-            //
-        }
+        $this->mainModel = new Hotel();
     }
+
+    public function index(Request $request)
+    {
+        $showItem = $request->item ? $request->item : 10;
+        $keyword = $request->q ? $request->q : '';
+        $sortBy = $request->sortBy ? $request->sortBy : 'desc';
+
+
+        $items = $this->mainModel::where(function ($q) use ($keyword) {
+            $q->orWhere('name', 'LIKE', "%$keyword%");
+            $q->orWhere('description', 'LIKE', "%$keyword%");
+        })->with('province')->orderBy('created_at', $sortBy)->paginate($showItem);
+
+        return [
+            "items" =>
+            $items
+        ];
+    }
+
+    public function store(Request $request)
+    {
+        $item = $this->mainModel::create($request->all());
+
+        if (!$item) {
+            return response()->json([
+                "message" => 'create failed'
+            ], 400);
+        }
+        return ["message" => 'success'];
+    }
+
+
+    public function show($id)
+    {
+        $show = $this->mainModel::find($id);
+        return [
+            "result" => $show
+        ];
+    }
+
+
+    public function update($id, Request $request)
+    {
+        $item = $this->mainModel::find($id);
+
+        $update = $item->update($request->all());
+
+
+        if (!$update) {
+            return response()->json([
+                "message" => 'update failed'
+            ], 400);
+        }
+
+        return 'ok';
+    }
+
+    public function destroy($id)
+    {
+        $item = $this->mainModel::find($id);
+        $item->delete();
+        return 'ok';
+    }
+}
