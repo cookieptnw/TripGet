@@ -92,6 +92,11 @@ export default {
       return this.$route.query;
     },
   },
+  watch: {
+    query() {
+      this.fetch();
+    },
+  },
   methods: {
     async fetch(name) {
       const { data } = await axios.get(this.$api(name));

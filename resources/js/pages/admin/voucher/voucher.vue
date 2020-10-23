@@ -72,7 +72,13 @@
       </div>
       <!-- ////////// Paginate TOP //////////-->
 
-      <b-table striped hover :items="items.data" :fields="fields">
+      <b-table
+        striped
+        hover
+        :items="items.data"
+        :fields="fields"
+        :striped="true"
+      >
         <template v-slot:cell(thumnails)="data">
           <img :src="data.item.image_url" height="100" />
         </template>
@@ -130,6 +136,9 @@ export default {
     fields: [
       { key: "id", sortable: true, sortDirection: "desc" },
       "name",
+      { key: "hotel.name", label: "Hotel" },
+      { key: "category.name", label: "Category" },
+
       "description",
       "price",
       "start_date",

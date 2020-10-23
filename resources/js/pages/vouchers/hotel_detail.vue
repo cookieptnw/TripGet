@@ -90,12 +90,10 @@
           v-for="item in voucher.hotel.vouchers"
           :key="item.id"
         >
-          <img :src="item.image_url" />
-          <div class="same-shop-price">
-            <h5>{{ item.name }}</h5>
-
-            {{ item.price }} บาท
-          </div>
+          <a :href="`/voucher/${item.id}`" style="display: block; width: 100%">
+            <img :src="item.image_url" />
+            <div class="same-shop-price">{{ item.price }} บาท</div>
+          </a>
         </div>
       </div>
       <hr />
