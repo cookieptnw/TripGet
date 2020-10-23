@@ -1,6 +1,6 @@
 <template>
   <div class="p-5 row">
-    <div class="col-11 col-lg-6 m-auto">
+    <div class="col-11 col-lg-11 m-auto">
       <card>
         <button class="btn btn-danger" @click="backToMainPage()">Back</button>
         <h4 class="mt-4">{{ isCreate ? "Create" : "Edit" }} {{ pageTitle }}</h4>
@@ -106,6 +106,8 @@ export default {
   data: () => ({
     form: new Form({
       category_id: null,
+      name: "",
+      description: "",
     }),
     item: {},
     isCreate: true,
@@ -115,21 +117,6 @@ export default {
       {
         title: "Name",
         name: "name",
-        type: "text",
-      },
-      {
-        title: "ชื่อจังหวัด",
-        name: "province",
-        type: "text",
-      },
-      {
-        title: "จำนวนคน",
-        name: "peoplenum",
-        type: "number",
-      },
-      {
-        title: "รหัสไปรษณีย์",
-        name: "zipcod",
         type: "text",
       },
       {
@@ -181,6 +168,7 @@ export default {
         const { data } = await this.form
           .post(this.$api(this.pageName + `/${this.id}/update`))
           .catch();
+        this.$router.push({ name: this.pageName });
       }
     },
     backToMainPage() {

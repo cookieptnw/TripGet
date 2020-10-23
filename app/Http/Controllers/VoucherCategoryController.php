@@ -48,8 +48,10 @@ class VoucherCategoryController extends Controller
     {
         $show = $this->mainModel::find($id);
         $show->vouchers;
+        $show->vouchers_approves;
+
         return [
-            "result" => $show
+            "result" => $show,
         ];
     }
 

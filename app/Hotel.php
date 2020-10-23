@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hotel extends Model
 {
-    protected $fillable = ['name', 'description', 'google_map_url', 'tel_no', 'lat', 'long', 'approved_at', 'sub_district', 'district', 'province', 'main_hotel_id'];
+    protected $fillable = ['name', 'description', 'google_map_url', 'tel_no', 'lat', 'long', 'approved_at', 'sub_district', 'district', 'province_id', 'main_hotel_id'];
     protected $appends = ['created_at_text'];
     public function getCreatedAtTextAttribute()
     {

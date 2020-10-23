@@ -131,8 +131,6 @@ export default {
       { key: "id", sortable: true, sortDirection: "desc" },
       "name",
       "description",
-      "province",
-
       { key: "created_at_text", label: "Created At" },
       "actions",
     ],

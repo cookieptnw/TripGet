@@ -18,4 +18,11 @@ class VoucherCategory extends Model
     {
         return $this->hasMany(Voucher::class, 'category_id', 'id');
     }
+
+    public function vouchers_approves()
+    {
+        return $this->hasMany(Voucher::class, 'category_id', 'id')->whereHas('hotel', function ($q) {
+            $q->whereNotNull('approved_at');
+        });
+    }
 }

@@ -54,7 +54,7 @@ class LifestyleController extends Controller
             $f = UserLifestyle::where('lifestyle_id', $l->id)->where('user_id', $user->id)->first();
             $l->active = ($f) ? true : false;
         }
-        return ['result' => $lifestyles];
+        return ['result' => $lifestyles, 'items' => ["data" => $lifestyles]];
     }
 
     public function set($lifestyle)

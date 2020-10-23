@@ -58,10 +58,10 @@
       </div>
     </form>
 
-    <div v-if="show.vouchers && show.vouchers.length">
+    <div v-if="show.vouchers_approves && show.vouchers_approves.length">
       <div
         class="hotel-list shadow mb-4"
-        v-for="(item, index) in show.vouchers"
+        v-for="(item, index) in show.vouchers_approves"
         :key="index"
       >
         <div class="row">

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Voucher extends Model
 {
-    protected $fillable = ['image_url', 'name', 'description', 'price', 'price_child', 'start_date', 'end_date', 'holiday_open', 'weekend_open', 'discount', 'discount_promotion', 'day_use', 'not_refund', 'pet_allow', 'category_id', 'hotel_id'];
+    protected $fillable = ['image_url', 'name', 'description', 'price', 'start_date', 'end_date', 'holiday_open', 'weekend_open', 'discount', 'discount_promotion', 'day_use', 'not_refund', 'pet_allow', 'category_id', 'hotel_id'];
     protected $appends = ['created_at_text'];
     public function getCreatedAtTextAttribute()
     {
@@ -21,5 +21,10 @@ class Voucher extends Model
     public function hotel()
     {
         return $this->belongsTo('App\Hotel');
+    }
+
+    public function details()
+    {
+        return $this->hasMany('App\VoucherDetail');
     }
 }

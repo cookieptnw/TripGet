@@ -1,6 +1,6 @@
 <template>
   <div class="p-5 row">
-    <div class="col-11 col-lg-6 m-auto">
+    <div class="col-11 col-lg-11 m-auto">
       <card>
         <button class="btn btn-danger" @click="backToMainPage()">Back</button>
         <h4 class="mt-4">{{ isCreate ? "Create" : "Edit" }} {{ pageTitle }}</h4>
@@ -19,8 +19,8 @@
                 class="inputText"
                 v-if="
                   input.type == 'text' ||
-                    input.type == 'number' ||
-                    input.type == 'date'
+                  input.type == 'number' ||
+                  input.type == 'date'
                 "
               >
                 <div class="input-group mb-3">
@@ -69,7 +69,7 @@ export default {
     form: new Form({
       title: "",
       date: "",
-      image_url: ""
+      image_url: "",
     }),
     item: {},
     isCreate: true,
@@ -84,15 +84,15 @@ export default {
           "*ขนาดรูปภาพ 500 × 270 รองรับเฉพาะสกุลไฟล์ภาพ(PNG/JPEG)เท่านั้น",
         imageWidth: 500,
         imageHeight: 270,
-        image_url: ""
+        image_url: "",
       },
       {
         title: "Name",
         name: "name",
         type: "text",
-        required: true
-      }
-    ]
+        required: true,
+      },
+    ],
   }),
   methods: {
     async fetchShow() {
@@ -121,7 +121,7 @@ export default {
     },
     setUploadName(a) {
       this.uploadName = a;
-    }
+    },
   },
   computed: {
     pageName() {
@@ -129,14 +129,14 @@ export default {
     },
     id() {
       return this.$route.params.id;
-    }
+    },
   },
   async created() {
     if (this.id) {
       this.isCreate = false;
       await this.fetchShow();
 
-      this.form.keys().forEach(key => {
+      this.form.keys().forEach((key) => {
         this.form[key] = this.item[key];
       });
 
@@ -148,7 +148,7 @@ export default {
         }
       });
     }
-  }
+  },
 };
 </script>
 

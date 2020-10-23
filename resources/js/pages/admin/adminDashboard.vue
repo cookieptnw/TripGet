@@ -1,8 +1,6 @@
 <template>
-  <div class="d">
-    <card>
-      admin Dashboard
-    </card>
+  <div class="p-4">
+    <card> admin Dashboard </card>
   </div>
 </template>
 

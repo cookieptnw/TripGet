@@ -26,9 +26,9 @@
                 class="inputText"
                 v-if="
                   input.type == 'text' ||
-                    input.type == 'number' ||
-                    input.type == 'tel' ||
-                    input.type == 'date'
+                  input.type == 'number' ||
+                  input.type == 'tel' ||
+                  input.type == 'date'
                 "
               >
                 <div class="input-group mb-3">
@@ -78,7 +78,7 @@
                   class="w-100 form-control mb-3"
                   v-if="input.items"
                 >
-                  <option :value="null">-- Please Select -- </option>
+                  <option :value="null">-- Please Select --</option>
                   <option
                     v-for="item in input.items.data"
                     :key="item.id"
@@ -106,9 +106,19 @@ import { findIndex } from "lodash";
 export default {
   data: () => ({
     form: new Form({
-      main_hotel_id: null
+      main_hotel_id: null,
+      province_id: null,
+      sub_district: "",
+      district: "",
+      name: "",
+      description: "",
+      google_map_url: "",
+      tel_no: "",
+      lat: "",
+      long: "",
     }),
     item: {},
+    details: [],
     isCreate: true,
     pageTitle: "Hotel Branch",
     uploadName: "",
@@ -118,59 +128,58 @@ export default {
         name: "main_hotel_id",
         type: "relationSelect",
         relationName: "main_hotels",
-        items: []
+        items: [],
       },
       {
-        title: "Name",
-        name: "name",
-        type: "text"
+        title: "Province",
+        name: "province_id",
+        type: "relationSelect",
+        relationName: "lifestyle/province",
+        items: [],
       },
-      {
-        title: "Description",
-        name: "description",
-        type: "textarea"
-      },
-      {
-        title: "google_map_url",
-        name: "google_map_url",
-        type: "text"
-      },
-      {
-        title: "tel_no",
-        name: "tel_no",
-        type: "tel"
-      },
-      {
-        title: "lat",
-        name: "lat",
-        type: "text"
-      },
-      {
-        title: "long",
-        name: "long",
-        type: "text"
-      },
-      {
-        title: "approved_at",
-        name: "approved_at",
-        type: "date"
-      },
+
       {
         title: "sub_district",
         name: "sub_district",
-        type: "text"
+        type: "text",
       },
       {
         title: "district",
         name: "district",
-        type: "text"
+        type: "text",
+      },
+
+      {
+        title: "Name",
+        name: "name",
+        type: "text",
       },
       {
-        title: "province",
-        name: "province",
-        type: "text"
-      }
-    ]
+        title: "Description",
+        name: "description",
+        type: "textarea",
+      },
+      {
+        title: "google_map_url",
+        name: "google_map_url",
+        type: "text",
+      },
+      {
+        title: "tel_no",
+        name: "tel_no",
+        type: "tel",
+      },
+      {
+        title: "lat",
+        name: "lat",
+        type: "text",
+      },
+      {
+        title: "long",
+        name: "long",
+        type: "text",
+      },
+    ],
   }),
   methods: {
     async fetchShow() {
@@ -183,8 +192,8 @@ export default {
       const { data } = await this.form
         .get(this.$api(name), {
           params: {
-            item: 99
-          }
+            item: 99,
+          },
         })
         .catch();
 
@@ -194,7 +203,7 @@ export default {
       this.inputs[index]["items"] = data.items;
     },
     async checkRelation() {
-      let inputs = this.inputs.filter(el => el.type == "relationSelect");
+      let inputs = this.inputs.filter((el) => el.type == "relationSelect");
       if (inputs.length) {
         let _this = this;
         inputs.forEach(async (el, index) => {
@@ -226,7 +235,7 @@ export default {
     },
     setUploadName(a) {
       this.uploadName = a;
-    }
+    },
   },
   computed: {
     pageName() {
@@ -234,7 +243,7 @@ export default {
     },
     id() {
       return this.$route.params.id;
-    }
+    },
   },
   async created() {
     this.checkRelation();
@@ -242,7 +251,7 @@ export default {
     if (this.id) {
       this.isCreate = false;
       await this.fetchShow();
-      this.form.keys().forEach(key => {
+      this.form.keys().forEach((key) => {
         this.form[key] = this.item[key];
       });
 
@@ -254,7 +263,7 @@ export default {
         }
       });
     }
-  }
+  },
 };
 </script>
 

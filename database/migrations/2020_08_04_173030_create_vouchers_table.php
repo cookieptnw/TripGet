@@ -19,7 +19,6 @@ class CreateVouchersTable extends Migration
             $table->string('description');
             $table->string('image_url');
             $table->float('price', 10, 2);
-            $table->float('price_child', 10, 2);
             $table->date('start_date');
             $table->date('end_date');
             $table->boolean('holiday_open')->default(0);

@@ -1,6 +1,6 @@
 <template>
   <div class="p-5 row">
-    <div class="col-11 col-lg-6 m-auto">
+    <div class="col-11 col-lg-11 m-auto">
       <card>
         <button class="btn btn-danger" @click="backToMainPage()">Back</button>
         <h4 class="mt-4">{{ isCreate ? "Create" : "Edit" }} {{ pageTitle }}</h4>
@@ -89,6 +89,63 @@
               </div>
             </div>
 
+            <hr />
+            <h4>Detail</h4>
+            <div class="row py-4">
+              <div
+                v-for="(item, index) in form.details"
+                :key="index"
+                class="col-4"
+              >
+                <card class="mt-4" v-if="item">
+                  <!-- <button
+                    @click="addDetailMore()"
+                    type="button"
+                    class="btn btn-info position-absolute"
+                    style="right: 10px; margin-top: -30px"
+                    v-if="index + 1 >= form.details.length"
+                  >
+                    +
+                  </button> -->
+
+                  <button
+                    @click="delDetail(index)"
+                    type="button"
+                    class="btn btn-danger position-absolute"
+                    style="right: 70px; margin-top: -30px"
+                    v-if="index != 0"
+                  >
+                    -
+                  </button>
+                  <div class="form-group">
+                    <label for="">Description</label>
+                    <input
+                      type="text"
+                      :name="index + 'd'"
+                      :id="index + 'd'"
+                      v-model="form.details[index]['description']"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="form-group" v-if="item">
+                    <label for="">Amount</label>
+                    <input
+                      type="text"
+                      :name="index + 'a'"
+                      :id="index + 'd'"
+                      v-model="form.details[index]['amount']"
+                      class="form-control"
+                    />
+
+                    <small id="helpId" class="text-muted"
+                      >จำนวนครั้งที่ใช้ได้ หากเป็นคำอธิบายให้กรอก 0</small
+                    >
+                  </div>
+                </card>
+              </div>
+            </div>
+
             <v-button :loading="form.busy" class="w-100"
               >{{ isCreate ? "Create" : "Update" }} {{ pageTitle }}</v-button
             >
@@ -110,17 +167,55 @@ export default {
       name: "",
       description: "",
       price: "",
-      price_child: "",
       start_date: "",
       end_date: "",
-      holiday_open: "",
-      weekend_open: "",
+      holiday_open: 0,
+      weekend_open: 0,
       discount: "",
       day_use: "",
-      not_refund: "",
-      pet_allow: "",
+      not_refund: 0,
+      pet_allow: 0,
+      details: [
+        {
+          description: null,
+          amount: 0,
+        },
+        {
+          description: null,
+          amount: 0,
+        },
+        {
+          description: null,
+          amount: 0,
+        },
+        {
+          description: null,
+          amount: 0,
+        },
+        {
+          description: null,
+          amount: 0,
+        },
+        {
+          description: null,
+          amount: 0,
+        },
+        {
+          description: null,
+          amount: 0,
+        },
+        {
+          description: null,
+          amount: 0,
+        },
+      ],
     }),
+    detailTemplate: {
+      description: null,
+      amount: 0,
+    },
     item: {},
+    details: [],
     isCreate: true,
     pageTitle: "Voucher",
     uploadName: "",
@@ -148,33 +243,32 @@ export default {
         title: "Name",
         name: "name",
         type: "text",
+        required: true,
       },
       {
         title: "Description",
         name: "description",
         type: "textarea",
+        required: true,
       },
       {
         title: "Price",
         name: "price",
         type: "number",
         step: "0.01",
-      },
-      {
-        title: "Price Child",
-        name: "price_child",
-        type: "number",
-        step: "0.01",
+        required: true,
       },
       {
         title: "Start Date",
         name: "start_date",
         type: "date",
+        required: true,
       },
       {
         title: "End Date",
         name: "end_date",
         type: "date",
+        required: true,
       },
       {
         title: "Holiday Open",
@@ -182,33 +276,41 @@ export default {
         type: "checkbox",
       },
       {
-        title: "weekend_open",
+        title: "Weekend Open",
         name: "weekend_open",
         type: "checkbox",
       },
       {
-        title: "discount",
+        title: "Discount",
         name: "discount",
         type: "number",
+        required: true,
       },
       {
-        title: "day_use",
+        title: "Day use",
         name: "day_use",
         type: "number",
+        required: true,
       },
       {
-        title: "not_refund",
+        title: "Not Refund",
         name: "not_refund",
         type: "checkbox",
       },
       {
-        title: "pet_allow",
+        title: "Pet Allow",
         name: "pet_allow",
         type: "checkbox",
       },
     ],
   }),
   methods: {
+    addDetailMore() {
+      this.form.details.push(this.detailTemplate);
+    },
+    delDetail(index) {
+      this.form.details.splice(index, 1);
+    },
     async fetchShow() {
       const { data } = await this.form
         .get(this.$api(this.pageName + "/" + this.id))
@@ -252,6 +354,7 @@ export default {
         const { data } = await this.form
           .post(this.$api(this.pageName + `/${this.id}/update`))
           .catch();
+        this.$router.push({ name: this.pageName });
       }
     },
     backToMainPage() {
@@ -276,6 +379,7 @@ export default {
   },
   async created() {
     this.checkRelation();
+    this.addDetailMore();
 
     if (this.id) {
       this.isCreate = false;
@@ -285,6 +389,10 @@ export default {
       });
 
       let _this = this;
+
+      while (this.form.details.length < 9) {
+        this.addDetailMore();
+      }
 
       this.inputs.forEach((el, key) => {
         if (el.type == "image") {

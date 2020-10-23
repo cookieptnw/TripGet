@@ -35,6 +35,12 @@ class VoucherController extends Controller
     {
         $item = $this->mainModel::create($request->all());
 
+        foreach ($request->details as $detail) {
+            if ($detail['description']) {
+                $item->details()->create($detail);
+            }
+        }
+
         if (!$item) {
             return response()->json([
                 "message" => 'create failed'
@@ -47,6 +53,7 @@ class VoucherController extends Controller
     public function show($id)
     {
         $show = $this->mainModel::find($id);
+        $show->details;
         return [
             "result" => $show
         ];

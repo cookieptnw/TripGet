@@ -23,7 +23,7 @@ class HotelSeeder extends Seeder
                 'approved_at' => \Carbon\Carbon::now(),
                 'district' => '1',
                 'sub_district' => '2',
-                'province' => 'bangkok',
+                'province_id' => 1,
                 'main_hotel_id' => 1
             ],
             [
@@ -33,10 +33,10 @@ class HotelSeeder extends Seeder
                 'tel_no' => '0900000000',
                 'lat' => 100,
                 'long' => 200,
-                'approved_at' => \Carbon\Carbon::now(),
+                'approved_at' => null,
                 'district' => '1',
                 'sub_district' => '2',
-                'province' => 'bangkok',
+                'province_id' => 1,
                 'main_hotel_id' => 1
             ],
             [
@@ -49,7 +49,7 @@ class HotelSeeder extends Seeder
                 'approved_at' => \Carbon\Carbon::now(),
                 'district' => '1',
                 'sub_district' => '2',
-                'province' => 'bangkok',
+                'province_id' => 1,
                 'main_hotel_id' => 1
             ],
             [
@@ -62,7 +62,7 @@ class HotelSeeder extends Seeder
                 'approved_at' => \Carbon\Carbon::now(),
                 'district' => '1',
                 'sub_district' => '2',
-                'province' => 'bangkok',
+                'province_id' => 1,
                 'main_hotel_id' => 1
             ],
 
