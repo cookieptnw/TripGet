@@ -19,3 +19,5 @@ phpunit.dusk.xml
 public/uploads/images/
 
 .Archive.zip.icloud
+
+.DS_Store
