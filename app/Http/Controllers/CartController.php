@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\MyVoucher;
+use App\Voucher;
+use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
@@ -25,13 +26,28 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $req = $request->all();
-        $req['user_id'] = $request->user()->id;
-        $req['amount'] = 1;
-
+        $groupID = false;
         foreach ($request->cart_ids as $cart) {
+
+            $req = $request->all();
+            $req['user_id'] = $request->user()->id;
+            $req['amount'] = 1;
+
+            $req['group_id'] = $groupID;
             $req['voucher_id'] = $cart;
-            MyVoucher::create($req);
+            $voucher = Voucher::whereId($cart)->first();
+
+            $req['price_sum'] = $voucher->price;
+            $myVoucher = MyVoucher::create($req);
+
+            if (!$groupID) {
+                $groupID = $myVoucher->id;
+                $myVoucher->update([
+                    'group_id' => $myVoucher->id,
+                ]);
+
+            }
+
         }
         return 'ok';
     }

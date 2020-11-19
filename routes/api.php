@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 function crud($name, $controller)
 {
@@ -56,9 +56,10 @@ use PA\ProvinceTh\Factory;
 Route::resource('lifestyle', 'LifestyleController');
 Route::post('lifestyle/set/{id}', 'LifestyleController@set');
 Route::post('carts', 'CartController@store');
+Route::get('myVouchers', 'MyVoucherController@index');
 
 Route::get('province', function () {
-    return  $provinces = Factory::province();
+    return $provinces = Factory::province();
 });
 
 Route::resource('photos', 'Test');

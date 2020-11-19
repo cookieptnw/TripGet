@@ -3,12 +3,13 @@
     <div class="content py-5 ">
 <div class="container">
 	<div class="row">
-    {{cart_ids}}
+
+    <button @click="addToCart()">c</button>
 		<div class="col-md-6 offset-md-3">
                     <span class="anchor" id="formPayment"></span>
 
                     <!-- form card cc payment -->
-                    <div class="card ">
+                    <div class="card " v-if="0 == 1">
                         <div class="card-body">
                             <h3 class="text-center">Credit Card Payment</h3>
                             <hr>

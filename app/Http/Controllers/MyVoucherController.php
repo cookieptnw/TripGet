@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\MyVoucher;
-use Illuminate\Http\Request;
 
 class MyVoucherController extends Controller
 {
@@ -14,72 +13,10 @@ class MyVoucherController extends Controller
      */
     public function index()
     {
-        //
+        // $user_id = request()->user()->id;
+        $user_id = 1;
+        $myVouchers = MyVoucher::where('user_id', $user_id)->with('voucher')->with('voucher.details')->get()->groupBy('group_id');
+        return ['result' => $myVouchers];
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)''
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\MyVoucher  $myVoucher
-     * @return \Illuminate\Http\Response
-     */
-    public function show(MyVoucher $myVoucher)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\MyVoucher  $myVoucher
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(MyVoucher $myVoucher)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\MyVoucher  $myVoucher
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, MyVoucher $myVoucher)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\MyVoucher  $myVoucher
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(MyVoucher $myVoucher)
-    {
-        //
-    }
 }
