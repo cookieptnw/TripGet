@@ -34,6 +34,16 @@
 
           <ul class="navbar-nav ml-auto">
             <!-- Authenticated -->
+            <li class="nav-item">
+              <router-link to="/cart" class="nav-link">
+
+              <button type="button" class="btn btn-primary">
+  ตะกร้าของคุณ <span class="badge badge-light">{{carts.length}}</span>
+  <span class="sr-only">unread messages</span>
+</button>
+
+</router-link>
+            </li>
             <li v-if="user" class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle text-dark"
@@ -126,6 +136,7 @@ export default {
 
   computed: mapGetters({
     user: "auth/user",
+    carts:'cart/carts'
   }),
 
   methods: {

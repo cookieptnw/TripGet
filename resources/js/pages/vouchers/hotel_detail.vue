@@ -109,11 +109,9 @@
           >
         </div>
         <div class="col-md-4 text-center mb-2">
-          <router-link :to="{ name: 'hotel.stock', params: { id: id } }"
-            ><button class="btn btn-primary btn-buy">
+          <button class="btn btn-primary btn-buy" @click="addCart({cart:voucher})">
               เพิ่มลงตะกร้า
-            </button></router-link
-          >
+            </button>
         </div>
         <div class="col-md-4 text-center mb-2">
           <router-link :to="{ name: 'hotel.detail', params: { id: id } }"
@@ -150,6 +148,7 @@ export default {
   methods: {
     ...mapActions({
       fetch: "voucher/show",
+      addCart: "cart/add",
     }),
   },
   async created() {
