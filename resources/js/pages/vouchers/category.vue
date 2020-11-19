@@ -87,6 +87,11 @@ export default {
       show: "category/item",
     }),
   },
+  watch:{
+     query(){
+     this.fetch({ id: this.key, query: this.query });
+    }
+  },
   methods: {
     ...mapActions({
       fetch: "category/show",
