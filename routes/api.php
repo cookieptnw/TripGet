@@ -55,6 +55,7 @@ use PA\ProvinceTh\Factory;
 
 Route::resource('lifestyle', 'LifestyleController');
 Route::post('lifestyle/set/{id}', 'LifestyleController@set');
+Route::post('carts', 'CartController@store');
 
 Route::get('province', function () {
     return  $provinces = Factory::province();

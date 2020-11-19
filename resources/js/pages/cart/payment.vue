@@ -16,14 +16,14 @@
                                 <a class="close font-weight-normal initialism" data-dismiss="alert" href="#"><samp>×</samp></a>
                                 CVC code is required.
                             </div> -->
-                            <form class="form" role="form" autocomplete="off">
+                            <form class="form" role="form" autocomplete="off" @submit.prevent="addToCart()">
                                 <div class="form-group">
                                     <label for="cc_name">Card Holder's Name</label>
-                                    <input type="text" class="form-control" id="cc_name" pattern="\w+ \w+.*" title="First and last name" required="required">
+                                    <input type="text" class="form-control" id="cc_name" pattern="\w+ \w+.*" title="First and last name" >
                                 </div>
                                 <div class="form-group">
                                     <label>Card Number</label>
-                                    <input type="text" class="form-control" autocomplete="off" maxlength="20" pattern="\d{16}" title="Credit card number" required="">
+                                    <input type="text" class="form-control" autocomplete="off" maxlength="20" pattern="\d{16}" title="Credit card number" >
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-12">Card Exp. Date</label>
@@ -103,6 +103,7 @@ computed:{
 methods:{
   async addToCart(){
     const {data} = await axios.post('/api/carts',{sum:this.sum,cart_ids:this.cart_ids})
+    console.log(data)
   }
 }
 }

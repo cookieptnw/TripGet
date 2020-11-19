@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Voucher;
+use App\MyVoucher;
 
 class CartController extends Controller
 {
@@ -28,7 +28,12 @@ class CartController extends Controller
         $req = $request->all();
         $req['user_id'] = $request->user()->id;
         $req['amount'] = 1;
-        return Voucher::create($req);
+
+        foreach ($request->cart_ids as $cart) {
+            $req['voucher_id'] = $cart;
+            MyVoucher::create($req);
+        }
+        return 'ok';
     }
 
     /**
