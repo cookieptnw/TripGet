@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\UserLifestyle;
 use App\Voucher;
+use App\VoucherLifestyle;
 use Illuminate\Http\Request;
 
 class VoucherController extends Controller
@@ -20,15 +22,37 @@ class VoucherController extends Controller
         $keyword = $request->q ? $request->q : '';
         $sortBy = $request->sortBy ? $request->sortBy : 'desc';
 
-
         $items = $this->mainModel::where(function ($q) use ($keyword) {
             $q->orWhere('name', 'LIKE', "%$keyword%");
         })->with(['hotel', 'category'])->orderBy('created_at', $sortBy)->paginate($showItem);
 
         return [
             "items" =>
-            $items
+            $items,
         ];
+    }
+
+    public function matching()
+    {
+        $user_id = 1;
+        $user_lifestyles = UserLifestyle::where('user_id', $user_id)->get();
+        $voucher_lifestyles = VoucherLifestyle::get();
+        $keyClasses = [];
+        foreach ($user_lifestyles as $class) {
+            $keyClasses[$class['lifestyle_id']] = $class;
+        }
+        unset($classes);
+
+        foreach ($voucher_lifestyles as $i => $customer) {
+            $voucher_lifestyles[$i]['class'] = '';
+            if (isset($keyClasses[$customer['lifestyle_id']])) {
+                $voucher_lifestyles[$i]['class'] = $keyClasses[$customer['lifestyle_id']]['class'];
+            }
+
+        }
+        return $voucher_lifestyles;
+
+        // return ['user' => $user, 'vouchers' => $vouchers];
     }
 
     public function store(Request $request)
@@ -43,12 +67,11 @@ class VoucherController extends Controller
 
         if (!$item) {
             return response()->json([
-                "message" => 'create failed'
+                "message" => 'create failed',
             ], 400);
         }
         return ["message" => 'success'];
     }
-
 
     public function show($id)
     {
@@ -58,10 +81,9 @@ class VoucherController extends Controller
         $show->hotel->vouchers;
         $show->hotel->province;
         return [
-            "result" => $show
+            "result" => $show,
         ];
     }
-
 
     public function update($id, Request $request)
     {
@@ -69,10 +91,9 @@ class VoucherController extends Controller
 
         $update = $item->update($request->all());
 
-
         if (!$update) {
             return response()->json([
-                "message" => 'update failed'
+                "message" => 'update failed',
             ], 400);
         }
 

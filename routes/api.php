@@ -57,6 +57,7 @@ Route::resource('lifestyle', 'LifestyleController');
 Route::post('lifestyle/set/{id}', 'LifestyleController@set');
 Route::post('carts', 'CartController@store');
 Route::get('myVouchers', 'MyVoucherController@index');
+Route::get('match/vouchers', 'VoucherController@matching');
 
 Route::get('province', function () {
     return $provinces = Factory::province();
