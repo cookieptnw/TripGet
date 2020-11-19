@@ -36,6 +36,7 @@
     "vue2-editor": "^2.10.2",
     "vuesax": "^4.0.1-alpha.24",
     "vuex": "^3.5.1",
+    "vuex-persistedstate": "^4.0.0-beta.1",
     "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
