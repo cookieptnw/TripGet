@@ -36,12 +36,12 @@ export default {
       return [
         {
           icon: "user",
-          name: this.$t("profile"),
+          name: "โปรไฟล์",
           route: "settings.profile",
         },
         {
           icon: "lock",
-          name: this.$t("password"),
+          name: "รหัสผ่าน",
           route: "settings.password",
         },
       ];

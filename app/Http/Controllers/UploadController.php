@@ -10,11 +10,11 @@ class UploadController extends Controller
 
     {
 
-        request()->validate([
+        // request()->validate([
 
-            'uploadFileObj' => 'required|image|mimes:jpeg,png,jpg|max:5000',
+        //     'uploadFileObj' => 'required|image|mimes:jpeg,png,jpg|max:5000',
 
-        ]);
+        // ]);
 
 
 

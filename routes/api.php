@@ -61,3 +61,5 @@ Route::get('province', function () {
 });
 
 Route::resource('photos', 'Test');
+
+Route:: get('test', 'TestController@index');
