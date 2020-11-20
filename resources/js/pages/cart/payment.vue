@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="row">
 
-    <button @click="addToCart()">c</button>
+    <button @click="addToCart()">Click</button>
 		<div class="col-md-6 offset-md-3">
                     <span class="anchor" id="formPayment"></span>
 

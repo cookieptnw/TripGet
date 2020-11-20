@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\UserLifestyle;
 use App\Voucher;
-use App\VoucherLifestyle;
 use Illuminate\Http\Request;
 
 class VoucherController extends Controller
@@ -36,21 +35,29 @@ class VoucherController extends Controller
     {
         $user_id = 1;
         $user_lifestyles = UserLifestyle::where('user_id', $user_id)->get();
-        $voucher_lifestyles = VoucherLifestyle::get();
-        $keyClasses = [];
-        foreach ($user_lifestyles as $class) {
-            $keyClasses[$class['lifestyle_id']] = $class;
-        }
-        unset($classes);
+        $vouchers = Voucher::whereHas('lifestyles', function ($q) use ($user_lifestyles) {
+            foreach ($user_lifestyles as $l) {
+                $q->orWhere('lifestyle_id', $l->lifestyle_id);
+            }
+        })->with('lifestyles')->get();
 
-        foreach ($voucher_lifestyles as $i => $customer) {
-            $voucher_lifestyles[$i]['class'] = '';
-            if (isset($keyClasses[$customer['lifestyle_id']])) {
-                $voucher_lifestyles[$i]['class'] = $keyClasses[$customer['lifestyle_id']]['class'];
+        return $vouchers;
+
+        $finds = $vouchers->groupBy('id');
+
+        $d = function ($id) use ($user_lifestyles) {
+            $c = 0;
+            foreach ($user_lifestyles as $u) {
+                if ($u->lifestyle_id == $id) {
+                    $c++;
+                }
             }
 
-        }
-        return $voucher_lifestyles;
+            return $c > 0 ? true : false;
+
+        };
+
+        return $finds;
 
         // return ['user' => $user, 'vouchers' => $vouchers];
     }

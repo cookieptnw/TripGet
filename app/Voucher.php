@@ -13,7 +13,6 @@ class Voucher extends Model
         return $this->created_at ? \Carbon\Carbon::parse($this->created_at)->format('d/m/Y H:i:s') : '-';
     }
 
-
     public function category()
     {
         return $this->belongsTo('App\VoucherCategory', 'category_id', 'id');
@@ -26,5 +25,10 @@ class Voucher extends Model
     public function details()
     {
         return $this->hasMany('App\VoucherDetail');
+    }
+
+    public function lifestyles()
+    {
+        return $this->hasMany('App\VoucherLifeStyle');
     }
 }
