@@ -2,7 +2,7 @@
   <div class="main-layout">
     <div class="mh-800">
       <div>
-        <!-- <Navbar /> -->
+        <Navbar />
         <child />
       </div>
     </div>

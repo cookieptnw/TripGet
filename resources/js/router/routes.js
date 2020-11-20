@@ -191,6 +191,12 @@ export default [
         name: "adminHome",
         component: page("admin/adminDashboard.vue")
       },
+
+      {
+        path: "vouchers/lifestyle/:id",
+        name: "vouchers.lifestyle",
+        component: page("admin/voucher/lifestyle.vue")
+      },
       ...cruGen("voucher_categories", "voucherCategory"),
       ...cruGen("hotels", "hotel"),
       ...cruGen("main_hotels", "mainHotel"),

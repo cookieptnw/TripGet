@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\UserLifestyle;
 use App\Voucher;
+use App\VoucherLifestyle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class VoucherController extends Controller
 {
@@ -34,30 +36,76 @@ class VoucherController extends Controller
     public function matching()
     {
         $user_id = 1;
-        $user_lifestyles = UserLifestyle::where('user_id', $user_id)->get();
-        $vouchers = Voucher::whereHas('lifestyles', function ($q) use ($user_lifestyles) {
-            foreach ($user_lifestyles as $l) {
-                $q->orWhere('lifestyle_id', $l->lifestyle_id);
-            }
-        })->with('lifestyles')->get();
 
-        return $vouchers;
+        $matchs = [];
+        $user_lifestyles = UserLifestyle::select('lifestyle_id')->where('user_id', $user_id)->get()->pluck('lifestyle_id');
 
-        $finds = $vouchers->groupBy('id');
+        $vls = VoucherLifestyle::whereIn('lifestyle_id', $user_lifestyles)->get();
 
-        $d = function ($id) use ($user_lifestyles) {
-            $c = 0;
-            foreach ($user_lifestyles as $u) {
-                if ($u->lifestyle_id == $id) {
-                    $c++;
+        foreach ($vls as $vl) {
+            foreach ($user_lifestyles as $id) {
+                if ($id == $vl->lifestyle_id) {
+                    $vl->match_count++;
                 }
             }
+        }
 
-            return $c > 0 ? true : false;
+        $vId = $vls->groupBy('voucher_id');
 
-        };
+        foreach ($vId as $id => $v) {
+            $voucher = Voucher::where('id', $id)->first();
+            $c = 0;
 
-        return $finds;
+            $lifestyle_id_a = [];
+
+            foreach ($v as $count) {
+                $c += $count->match_count;
+                array_push($lifestyle_id_a, $count->lifestyle_id);
+            }
+
+            $voucher['match_count'] = $c;
+            $voucher['match_lifestyle_id'] = $lifestyle_id_a;
+
+            if (isset($voucher['id'])) {
+                array_push($matchs, $voucher);
+            }
+        }
+
+        $result = ($matchs);
+        return ["items" => ["data" => $result]];
+
+
+        // foreach ($user_lifestyles as $user) {
+        //     $vl =  VoucherLifestyle::where('lifestyle_id', $user->lifestyle_id)->get()->pluck('lifestyle_id');
+
+        //     foreach ($vl as $l) {
+        //     }
+        // }
+        // return array_count_values($matchs);
+        // return ['s' => $user_lifestyles, 'x' =>  $matchs];
+        // $vouchers = Voucher::whereHas('lifestyles', function ($q) use ($user_lifestyles) {
+        //     foreach ($user_lifestyles as $l) {
+        //         $q->orWhere('lifestyle_id', $l->lifestyle_id);
+        //     }
+        // })->with('lifestyles')->get();
+
+        // return $vouchers;
+
+        // $finds = $vouchers->groupBy('id');
+
+        // $d = function ($id) use ($user_lifestyles) {
+        //     $c = 0;
+        //     foreach ($user_lifestyles as $u) {
+        //         if ($u->lifestyle_id == $id) {
+        //             $c++;
+        //         }
+        //     }
+
+        //     return $c > 0 ? true : false;
+        // };
+
+        // return $finds;
+
 
         // return ['user' => $user, 'vouchers' => $vouchers];
     }

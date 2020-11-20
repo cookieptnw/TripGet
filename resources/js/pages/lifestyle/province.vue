@@ -130,6 +130,11 @@ import axios from "axios";
 import { findIndex, find } from "lodash";
 
 export default {
+    props: {
+    vid: {
+      default: false
+    },
+  },
   data: () => ({
     provinces: [],
     g1: 6,
@@ -139,7 +144,7 @@ export default {
   }),
   methods: {
     async getProvince() {
-      const { data } = await axios.get("/api/lifestyle/province");
+      const { data } = await axios.get(`/api/lifestyle/province/${this.vid ? `?voucher_id=${this.vid}`: ''}`);
       this.provinces = data.result;
     },
     getProvinceByGeo(geo) {
@@ -149,7 +154,7 @@ export default {
       let i = findIndex(this.provinces, (el) => el.id == id);
       this.provinces[i].active = !this.provinces[i].active;
       console.log(this.provinces[i]);
-      const { data } = await axios.post(`/api/lifestyle/set/${id}`);
+      const { data } = await axios.post(`/api/lifestyle/set/${id}/${this.vid ? `?voucher_id=${this.vid}`: ''}`);
     },
     activeClass(status) {
       return status ? "btn-primary" : "btn-outline-primary";
@@ -157,6 +162,7 @@ export default {
   },
   created() {
     this.getProvince();
+    console.log(this.vid ? `?voucher_id=${this.vid}`: '')
   },
 };
 </script>

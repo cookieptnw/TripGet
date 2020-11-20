@@ -20,18 +20,23 @@ import axios from "axios";
 import { findIndex, find } from "lodash";
 
 export default {
+  props: {
+    vid: {
+      default: false
+    },
+  },
   data: () => ({
     items: [],
   }),
   methods: {
     async getData() {
-      const { data } = await axios.get("/api/lifestyle/lifestyle_travel");
+      const { data } = await axios.get(`/api/lifestyle/lifestyle_travel/${this.vid ? `?voucher_id=${this.vid}`: ''}`);
       this.items = data.result;
     },
     async setActive(id) {
       let i = findIndex(this.items, (el) => el.id == id);
       this.items[i].active = !this.items[i].active;
-      const { data } = await axios.post(`/api/lifestyle/set/${id}`);
+      const { data } = await axios.post(`/api/lifestyle/set/${id}/${this.vid ? `?voucher_id=${this.vid}`: ''}`);
     },
     activeClass(status) {
       return status ? "btn-primary" : "btn-outline-primary";
