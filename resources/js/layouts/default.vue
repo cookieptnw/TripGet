@@ -5,7 +5,6 @@
         <Navbar />
         <child />
 
-        <div>My Cart</div>
       </div>
     </div>
   </div>

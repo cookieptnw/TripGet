@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Lifestyle;
 use App\UserLifestyle;
+use App\VoucherLifestyle;
 
 use Illuminate\Http\Request;
 
@@ -48,27 +49,50 @@ class LifestyleController extends Controller
      */
     public function show($lifestyle)
     {
+
+        $vid = request()->voucher_id;
+
         $lifestyles = Lifestyle::where('type', $lifestyle)->get();
         $user = request()->user();
         foreach ($lifestyles as $l) {
-            $f = UserLifestyle::where('lifestyle_id', $l->id)->where('user_id', $user->id)->first();
+            if ($vid) {
+                $f = VoucherLifestyle::where('lifestyle_id', $l->id)->where('voucher_id', $vid)->first();
+            } else {
+                $f = UserLifestyle::where('lifestyle_id', $l->id)->where('user_id', $user->id)->first();
+            }
             $l->active = ($f) ? true : false;
         }
-        return ['result' => $lifestyles, 'items' => ["data" => $lifestyles]];
+        return ['mode' => $vid ? 'voucher' : 'user', 'result' => $lifestyles, 'items' => ["data" => $lifestyles]];
     }
 
     public function set($lifestyle)
     {
+        $vid = request()->voucher_id;
+
         $user = request()->user();
-        $f = UserLifestyle::where('lifestyle_id', $lifestyle)->where('user_id', $user->id)->get();
-        if (count($f)) {
-            $uf = UserLifestyle::query()->where('lifestyle_id', $lifestyle)->where('user_id', $user->id)->delete();
+
+        if ($vid) {
+            $f = VoucherLifestyle::where('lifestyle_id', $lifestyle)->where('voucher_id', $vid)->get();
+            if (count($f)) {
+                $uf = VoucherLifestyle::query()->where('lifestyle_id', $lifestyle)->where('voucher_id', $vid)->delete();
+            } else {
+                VoucherLifestyle::create([
+                    'lifestyle_id' => $lifestyle,
+                    'voucher_id' => $vid
+                ]);
+            }
         } else {
-            UserLifestyle::create([
-                'lifestyle_id' => $lifestyle,
-                'user_id' => $user->id
-            ]);
+            $f = UserLifestyle::where('lifestyle_id', $lifestyle)->where('user_id', $user->id)->get();
+            if (count($f)) {
+                $uf = UserLifestyle::query()->where('lifestyle_id', $lifestyle)->where('user_id', $user->id)->delete();
+            } else {
+                UserLifestyle::create([
+                    'lifestyle_id' => $lifestyle,
+                    'user_id' => $user->id
+                ]);
+            }
         }
+
 
         return 'ok';
     }

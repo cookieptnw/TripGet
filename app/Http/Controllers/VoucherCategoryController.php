@@ -73,6 +73,7 @@ class VoucherCategoryController extends Controller
         $show = $this->mainModel::find($id);
         $show->vouchers;
         $show->vouchers_approves;
+        $show->vouchers_bkk;
 
         return [
             "result" => $show,

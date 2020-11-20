@@ -14,22 +14,24 @@ class CreateMyVouchersTable extends Migration
     public function up()
     {
         Schema::create('my_vouchers', function (Blueprint $table) {
+            $table->id();
             $table->bigInteger('voucher_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
-            $table->primary(['voucher_id', 'user_id']);
+            $table->bigInteger('group_id')->unsigned();
+
+            // $table->primary(['voucher_id', 'user_id']);
 
             $table->foreign('voucher_id')
                 ->references('id')
                 ->on('vouchers')
                 ->onDelete('cascade');
 
-
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
 
-            $table->integer('amount');
+            // $table->integer('amount');
             $table->float('price_sum', 10, 2);
 
             $table->timestamps();

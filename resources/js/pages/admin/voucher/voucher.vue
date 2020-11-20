@@ -83,6 +83,16 @@
           <img :src="data.item.image_url" height="100" />
         </template>
         <template v-slot:cell(actions)="data">
+
+            <router-link
+            :to="{ name: `${$route.name}.lifestyle`, params: { id: data.item.id } }"
+          >
+            <button class="btn btn-primary">
+              <i class="far fa-star"></i> Add Lifestyle
+            </button>
+          </router-link>
+
+
           <router-link
             :to="{ name: `${$route.name}.edit`, params: { id: data.item.id } }"
           >
@@ -90,6 +100,8 @@
               <i class="far fa-edit"></i> Edit
             </button>
           </router-link>
+
+
           <button class="btn btn-danger" @click="del(data.item.id)">
             <i class="far fa-trash-alt"></i> Delete
           </button>

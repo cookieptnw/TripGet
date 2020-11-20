@@ -31,6 +31,23 @@ export default [
     name: "welcome",
     component: page("welcome.vue")
   },
+  {
+    path: "/cart",
+    name: "cart",
+    component: page("cart/cart.vue")
+  },
+
+   {
+    path: "/payment",
+    name: "payment",
+    component: page("cart/payment.vue")
+  },
+
+    {
+    path: "/myvoucher",
+    name: "myvoucher",
+    component: page("myvoucher/myvoucher.vue")
+  },
 
   {
     path: "/login",
@@ -179,6 +196,12 @@ export default [
         path: "",
         name: "adminHome",
         component: page("admin/adminDashboard.vue")
+      },
+
+      {
+        path: "vouchers/lifestyle/:id",
+        name: "vouchers.lifestyle",
+        component: page("admin/voucher/lifestyle.vue")
       },
       ...cruGen("voucher_categories", "voucherCategory"),
       ...cruGen("hotels", "hotel"),
