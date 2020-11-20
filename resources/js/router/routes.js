@@ -43,6 +43,12 @@ export default [
     component: page("cart/payment.vue")
   },
 
+    {
+    path: "/myvoucher",
+    name: "myvoucher",
+    component: page("myvoucher/myvoucher.vue")
+  },
+
   {
     path: "/login",
     name: "login",

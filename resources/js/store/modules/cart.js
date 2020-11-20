@@ -17,14 +17,7 @@ export const plugins = [
 // state
 export const state = {
   carts: [
-    {
-      id: 5,
-      price: 538
-    },
-    {
-      id: 1,
-      price: 538
-    }
+
   ]
 };
 

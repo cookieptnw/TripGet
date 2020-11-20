@@ -63,79 +63,7 @@
       </div>
     </div>
 
-    <div class="head-content mt-5">
-      <h3>ไลฟ์สไตล์ท่องเที่ยว</h3>
-    </div>
-
-    <div class="card-deck mb-5">
-      <div class="card shadow">
-        <img
-          class="card-img-top"
-          src="https://cms.dmpcdn.com/travel/2017/08/03/b831d834-c87d-46d8-9b45-672dca0e8df2.jpg"
-          alt="Card image cap"
-        />
-        <div class="card-body">
-          <h5 class="card-title">เกาะมุก</h5>
-          <p class="card-text">
-            เกาะมุก ได้ชื่อว่า “ถ้ำมรกตอันล้ำค่าแห่งอันดามัน”
-            เป็นเกาะที่ใหญ่เป็นอันดับที่ 3
-          </p>
-        </div>
-        <div class="card-footer">
-          <div class="hotdeal-sold">
-            <div class="progress hotdeal-sold-bar"></div>
-          </div>
-          <div class="hotdeal-price">
-            <h6 class="text-right mt-2">1,200 บาท</h6>
-          </div>
-        </div>
-      </div>
-
-      <div class="card shadow">
-        <img
-          class="card-img-top"
-          src="https://cms.dmpcdn.com/travel/2017/08/03/71bdbdd6-bc67-40a0-b9e5-b8155309592b.jpg"
-          alt="Card image cap"
-        />
-        <div class="card-body">
-          <h5 class="card-title">ไร่ชาฉุยฟง</h5>
-          <p class="card-text">
-            ไร่ชาฉุยฟง ตั้งอยู่ที่ อ.แม่จัน จ.เชียงราย เป็นแหล่งปลูกชาชั้นดี
-          </p>
-        </div>
-        <div class="card-footer">
-          <div class="hotdeal-sold">
-            <div class="progress hotdeal-sold-bar"></div>
-          </div>
-          <div class="hotdeal-price">
-            <h6 class="text-right mt-2">2,200 บาท</h6>
-          </div>
-        </div>
-      </div>
-
-      <div class="card shadow">
-        <img
-          class="card-img-top"
-          src="https://cms.dmpcdn.com/travel/2017/08/03/33ae5382-06aa-4ff9-9bf4-eb30b328f29e.jpg"
-          alt="Card image cap"
-        />
-        <div class="card-body">
-          <h5 class="card-title">ชิงช้าต้นไม้</h5>
-          <p class="card-text">
-            จากจุดชมวิวบนต้นไม้นี้สามารถมองออกไปเห็นทิวเขาและพื้นที่ราบรอยต่อของ
-            5 จังหวัด
-          </p>
-        </div>
-        <div class="card-footer">
-          <div class="hotdeal-sold">
-            <div class="progress hotdeal-sold-bar"></div>
-          </div>
-          <div class="hotdeal-price">
-            <h6 class="text-right mt-2">1,590 บาท</h6>
-          </div>
-        </div>
-      </div>
-    </div>
+    <matches />
 
     <div class="head-content mt-5">
       <div class="row">
@@ -252,12 +180,16 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import { vouchers } from "../dataMockup";
+import matches from "./lifestyle/match";
 export default {
   middleware: "auth",
   computed: {
     ...mapGetters({
       items: "category/items",
     }),
+  },
+  components: {
+    matches,
   },
 
   methods: {

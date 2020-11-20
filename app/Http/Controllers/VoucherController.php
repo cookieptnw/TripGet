@@ -35,7 +35,7 @@ class VoucherController extends Controller
 
     public function matching()
     {
-        $user_id = 1;
+        $user_id = request()->user()->id;
 
         $matchs = [];
         $user_lifestyles = UserLifestyle::select('lifestyle_id')->where('user_id', $user_id)->get()->pluck('lifestyle_id');
@@ -52,6 +52,14 @@ class VoucherController extends Controller
 
         $vId = $vls->groupBy('voucher_id');
 
+        function get_percentage($total, $number)
+        {
+            if ($total > 0) {
+                return round($number / ($total / 100), 2);
+            } else {
+                return 0;
+            }
+        }
         foreach ($vId as $id => $v) {
             $voucher = Voucher::where('id', $id)->first();
             $c = 0;
@@ -66,13 +74,21 @@ class VoucherController extends Controller
             $voucher['match_count'] = $c;
             $voucher['match_lifestyle_id'] = $lifestyle_id_a;
 
+            $voucher['match_percent'] = get_percentage(count($user_lifestyles), $c);
+
             if (isset($voucher['id'])) {
                 array_push($matchs, $voucher);
             }
         }
 
-        $result = ($matchs);
-        return ["items" => ["data" => $result]];
+        $result = $matchs;
+        $collection = collect($matchs);
+
+
+        $sorted = $collection->sortByDesc(function ($product, $key) {
+            return $product['match_count'];
+        });
+        return ["items" => ["data" => $sorted->values()->all()]];
 
 
         // foreach ($user_lifestyles as $user) {
@@ -135,6 +151,8 @@ class VoucherController extends Controller
         $show->hotel;
         $show->hotel->vouchers;
         $show->hotel->province;
+
+
         return [
             "result" => $show,
         ];

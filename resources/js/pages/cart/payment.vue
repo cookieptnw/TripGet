@@ -10,7 +10,7 @@
                     <!-- form card cc payment -->
                     <div class="card ">
                         <div class="card-body">
-                            <h3 class="text-center">Credit Card Payment</h3>
+                            <h3 class="text-center">ชำระเงินผ่านบัตรเครดิต</h3>
                             <hr>
                             <!-- <div class="alert alert-info p-2 pb-3">
                                 <a class="close font-weight-normal initialism" data-dismiss="alert" href="#"><samp>×</samp></a>
@@ -18,17 +18,17 @@
                             </div> -->
                             <form class="form" role="form" autocomplete="off" @submit.prevent="addToCart()">
                                 <div class="form-group">
-                                    <label for="cc_name">Card Holder's Name</label>
-                                    <input type="text" class="form-control" id="cc_name" pattern="\w+ \w+.*" title="First and last name" >
+                                    <label for="cc_name">ชื่อ นามสกุลบนบัตร</label>
+                                    <input type="text" class="form-control" id="cc_name" pattern="\w+ \w+.*" title="ชื่อ นามสกุล" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Card Number</label>
-                                    <input type="text" class="form-control" autocomplete="off" maxlength="20" pattern="\d{16}" title="Credit card number" >
+                                    <label>หมายเลขบัตรเครดิต 16 หลัก</label>
+                                    <input type="text" class="form-control" autocomplete="off" maxlength="20" pattern="\d{16}" title="หมายเลขบัตรเครดิต" required>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-12">Card Exp. Date</label>
+                                    <label class="col-md-12">วันหมดอายุบัตร</label>
                                     <div class="col-md-4">
-                                        <select class="form-control" name="cc_exp_mo" size="0">
+                                        <select class="form-control" name="cc_exp_mo" size="0" required>
                                             <option value="01">01</option>
                                             <option value="02">02</option>
                                             <option value="03">03</option>
@@ -44,7 +44,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <select class="form-control" name="cc_exp_yr" size="0">
+                                        <select class="form-control" name="cc_exp_yr" size="0" required>
 
                                             <option>2020</option>
                                             <option>2021</option>
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-md-12">Amount</label>
+                                    <label class="col-md-12">ยอดรวมทั้งหมด</label>
                                 </div>
                                 <div class="form-inline">
                                     <div class="input-group">
@@ -72,10 +72,10 @@
                                 <hr>
                                 <div class="form-group row">
                                     <div class="col-md-6">
-                                        <button type="reset" class="btn btn-default btn-lg btn-block">Cancel</button>
+                                        <button type="reset" class="btn btn-default btn-lg btn-block">ยกเลิก</button>
                                     </div>
                                     <div class="col-md-6">
-                                        <button type="submit" class="btn btn-success btn-lg btn-block">Submit</button>
+                                        <button type="submit" class="btn btn-success btn-lg btn-block">ยืนยันการชำระ</button>
                                     </div>
                                 </div>
                             </form>
@@ -103,6 +103,13 @@ computed:{
 methods:{
   async addToCart(){
     const {data} = await axios.post('/api/carts',{sum:this.sum,cart_ids:this.cart_ids})
+     this.$bvToast.toast('ทำการชำระเงินสำเร็จ', {
+          title: 'แจ้งเตือน',
+          autoHideDelay: 5000,
+          appendToast: true
+        })
+    this.$router.push({ name: 'myvoucher' })
+    this.$router.go(0)
     console.log(data)
   }
 }

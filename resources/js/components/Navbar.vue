@@ -34,15 +34,14 @@
 
           <ul class="navbar-nav ml-auto">
             <!-- Authenticated -->
-            <li class="nav-item">
+            <li class="nav-item" v-if="user">
               <router-link to="/cart" class="nav-link">
-
-              <button type="button" class="btn btn-primary">
-  ตะกร้าของคุณ <span class="badge badge-light">{{carts.length}}</span>
-  <span class="sr-only">unread messages</span>
-</button>
-
-</router-link>
+                <button type="button" class="btn btn-primary">
+                  ตะกร้าของคุณ
+                  <span class="badge badge-light">{{ carts.length }}</span>
+                  <span class="sr-only">unread messages</span>
+                </button>
+              </router-link>
             </li>
             <li v-if="user" class="nav-item dropdown">
               <a
@@ -60,6 +59,16 @@
                 {{ user.name }}
               </a>
               <div class="dropdown-menu">
+
+                    <router-link
+                  :to="{ name: 'myvoucher' }"
+                  class="dropdown-item pl-3"
+                >
+                  <fa icon="card" fixed-width />
+                  My Vouchers
+                </router-link>
+                                <div class="dropdown-divider" />
+
                 <router-link
                   :to="{ name: 'settings.profile' }"
                   class="dropdown-item pl-3"
@@ -136,7 +145,7 @@ export default {
 
   computed: mapGetters({
     user: "auth/user",
-    carts:'cart/carts'
+    carts: "cart/carts",
   }),
 
   methods: {
