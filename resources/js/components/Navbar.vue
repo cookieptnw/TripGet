@@ -26,11 +26,7 @@
         </div>
 
         <div id="navbarToggler" class="collapse navbar-collapse">
-          <ul class="navbar-nav">
-            <!-- <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li> -->
-          </ul>
+          <ul class="navbar-nav"></ul>
 
           <ul class="navbar-nav ml-auto">
             <!-- Authenticated -->
@@ -59,15 +55,14 @@
                 {{ user.name }}
               </a>
               <div class="dropdown-menu">
-
-                    <router-link
+                <router-link
                   :to="{ name: 'myvoucher' }"
                   class="dropdown-item pl-3"
                 >
                   <fa icon="card" fixed-width />
                   My Vouchers
                 </router-link>
-                                <div class="dropdown-divider" />
+                <div class="dropdown-divider" />
 
                 <router-link
                   :to="{ name: 'settings.profile' }"
@@ -89,6 +84,15 @@
                   :to="{ name: 'adminHome' }"
                   class="dropdown-item pl-3"
                   v-if="user.role_id == 2"
+                >
+                  <fa icon="cog" fixed-width />
+                  Admin
+                </router-link>
+
+                <router-link
+                  :to="{ name: 'adminHotelHome' }"
+                  class="dropdown-item pl-3"
+                  v-if="user.role_id == 3"
                 >
                   <fa icon="cog" fixed-width />
                   Admin
@@ -123,6 +127,15 @@
               </li>
             </template>
           </ul>
+        </div>
+
+        <div
+          class="ml-0"
+          v-if="user ? (user.role_id == 3 ? true : false) : false"
+        >
+          <router-link to="/qr" class="navbar-brand">
+            <i class="fas fa-qrcode"></i>
+          </router-link>
         </div>
       </div>
     </nav>

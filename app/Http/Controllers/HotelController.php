@@ -24,7 +24,7 @@ class HotelController extends Controller
         $items = $this->mainModel::where(function ($q) use ($keyword) {
             $q->orWhere('name', 'LIKE', "%$keyword%");
             $q->orWhere('description', 'LIKE', "%$keyword%");
-        })->where('name', 'bkk hotel สาขา 1')->where('tel_no', '0900000000')->with('province')->orderBy('created_at', $sortBy)->paginate($showItem);
+        })->with('province')->orderBy('created_at', $sortBy)->paginate($showItem);
 
         return [
             "items" =>

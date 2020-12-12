@@ -20,6 +20,12 @@ Vue.config.productionTip = false;
 import VueCarousel from "vue-carousel";
 Vue.use(VueCarousel);
 
+import Swal from 'sweetalert2'
+Vue.prototype.$swal = Swal /* eslint-disable no-new */
+
+import VueQrcodeReader from "vue-qrcode-reader";
+
+Vue.use(VueQrcodeReader);
 // Addd Directrive
 
 /* eslint-disable no-new */

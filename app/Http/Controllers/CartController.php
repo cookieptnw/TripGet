@@ -35,6 +35,8 @@ class CartController extends Controller
 
             $req['group_id'] = $groupID;
             $req['voucher_id'] = $cart;
+            $req['key'] = time();
+
             $voucher = Voucher::whereId($cart)->first();
 
             $req['price_sum'] = $voucher->price;
@@ -44,10 +46,9 @@ class CartController extends Controller
                 $groupID = $myVoucher->id;
                 $myVoucher->update([
                     'group_id' => $myVoucher->id,
+                    'key' => time() . $myVoucher->id
                 ]);
-
             }
-
         }
         return 'ok';
     }

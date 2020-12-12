@@ -31,22 +31,39 @@ export default [
     name: "welcome",
     component: page("welcome.vue")
   },
+
+  {
+    path: "/qr",
+    name: "qr",
+    component: page("admin/qr/qr.vue")
+  },
+  {
+    path: "/qr/use/:key",
+    name: "qrUse",
+    component: page("admin/qr/use.vue")
+  },
   {
     path: "/cart",
     name: "cart",
     component: page("cart/cart.vue")
   },
 
-   {
+  {
     path: "/payment",
     name: "payment",
     component: page("cart/payment.vue")
   },
 
-    {
+  {
     path: "/myvoucher",
     name: "myvoucher",
     component: page("myvoucher/myvoucher.vue")
+  },
+
+  {
+    path: "/myvoucher/:id",
+    name: "myvoucherqr",
+    component: page("myvoucher/myvoucherqr.vue")
   },
 
   {
@@ -207,6 +224,23 @@ export default [
       ...cruGen("hotels", "hotel"),
       ...cruGen("main_hotels", "mainHotel"),
       ...cruGen("vouchers", "voucher")
+    ]
+  },
+
+  {
+    path: "/admin_hotel",
+    component: page("adminH/index.vue"),
+    children: [
+      {
+        path: "",
+        name: "adminHotelHome",
+        component: page("adminH/adminDashboard.vue")
+      },
+      {
+        path: "buy/history",
+        name: "voucher_hotels",
+        component: page("adminH/voucher/voucher.vue")
+      },
     ]
   },
 

@@ -16,9 +16,7 @@ class UserSeeder extends Seeder
             [
                 'first_name' => 'admin', 'last_name' => 'admin', 'email' => 'admin@cms.com', 'password' => bcrypt('123456'), "role_id" => 2
             ],
-            [
-                'first_name' => 'admin2', 'last_name' => 'admin', 'email' => 'admind2@cms.com', 'password' => bcrypt('123456'), "role_id" => 2
-            ],
+
             [
                 'first_name' => 'phatthanawan',
                 'last_name' => 'chaiwan',
@@ -26,6 +24,19 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('123456'),
                 "role_id" => 1
             ]
+
+
+
+
+        ]);
+
+        User::insert([
+
+            [
+                'first_name' => 'admin2', 'last_name' => 'admin', 'email' => 'admin@hotel.com', 'password' => bcrypt('123456'), "role_id" => 3, 'main_hotel_id' => 1
+            ],
+
+
 
         ]);
     }

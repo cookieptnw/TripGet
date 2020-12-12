@@ -5,7 +5,7 @@
     </div>
     <div class="row mb-5">
       <div class="col-md-4"  v-for="m in matches.data" :key="m.id">
-  <div class="card shadow">
+  <div class="card shadow d-flex" style="height:100%;">
     <button style="position: absolute;
     right: 20px;
     top: 20px;

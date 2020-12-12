@@ -30,6 +30,7 @@
     "vue-carousel": "^0.18.0",
     "vue-i18n": "^8.21.1",
     "vue-meta": "^1.6.0",
+    "vue-qrcode-reader": "^2.3.15",
     "vue-router": "^3.4.4",
     "vue-sidebar-menu": "^4.7.3",
     "vue-thailand-address": "^3.3.0",

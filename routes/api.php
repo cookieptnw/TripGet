@@ -31,6 +31,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     crud('main_hotels', 'MainHotelController');
     crud('hotels', 'HotelController');
 
+    crud('voucher_hotels', 'VoucherHotelController');
+
     Route::post('image/upload', 'UploadController@imageUploadPost');
 
     Route::patch('settings/profile', 'Settings\ProfileController@update');
@@ -57,10 +59,20 @@ Route::resource('lifestyle', 'LifestyleController');
 Route::post('lifestyle/set/{id}', 'LifestyleController@set');
 Route::post('carts', 'CartController@store');
 Route::get('myVouchers', 'MyVoucherController@index');
+Route::get('myVouchers/{id}/use', 'MyVoucherController@use');
+Route::get('myVouchers/{id}/cancel', 'MyVoucherController@cancel');
+
+Route::get('myVouchers/{id}', 'MyVoucherController@show');
+Route::get('myVouchers/key/{id}', 'MyVoucherController@showKey');
+
+
 Route::get('match/vouchers', 'VoucherController@matching');
 
 Route::get('province', function () {
     return $provinces = Factory::province();
 });
 
+Route::get('migrate', function () {
+    \Artisan::call('migrate');
+});
 Route::resource('photos', 'Test');
