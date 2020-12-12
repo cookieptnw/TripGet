@@ -1,15 +1,12 @@
 <template>
   <div>
-                        <button @click="plus()">++++</button>
-
-    <!-- <div class="clearfix">
+    <div class="clearfix">
       <div class="wrapper-abc">
         <div
           class="float-left"
           style="width: 300px; abackground-color: #2a2a2e; height: 100vh"
         >
           <div class="wrapper-sidebar">
-
             <sidebar-menu :menu="menu" width="300" class="bg-admin">
               <div slot="header" class="text-center pt-3 text-white">
                 <div style="height: 50px"></div>
@@ -25,9 +22,7 @@
           <child />
         </div>
       </div>
-    </div> -->
-
-
+    </div>
   </div>
 </template>
 
@@ -83,12 +78,11 @@ export default {
       },
     ],
   }),
-  methods:{
+  methods: {
     ...mapActions({
-            plus:"home/plus",
-
-    })
-  }
+      plus: "home/plus",
+    }),
+  },
 };
 </script>
 

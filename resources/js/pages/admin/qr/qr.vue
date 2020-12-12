@@ -42,7 +42,7 @@ export default {
   methods: {
     onDecode(result) {
       this.result = result;
-      this.go();
+      // this.go();
     },
     go() {
       this.$router.push({
