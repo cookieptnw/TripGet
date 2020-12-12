@@ -4,6 +4,7 @@
       <div>
         <Navbar />
         <child />
+
       </div>
     </div>
   </div>

@@ -33,19 +33,7 @@
       </div>
 
       <!-- LName -->
-      <div class="form-group row">
-        <label class="col-md-3 col-form-label text-md-right">วันเกิด</label>
-        <div class="col-md-7">
-          <input
-            v-model="form.birth_date"
-            :class="{ 'is-invalid': form.errors.has('birth_date') }"
-            class="form-control"
-            type="date"
-            name="birth_date"
-          />
-          <has-error :form="form" field="birth_date" />
-        </div>
-      </div>
+     
 
       <!-- Email -->
       <div class="form-group row">
@@ -105,7 +93,7 @@ export default {
       first_name: "",
       last_name: "",
       tel: "",
-      birth_date: "",
+      birthdate: "",
       email: "",
     }),
   }),

@@ -1,12 +1,15 @@
 <template>
   <div>
-    <div class="clearfix">
+                        <button @click="plus()">++++</button>
+
+    <!-- <div class="clearfix">
       <div class="wrapper-abc">
         <div
           class="float-left"
           style="width: 300px; abackground-color: #2a2a2e; height: 100vh"
         >
           <div class="wrapper-sidebar">
+
             <sidebar-menu :menu="menu" width="300" class="bg-admin">
               <div slot="header" class="text-center pt-3 text-white">
                 <div style="height: 50px"></div>
@@ -22,12 +25,15 @@
           <child />
         </div>
       </div>
-    </div>
+    </div> -->
+
+
   </div>
 </template>
 
 <script>
 import { SidebarMenu } from "vue-sidebar-menu";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
@@ -77,6 +83,12 @@ export default {
       },
     ],
   }),
+  methods:{
+    ...mapActions({
+            plus:"home/plus",
+
+    })
+  }
 };
 </script>
 
