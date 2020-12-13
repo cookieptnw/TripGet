@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     crud('vouchers', 'VoucherController');
     crud('main_hotels', 'MainHotelController');
     crud('hotels', 'HotelController');
+    crud('users', 'UserController');
 
     crud('voucher_hotels', 'VoucherHotelController');
 
@@ -64,6 +65,7 @@ Route::get('myVouchers/{id}/cancel', 'MyVoucherController@cancel');
 
 Route::get('myVouchers/{id}', 'MyVoucherController@show');
 Route::get('myVouchers/key/{id}', 'MyVoucherController@showKey');
+Route::get('roles', 'UserController@roles');
 
 
 Route::get('match/vouchers', 'VoucherController@matching');

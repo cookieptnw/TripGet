@@ -1,7 +1,5 @@
 <template>
   <div class="container">
-
-    <button @click="min()">-</button>{{count}} <button @click="plus()">+</button>
     <div
       id="carouselExampleIndicators"
       class="carousel slide"
@@ -188,23 +186,19 @@ export default {
   computed: {
     ...mapGetters({
       items: "category/items",
-      count:"home/count"
+      count: "home/count",
     }),
   },
   components: {
     matches,
   },
 
-
   methods: {
     ...mapActions({
       fetch: "category/fetch",
-      plus:"home/plus",
-      min:"home/min"
-
+      plus: "home/plus",
+      min: "home/min",
     }),
-
-   
   },
   created() {
     this.fetch();

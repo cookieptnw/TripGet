@@ -223,7 +223,9 @@ export default [
       ...cruGen("voucher_categories", "voucherCategory"),
       ...cruGen("hotels", "hotel"),
       ...cruGen("main_hotels", "mainHotel"),
-      ...cruGen("vouchers", "voucher")
+      ...cruGen("vouchers", "voucher"),
+      ...cruGen("users", "user")
+
     ]
   },
 

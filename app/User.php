@@ -19,7 +19,7 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email','password', 'tel', 'id_no', 'card_image_url', 'birthdate'
+        'first_name', 'last_name', 'email', 'password', 'tel', 'id_no', 'card_image_url', 'birthdate', 'main_hotel_id', 'role_id'
     ];
 
 
@@ -111,5 +111,9 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     public function role()
     {
         return $this->belongsTo('App\Role', 'role_id', 'id');
+    }
+    public function main_hotel()
+    {
+        return $this->belongsTo('App\MainHotel', 'main_hotel_id', 'id');
     }
 }

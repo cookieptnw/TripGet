@@ -23,7 +23,7 @@ class MyVoucherController extends Controller
             $voucher->can_cancel = $voucher->voucher->end_date > Carbon::now()->subDays(7);
             $voucher->no = $voucher->created_at->format('Ymd') . $voucher->id;
         }
-        return ['result' => collect($myVouchers)->groupBy('group_id')->all()];
+        return ['result' => collect($myVouchers)->all()];
     }
 
     public function show($id)

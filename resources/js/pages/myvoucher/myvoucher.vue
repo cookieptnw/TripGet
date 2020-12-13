@@ -2,63 +2,53 @@
   <div class="container">
     <b-tabs content-class="mt-3">
       <b-tab title="ซื้อแล้ว" active>
-        <div
-          v-for="(ms, index) in myvoucherNormal"
-          :key="index"
-          class="card mt-4"
-        >
-          <div class="card-header p-3">
-            <h6>คำสั่งซื้อ#{{ ms[0].no }}</h6>
-          </div>
-          <hr />
-          <div class="card p-4 m-4" v-for="m in ms" v-if="m.status">
-            <div class="row">
-              <div class="col-md-3">
-                <img :src="m.voucher.image_url" class="w-100" />
-              </div>
-              <div class="col-md-6 p-4">
-                <h1>{{ m.voucher.name }}</h1>
-                <p>{{ m.voucher.description }}</p>
-              </div>
-              <div class="col-md-3">
-                <router-link
-                  :to="{ name: 'myvoucherqr', params: { id: m.id } }"
-                >
-                  <button class="btn btn-primary">ใช้ตั๋ว</button>
-                </router-link>
+        <div class="card p-4 m-4" v-for="m in myvoucherNormal" v-if="m.status">
+          <h5>คำสั่งซื้อ#{{ m.key }}</h5>
 
-                <button
-                  class="btn btn-danger"
-                  :disabled="!m.can_cancel"
-                  @click="cancel(m.id)"
-                >
-                  ยกเลิกตั๋ว
-                </button>
-              </div>
+          <h6 class="text-secondary">หมายเลขบิล #{{ m.no }}</h6>
+          <div class="row">
+            <div class="col-md-3">
+              <img :src="m.voucher.image_url" class="w-100" />
+            </div>
+            <div class="col-md-5 p-4">
+              <h1>{{ m.voucher.name }}</h1>
+              <p>{{ m.voucher.description }}</p>
+            </div>
+            <div class="col-md-4">
+              <router-link :to="{ name: 'myvoucherqr', params: { id: m.id } }">
+                <button class="btn btn-primary">ใช้ตั๋ว</button>
+              </router-link>
+
+              <button
+                class="btn btn-danger"
+                :disabled="!m.can_cancel"
+                @click="cancel(m.id)"
+              >
+                ยกเลิกตั๋ว
+              </button>
+
+              <br />
+              <span class="text-secondary" style="font-size: 12px">
+                (ยกเลิกตั๋วได้ถึง {{ m.voucher.end_date_text_ex }})
+              </span>
             </div>
           </div>
         </div>
       </b-tab>
       <b-tab title="ใช้งานแล้ว"><p>ยังไม่มีรายการในขณะนี้</p></b-tab>
       <b-tab title="รายการยกเลิก">
-        <div
-          v-for="(ms, index) in myvoucherNormal"
-          :key="index"
-          class="card mt-4"
-        >
-          <div class="card-header p-3">
-            <h6>คำสั่งซื้อ#{{ ms[0].no }}</h6>
-          </div>
-          <hr />
-          <div class="card p-4 m-4" v-for="m in ms" v-if="!m.status">
-            <div class="row">
-              <div class="col-md-3">
-                <img :src="m.voucher.image_url" class="w-100" />
-              </div>
-              <div class="col-md-6 p-4">
-                <h1>{{ m.voucher.name }}</h1>
-                <p>{{ m.voucher.description }}</p>
-              </div>
+        <div class="card p-4 m-4" v-for="m in myvoucherCancel" v-if="!m.status">
+          <h5>คำสั่งซื้อ#{{ m.key }}</h5>
+
+          <h6 class="text-primary">หมายเลขบิล #{{ m.no }}</h6>
+
+          <div class="row">
+            <div class="col-md-3">
+              <img :src="m.voucher.image_url" class="w-100" />
+            </div>
+            <div class="col-md-6 p-4">
+              <h1>{{ m.voucher.name }}</h1>
+              <p>{{ m.voucher.description }}</p>
             </div>
           </div>
         </div>

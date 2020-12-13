@@ -17,7 +17,7 @@ export const getters = {
   matches: state => state.matches,
   item: state => state.item,
   myvoucher: state => state.myvoucher,
-  myvoucherNormal: state => state.myvoucher,
+  myvoucherNormal: state => state.myvoucher.filter(el => el.status),
   myvoucherCancel: state => state.myvoucher.filter(el => !el.status),
   myvoucherShow: state => state.myvoucherShow
 };

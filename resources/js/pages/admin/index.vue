@@ -76,6 +76,12 @@ export default {
           },
         ],
       },
+
+      {
+        href: "/admin/users",
+        title: "User",
+        icon: "fas fa-user",
+      },
     ],
   }),
   methods: {
