@@ -30,6 +30,8 @@
               <br />
               <span class="text-secondary" style="font-size: 12px">
                 (ยกเลิกตั๋วได้ถึง {{ m.voucher.end_date_text_ex }})
+                <br />
+                หมดอายุ {{ m.voucher.end_date_text }}
               </span>
             </div>
           </div>

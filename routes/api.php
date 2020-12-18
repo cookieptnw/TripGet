@@ -32,6 +32,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     crud('hotels', 'HotelController');
     crud('users', 'UserController');
 
+
+    Route::get('voucher_hotel_stats', 'VoucherHotelController@stats');
+
     crud('voucher_hotels', 'VoucherHotelController');
 
     Route::post('image/upload', 'UploadController@imageUploadPost');
@@ -69,6 +72,7 @@ Route::get('roles', 'UserController@roles');
 
 
 Route::get('match/vouchers', 'VoucherController@matching');
+Route::get('dashboard', 'DashboardController@index');
 
 Route::get('province', function () {
     return $provinces = Factory::province();

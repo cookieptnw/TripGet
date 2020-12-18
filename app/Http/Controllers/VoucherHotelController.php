@@ -52,6 +52,45 @@ class VoucherHotelController extends Controller
         ];
     }
 
+    public function stats(Request $request)
+    {
+
+        $mainHotelId = $request->user()->main_hotel_id ? $request->user()->main_hotel_id  : 0;
+
+        if (
+            !$mainHotelId
+        ) {
+            return [
+                "items" =>
+                [],
+                "hotels" => []
+
+            ];
+        }
+
+        $showItem = $request->item ? $request->item : 10;
+        $keyword = $request->q ? $request->q : '';
+        $sortBy = $request->sortBy ? $request->sortBy : 'desc';
+
+
+        $items = MyVoucher::with(['voucher.hotel', 'voucher', 'voucher.category', 'user'])->whereHas('voucher.hotel', function ($q) use ($mainHotelId) {
+            $q->where('main_hotel_id', $mainHotelId);
+        })->orderBy('created_at', $sortBy)->get()->groupBy('voucher_id');
+
+        $stats = [];
+
+        foreach ($items as $item) {
+            array_push($stats, ['voucher' => $item[0]['voucher'], 'count' => count($item)]);
+        }
+        $hotels = Hotel::where('main_hotel_id', $mainHotelId)->get();
+
+        return [
+            "items" =>
+            $stats,
+            "hotels" => $hotels
+        ];
+    }
+
     public function matching()
     {
         $user_id = request()->user()->id;
