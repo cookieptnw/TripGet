@@ -21,10 +21,6 @@
         </span>
 
         <hr />
-
-        <router-link :to="{ name: `qrUse`, params: { key: myvoucher.key } }">
-          test
-        </router-link>
       </div>
 
       <hr />
@@ -45,6 +41,16 @@
                     ใช้งานแล้ว {{ item.use }}/{{ item.amount }} ครั้ง
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </b-tab>
+
+        <b-tab title="รายละเอียดอื่นๆ">
+          <div class="row">
+            <div class="col-md-4 mt-4" v-for="item in detailsR" :key="item.id">
+              <div class="card w-100 p-4">
+                <h4 class="h6">{{ item.description }}</h4>
               </div>
             </div>
           </div>
@@ -101,6 +107,9 @@ export default {
       return this.myvoucher.voucher.details.filter(
         (el) => el.amount > 0 && el.use < el.amount
       );
+    },
+    detailsR() {
+      return this.myvoucher.voucher.details.filter((el) => el.amount == 0);
     },
     detailsUse() {
       return this.myvoucher.voucher.details.filter(
