@@ -93,7 +93,7 @@
           <div class="hotdeal-sold">
             <div class="progress hotdeal-sold-bar">
               <div
-                class="progress-bar bg-info"
+                class="progress-bar bg-success"
                 role="progressbar"
                 style="width: 50%"
                 aria-valuenow="50"
@@ -125,7 +125,7 @@
           <div class="hotdeal-sold">
             <div class="progress hotdeal-sold-bar">
               <div
-                class="progress-bar bg-info"
+                class="progress-bar bg-success"
                 role="progressbar"
                 style="width: 40%"
                 aria-valuenow="50"
@@ -158,7 +158,7 @@
           <div class="hotdeal-sold">
             <div class="progress hotdeal-sold-bar">
               <div
-                class="progress-bar bg-info"
+                class="progress-bar bg-success"
                 role="progressbar"
                 style="width: 20%"
                 aria-valuenow="50"
