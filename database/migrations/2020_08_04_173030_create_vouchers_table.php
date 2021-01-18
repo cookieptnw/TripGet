@@ -39,6 +39,7 @@ class CreateVouchersTable extends Migration
                 ->references('id')
                 ->on('hotels')
                 ->onDelete('cascade');
+            $table->dateTime('approved_at')->nullable();
             $table->timestamps();
         });
     }

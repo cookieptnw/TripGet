@@ -25,6 +25,27 @@ function cruGen(path, name) {
   ];
 }
 
+function cruGenHotel(path, name) {
+  return [
+    {
+      path: `${path}`,
+      name: path,
+      component: page(`adminH/${name}/${name}.vue`)
+    },
+    {
+      path: `${path}/create`,
+      name: `${path}.create`,
+      component: page(`adminH/${name}/form.vue`)
+    },
+    {
+      path: `${path}/:id/edit`,
+      name: `${path}.edit`,
+      component: page(`adminH/${name}/form.vue`)
+    }
+  ];
+}
+
+
 export default [
   {
     path: "/",
@@ -223,7 +244,7 @@ export default [
       ...cruGen("voucher_categories", "voucherCategory"),
       ...cruGen("hotels", "hotel"),
       ...cruGen("main_hotels", "mainHotel"),
-      ...cruGen("vouchers", "voucher"),
+      ...cruGen("vouchers_approve", "voucher"),
       ...cruGen("users", "user")
 
     ]
@@ -243,6 +264,8 @@ export default [
         name: "voucher_hotels",
         component: page("adminH/voucher/voucher.vue")
       },
+      ...cruGenHotel("vouchers", "voucher_add"),
+
     ]
   },
 

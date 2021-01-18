@@ -3,9 +3,7 @@
     <div class="col-11 col-lg-11 m-auto">
       <card>
         <button class="btn btn-danger" @click="backToMainPage()">Back</button>
-        <h4 class="mt-4">
-          {{ isCreate ? "Create" : "Approve" }} {{ pageTitle }}
-        </h4>
+        <h4 class="mt-4">{{ isCreate ? "Create" : "Edit" }} {{ pageTitle }}</h4>
         <hr />
 
         <div class="from-loop">
@@ -18,7 +16,6 @@
                 v-model="form[input.name]"
                 :required="input.required"
                 class="ml-2"
-                disabled
               />
               <br />
               <label class="text-secondary" v-if="input.description"
@@ -42,7 +39,6 @@
                     :placeholder="`Enter ${input.title}...`"
                     :required="input.required"
                     v-model="form[input.name]"
-                    disabled
                     :step="input.step ? input.step : false"
                   />
                 </div>
@@ -51,17 +47,15 @@
               <!-- ////////// TEXT NUMBER DATE//////////// -->
 
               <div v-if="input.type == 'image'">
-                <img :src="input.image_url" />
-                <!-- <v-uploader
+                <v-uploader
                   @done="uploadDone"
                   :before-upload="setUploadName(input.name)"
                   language="en"
                   :preview-width="input.imageWidth"
                   :preview-height="input.imageHeight"
                   file-type-exts="jpeg,png,jpg"
-                  disabled
                   :preview-img="input.image_url"
-                ></v-uploader> -->
+                ></v-uploader>
               </div>
 
               <div v-if="input.type == 'textarea'">
@@ -71,7 +65,6 @@
                   v-model="form[input.name]"
                   cols="150"
                   class="w-100 form-control mb-3"
-                  disabled
                 ></textarea>
               </div>
 
@@ -82,7 +75,6 @@
                   v-model="form[input.name]"
                   cols="150"
                   class="w-100 form-control mb-3"
-                  disabled
                   v-if="input.items"
                 >
                   <option :value="null">-- Please Select --</option>
@@ -105,12 +97,57 @@
                 :key="index"
                 class="col-4"
               >
-                {{ item.description }}
+                <card class="mt-4" v-if="item">
+                  <!-- <button
+                    @click="addDetailMore()"
+                    type="button"
+                    class="btn btn-info position-absolute"
+                    style="right: 10px; margin-top: -30px"
+                    v-if="index + 1 >= form.details.length"
+                  >
+                    +
+                  </button> -->
+
+                  <button
+                    @click="delDetail(index)"
+                    type="button"
+                    class="btn btn-danger position-absolute"
+                    style="right: 70px; margin-top: -30px"
+                    v-if="index != 0"
+                  >
+                    -
+                  </button>
+                  <div class="form-group">
+                    <label for="">Description</label>
+                    <input
+                      type="text"
+                      :name="index + 'd'"
+                      :id="index + 'd'"
+                      v-model="form.details[index]['description']"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="form-group" v-if="item">
+                    <label for="">Amount</label>
+                    <input
+                      type="text"
+                      :name="index + 'a'"
+                      :id="index + 'd'"
+                      v-model="form.details[index]['amount']"
+                      class="form-control"
+                    />
+
+                    <small id="helpId" class="text-muted"
+                      >จำนวนครั้งที่ใช้ได้ หากเป็นคำอธิบายให้กรอก 0</small
+                    >
+                  </div>
+                </card>
               </div>
             </div>
 
             <v-button :loading="form.busy" class="w-100"
-              >{{ isCreate ? "Create" : "Approve" }} {{ pageTitle }}</v-button
+              >{{ isCreate ? "Create" : "Update" }} {{ pageTitle }}</v-button
             >
           </form>
         </div>
@@ -192,7 +229,7 @@ export default {
         title: "hotel",
         name: "hotel_id",
         type: "relationSelect",
-        relationName: "hotels",
+        relationName: "hotels_me",
         items: [],
       },
       {

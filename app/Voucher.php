@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Voucher extends Model
 {
-    protected $fillable = ['image_url', 'name', 'description', 'price', 'start_date', 'end_date', 'holiday_open', 'weekend_open', 'discount', 'discount_promotion', 'day_use', 'not_refund', 'pet_allow', 'category_id', 'hotel_id'];
-    protected $appends = ['created_at_text', 'end_date_text', 'end_date_text_ex'];
+    protected $fillable = ['image_url', 'name', 'description', 'price', 'start_date', 'end_date', 'holiday_open', 'weekend_open', 'discount', 'discount_promotion', 'day_use', 'not_refund', 'pet_allow', 'category_id', 'hotel_id', 'approved_at'];
+    protected $appends = ['created_at_text', 'end_date_text', 'end_date_text_ex', 'approved_at_text'];
     public function getCreatedAtTextAttribute()
     {
         return $this->created_at ? \Carbon\Carbon::parse($this->created_at)->format('d/m/Y H:i:s') : '-';
+    }
+
+    public function getApprovedAtTextAttribute()
+    {
+        return $this->approved_at ? \Carbon\Carbon::parse($this->approved_at)->format('d/m/Y H:i:s') : '-';
     }
 
     public function getEndDateTextAttribute()

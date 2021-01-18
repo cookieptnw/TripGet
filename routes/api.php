@@ -26,8 +26,13 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/user', 'Auth\UserController@current');
     Route::get('/voucher_categories/search', 'VoucherCategoryController@searchq');
 
+    Route::get('/hotels_me', 'HotelController@indexMe');
+
+
     crud('voucher_categories', 'VoucherCategoryController');
     crud('vouchers', 'VoucherController');
+    crud('vouchers_approve', 'VoucherApproveController');
+
     crud('main_hotels', 'MainHotelController');
     crud('hotels', 'HotelController');
     crud('users', 'UserController');

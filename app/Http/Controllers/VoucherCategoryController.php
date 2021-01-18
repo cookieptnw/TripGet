@@ -33,6 +33,7 @@ class VoucherCategoryController extends Controller
 
 
 
+
     public function searchq(Request $request)
     {
         $province_id = $request->province_id ? $request->province_id : false;

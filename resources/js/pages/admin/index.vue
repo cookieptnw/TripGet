@@ -71,8 +71,8 @@ export default {
           //   icon: ""
           // },
           {
-            href: "/admin/vouchers",
-            title: "Voucher List",
+            href: "/admin/vouchers_approve",
+            title: "Approve Voucher",
           },
         ],
       },

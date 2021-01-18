@@ -6,11 +6,11 @@
           <h3>{{ pageTitle }}</h3>
         </div>
         <div class="float-left ml-2">
-          <!-- <router-link :to="{ name: `${$route.name}.create` }">
+          <router-link :to="{ name: `${$route.name}.create` }">
             <button class="btn btn-success">
               Add <i class="fas fa-plus"></i>
             </button>
-          </router-link> -->
+          </router-link>
         </div>
       </div>
       <!-- ////////// Page Title //////////-->
@@ -83,25 +83,28 @@
           <img :src="data.item.image_url" height="100" />
         </template>
         <template v-slot:cell(actions)="data">
-          <!-- <router-link
-            :to="{ name: `${$route.name}.lifestyle`, params: { id: data.item.id } }"
+          <router-link
+            :to="{
+              name: `${$route.name}.lifestyle`,
+              params: { id: data.item.id },
+            }"
           >
             <button class="btn btn-primary">
               <i class="far fa-star"></i> Add Lifestyle
             </button>
-          </router-link> -->
+          </router-link>
 
           <router-link
             :to="{ name: `${$route.name}.edit`, params: { id: data.item.id } }"
           >
             <button class="btn btn-warning">
-              <i class="far fa-edit"></i> View & Approve
+              <i class="far fa-edit"></i> Edit
             </button>
           </router-link>
 
-          <!-- <button class="btn btn-danger" @click="del(data.item.id)">
+          <button class="btn btn-danger" @click="del(data.item.id)">
             <i class="far fa-trash-alt"></i> Delete
-          </button> -->
+          </button>
         </template>
       </b-table>
 
@@ -153,6 +156,8 @@ export default {
       "start_date",
       "end_date",
       { key: "created_at_text", label: "Created At" },
+      { key: "approved_at_text", label: "Approved At" },
+
       "actions",
     ],
   }),

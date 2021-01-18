@@ -32,6 +32,24 @@ class HotelController extends Controller
         ];
     }
 
+    public function indexMe(Request $request)
+    {
+        $showItem = $request->item ? $request->item : 10;
+        $keyword = $request->q ? $request->q : '';
+        $sortBy = $request->sortBy ? $request->sortBy : 'desc';
+        $user = $request->user();
+
+        $items = $this->mainModel::where(function ($q) use ($keyword, $user) {
+            $q->orWhere('name', 'LIKE', "%$keyword%");
+            $q->orWhere('description', 'LIKE', "%$keyword%");
+        })->where('main_hotel_id', $user->main_hotel_id)->with('province')->orderBy('created_at', $sortBy)->paginate($showItem);
+
+        return [
+            "items" =>
+            $items
+        ];
+    }
+
     public function store(Request $request)
     {
         $item = $this->mainModel::create($request->all());

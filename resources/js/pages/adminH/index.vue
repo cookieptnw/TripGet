@@ -56,6 +56,12 @@ export default {
           },
         ],
       },
+
+      {
+        href: "/admin_hotel/vouchers",
+        title: "วอชเชอร์",
+        icon: "fas fa-home",
+      },
     ],
   }),
 };
