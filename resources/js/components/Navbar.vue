@@ -33,7 +33,7 @@
             <li class="nav-item" v-if="user">
               <router-link to="/cart" class="nav-link">
                 <button type="button" class="btn btn-primary">
-                  ตะกร้าของคุณ
+                  <i class="fas fa-shopping-cart"></i> ตะกร้าของคุณ
                   <span class="badge badge-light">{{ carts.length }}</span>
                   <span class="sr-only">unread messages</span>
                 </button>

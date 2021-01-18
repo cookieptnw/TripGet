@@ -38,7 +38,7 @@
                   <div class="col-md-3 col-sm-6">
                     <div class="hotel-price">
                       <h6 class="text-right mt-3 mb-3 w-100">
-                        {{ item.price }} บาท
+                        ฿ {{ item.price }} บาท
                       </h6>
                     </div>
                   </div>
@@ -87,10 +87,10 @@ export default {
       show: "category/item",
     }),
   },
-  watch:{
-     query(){
-     this.fetch({ id: this.key, query: this.query });
-    }
+  watch: {
+    query() {
+      this.fetch({ id: this.key, query: this.query });
+    },
   },
   methods: {
     ...mapActions({

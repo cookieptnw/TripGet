@@ -39,6 +39,26 @@
     </div>
 
     <hr />
+    <div class="mt-5 mb-5">
+      <div class="row">
+        <div class="col-md-6 text-center mb-2">
+          <button
+            class="btn btn-success btn-buy"
+            @click="addCart({ cart: voucher })"
+          >
+            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+            &nbsp;เพิ่มลงตะกร้า
+          </button>
+        </div>
+        <div class="col-md-6 text-center mb-2">
+          <router-link :to="{ name: 'hotel.detail', params: { id: id } }"
+            ><button class="btn btn-info btn-buy">
+              <i class="fas fa-money-bill-wave"></i> &nbsp; ซื้อเลย
+            </button></router-link
+          >
+        </div>
+      </div>
+    </div>
 
     <div class="vc-box shadow mt-5">
       <div class="row">
@@ -60,6 +80,11 @@
               ดูร้านค้าเพิ่มเติม
             </button></router-link
           >
+          <router-link :to="{ name: 'hotel.chat', params: { id: id } }"
+            ><button class="btn btn-outline-primary btn-buy">
+              ติดต่อร้านค้า
+            </button></router-link
+          >
         </div>
       </div>
     </div>
@@ -67,11 +92,12 @@
     <div class="vc-box shadow mt-5">
       <div class="row">
         <div class="col-md-4 text-center mb-2">
-          <h6>20</h6>
+          <h6>20 <i class="fas fa-clipboard-list"></i></h6>
+
           <small class="text-muted">รายการ</small>
         </div>
         <div class="col-md-4 text-center mb-2">
-          <h6>4</h6>
+          <h6>4 <i class="fas fa-store"></i></h6>
           <small class="text-muted">คะแนนร้านค้า</small>
         </div>
         <div class="col-md-4 text-center mb-2">
@@ -92,35 +118,11 @@
         >
           <a :href="`/voucher/${item.id}`" style="display: block; width: 100%">
             <img :src="item.image_url" />
-            <div class="same-shop-price">{{ item.price }} บาท</div>
+            <div class="same-shop-price">฿ &nbsp;{{ item.price }} บาท</div>
           </a>
         </div>
       </div>
       <hr />
-    </div>
-
-    <div class="vc-box shadow mt-5 mb-5">
-      <div class="row">
-        <div class="col-md-4 text-center mb-2">
-          <router-link :to="{ name: 'hotel.chat', params: { id: id } }"
-            ><button class="btn btn-primary btn-buy">
-              ติดต่อร้านค้า
-            </button></router-link
-          >
-        </div>
-        <div class="col-md-4 text-center mb-2">
-          <button class="btn btn-primary btn-buy" @click="addCart({cart:voucher})">
-              เพิ่มลงตะกร้า
-            </button>
-        </div>
-        <div class="col-md-4 text-center mb-2">
-          <router-link :to="{ name: 'hotel.detail', params: { id: id } }"
-            ><button class="btn btn-primary btn-buy">
-              ซื้อเลย
-            </button></router-link
-          >
-        </div>
-      </div>
     </div>
   </div>
 </template>
