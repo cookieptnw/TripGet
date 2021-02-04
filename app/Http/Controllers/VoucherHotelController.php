@@ -77,6 +77,8 @@ class VoucherHotelController extends Controller
             $q->where('main_hotel_id', $mainHotelId);
         })->orderBy('created_at', $sortBy)->get()->groupBy('voucher_id');
 
+
+
         $stats = [];
 
         foreach ($items as $item) {

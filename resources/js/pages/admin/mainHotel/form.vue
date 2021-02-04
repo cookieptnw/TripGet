@@ -108,6 +108,7 @@ export default {
       category_id: null,
       name: "",
       description: "",
+      tel:''
     }),
     item: {},
     isCreate: true,
@@ -117,6 +118,11 @@ export default {
       {
         title: "Name",
         name: "name",
+        type: "text",
+      },
+       {
+        title: "Tel",
+        name: "tel",
         type: "text",
       },
       {

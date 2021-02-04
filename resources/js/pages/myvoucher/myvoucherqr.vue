@@ -59,7 +59,7 @@
           <div class="row" v-if="detailsUse.length">
             <div
               class="col-md-4 mt-4"
-              v-for="item in detailsUse"
+              v-for="item in detailsUse" 
               :key="item.id"
             >
               <div class="card w-100 p-4 bg-secondary">
