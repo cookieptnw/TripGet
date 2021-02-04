@@ -142,27 +142,26 @@ export default {
   computed: {
     ...mapGetters({
       cart_ids: "cart/cart_ids",
-      sum: "cart/sum",
-    }),
+      sum: "cart/sum"
+    })
   },
   methods: {
     async addToCart() {
       const { data } = await axios.post("/api/carts", {
         sum: this.sum,
-        cart_ids: this.cart_ids,
+        cart_ids: this.cart_ids
       });
       this.$bvToast.toast("ทำการชำระเงินสำเร็จ", {
         title: "แจ้งเตือน",
         autoHideDelay: 5000,
-        appendToast: true,
+        appendToast: true
       });
       this.$router.push({ name: "myvoucher" });
       this.$router.go(0);
       console.log(data);
-    },
-  },
+    }
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>

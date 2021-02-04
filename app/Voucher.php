@@ -3,14 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\MyVoucher;
 
 class Voucher extends Model
 {
-    protected $fillable = ['image_url', 'name', 'description', 'price', 'start_date', 'end_date', 'holiday_open', 'weekend_open', 'discount', 'discount_promotion', 'day_use', 'not_refund', 'pet_allow', 'category_id', 'hotel_id', 'approved_at'];
-    protected $appends = ['created_at_text', 'end_date_text', 'end_date_text_ex', 'approved_at_text'];
+    protected $fillable = ['image_url', 'name', 'description', 'price', 'start_date', 'end_date', 'holiday_open', 'weekend_open', 'amount', 'discount_promotion', 'day_use', 'not_refund', 'pet_allow', 'category_id', 'hotel_id', 'approved_at'];
+    protected $appends = ['created_at_text', 'end_date_text', 'end_date_text_ex', 'approved_at_text', 'balance'];
     public function getCreatedAtTextAttribute()
     {
         return $this->created_at ? \Carbon\Carbon::parse($this->created_at)->format('d/m/Y H:i:s') : '-';
+    }
+
+    public function getBalanceAttribute()
+    {
+        $mvu = MyVoucher::where('voucher_id', $this->id)->count();
+        return $this->amount - $mvu;
     }
 
     public function getApprovedAtTextAttribute()

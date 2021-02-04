@@ -86,7 +86,7 @@
           <router-link
             :to="{
               name: `${$route.name}.lifestyle`,
-              params: { id: data.item.id },
+              params: { id: data.item.id }
             }"
           >
             <button class="btn btn-primary">
@@ -141,12 +141,13 @@ export default {
       { v: 10, t: "10" },
       { v: 25, t: "25" },
       { v: 50, t: "50" },
-      { v: 100, t: "100" },
+      { v: 100, t: "100" }
     ],
     q: "",
     sortBy: "desc",
     fields: [
       { key: "id", sortable: true, sortDirection: "desc" },
+      "thumnails",
       "name",
       { key: "hotel.name", label: "Hotel" },
       { key: "category.name", label: "Category" },
@@ -155,16 +156,18 @@ export default {
       "price",
       "start_date",
       "end_date",
+      "amount",
+      "balance",
       { key: "created_at_text", label: "Created At" },
       { key: "approved_at_text", label: "Approved At" },
 
-      "actions",
-    ],
+      "actions"
+    ]
   }),
   computed: {
     pageName() {
       return this.$route.name.split(".")[0];
-    },
+    }
   },
   methods: {
     async fetch(page = 1) {
@@ -173,8 +176,8 @@ export default {
           page,
           item: this.showItem,
           q: this.q,
-          sortBy: this.sortBy,
-        },
+          sortBy: this.sortBy
+        }
       });
       this.items = data.items;
     },
@@ -184,16 +187,16 @@ export default {
         const { data } = await axios.post(
           this.$api(this.pageName + `/${id}/delete`),
           {
-            id,
+            id
           }
         );
 
         this.fetch();
       }
-    },
+    }
   },
   created() {
     this.fetch();
-  },
+  }
 };
 </script>

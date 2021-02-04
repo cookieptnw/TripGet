@@ -75,6 +75,7 @@ Route::get('myVouchers/{id}', 'MyVoucherController@show');
 Route::get('myVouchers/key/{id}', 'MyVoucherController@showKey');
 Route::get('roles', 'UserController@roles');
 
+Route::get('sendExpirySMS', 'SMSController@index');
 
 Route::get('match/vouchers', 'VoucherController@matching');
 Route::get('dashboard', 'DashboardController@index');

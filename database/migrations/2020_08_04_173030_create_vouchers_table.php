@@ -23,7 +23,7 @@ class CreateVouchersTable extends Migration
             $table->date('end_date');
             $table->boolean('holiday_open')->default(0);
             $table->boolean('weekend_open')->default(0);
-            $table->integer('discount')->default(0);
+            $table->integer('amount')->default(1);
             $table->integer('discount_promotion')->nullable();
             $table->integer('day_use')->default(1);
             $table->boolean('not_refund')->default(0);

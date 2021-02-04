@@ -63,16 +63,17 @@
 import { mapActions, mapGetters } from "vuex";
 import axios from "axios";
 export default {
+  middleware: "auth",
   computed: {
     ...mapGetters({
       myvouchers: "voucher/myvoucher",
       myvoucherNormal: "voucher/myvoucherNormal",
-      myvoucherCancel: "voucher/myvoucherCancel",
-    }),
+      myvoucherCancel: "voucher/myvoucherCancel"
+    })
   },
   methods: {
     ...mapActions({
-      fetchMyVoucher: "voucher/fetchMyVoucher",
+      fetchMyVoucher: "voucher/fetchMyVoucher"
     }),
     async cancel(id) {
       this.$swal
@@ -83,15 +84,15 @@ export default {
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
           confirmButtonText: "ยืนยันการยกเลิก",
-          cancelButtonText: "ปิดหน้านี้",
+          cancelButtonText: "ปิดหน้านี้"
         })
-        .then(async (result) => {
+        .then(async result => {
           console.log(result);
           if (result.value) {
             const { data } = await axios.get(`/api/myVouchers/${id}/cancel`, {
               params: {
-                voucher_detail_id: id,
-              },
+                voucher_detail_id: id
+              }
             });
 
             this.$swal.fire("ยกเลิกสำเร็จ!").then(() => {
@@ -99,13 +100,12 @@ export default {
             });
           }
         });
-    },
+    }
   },
   created() {
     this.fetchMyVoucher();
-  },
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>

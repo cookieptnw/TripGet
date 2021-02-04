@@ -18,14 +18,20 @@ export const plugins = [
 export const state = {
   carts: [
 
-  ]
+  ],
+  disc: 0
 };
 
 // getters
 export const getters = {
   carts: state => state.carts,
   sum: state => {
-    return sumBy(state.carts, el => el.price);
+    let sum = sumBy(state.carts, el => el.price) - state.disc;
+    if (sum < 0) {
+      return 0
+    }
+
+    return sum
   },
   cart_ids: state => state.carts.map(el => el.id)
 };
@@ -37,6 +43,9 @@ export const mutations = {
   },
   ["remove"](state, index) {
     state.carts.splice(index, 1);
+  },
+  ["disc"](state, disc) {
+    state.disc = disc
   }
 };
 

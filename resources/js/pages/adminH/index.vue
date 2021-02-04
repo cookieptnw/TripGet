@@ -31,19 +31,19 @@ import { SidebarMenu } from "vue-sidebar-menu";
 
 export default {
   components: {
-    SidebarMenu,
+    SidebarMenu
   },
   data: () => ({
     menu: [
       {
         header: true,
         title: "Main Navigation",
-        hiddenOnCollapse: true,
+        hiddenOnCollapse: true
       },
       {
         href: "/admin_hotel",
         title: "แดชบอร์ด",
-        icon: "fas fa-home",
+        icon: "fas fa-home"
       },
 
       {
@@ -52,18 +52,18 @@ export default {
         child: [
           {
             href: "/admin_hotel/buy/history",
-            title: "ประวัติการขายทั้งหมด",
-          },
-        ],
+            title: "ประวัติการขายทั้งหมด"
+          }
+        ]
       },
 
       {
         href: "/admin_hotel/vouchers",
         title: "วอชเชอร์",
-        icon: "fas fa-home",
-      },
-    ],
-  }),
+        icon: "fas fa-home"
+      }
+    ]
+  })
 };
 </script>
 

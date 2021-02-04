@@ -26,8 +26,8 @@
                 class="inputText"
                 v-if="
                   input.type == 'text' ||
-                  input.type == 'number' ||
-                  input.type == 'date'
+                    input.type == 'number' ||
+                    input.type == 'date'
                 "
               >
                 <div class="input-group mb-3">
@@ -171,48 +171,48 @@ export default {
       end_date: "",
       holiday_open: 0,
       weekend_open: 0,
-      discount: "",
+      amount: "",
       day_use: "",
       not_refund: 0,
       pet_allow: 0,
       details: [
         {
           description: null,
-          amount: 0,
+          amount: 0
         },
         {
           description: null,
-          amount: 0,
+          amount: 0
         },
         {
           description: null,
-          amount: 0,
+          amount: 0
         },
         {
           description: null,
-          amount: 0,
+          amount: 0
         },
         {
           description: null,
-          amount: 0,
+          amount: 0
         },
         {
           description: null,
-          amount: 0,
+          amount: 0
         },
         {
           description: null,
-          amount: 0,
+          amount: 0
         },
         {
           description: null,
-          amount: 0,
-        },
-      ],
+          amount: 0
+        }
+      ]
     }),
     detailTemplate: {
       description: null,
-      amount: 0,
+      amount: 0
     },
     item: {},
     details: [],
@@ -223,86 +223,86 @@ export default {
       {
         title: "Image",
         name: "image_url",
-        type: "image",
+        type: "image"
       },
       {
         title: "hotel",
         name: "hotel_id",
         type: "relationSelect",
         relationName: "hotels_me",
-        items: [],
+        items: []
       },
       {
         title: "Category",
         name: "category_id",
         type: "relationSelect",
         relationName: "voucher_categories",
-        items: [],
+        items: []
       },
       {
         title: "Name",
         name: "name",
         type: "text",
-        required: true,
+        required: true
       },
       {
         title: "Description",
         name: "description",
         type: "textarea",
-        required: true,
+        required: true
       },
       {
         title: "Price",
         name: "price",
         type: "number",
         step: "0.01",
-        required: true,
+        required: true
       },
       {
         title: "Start Date",
         name: "start_date",
         type: "date",
-        required: true,
+        required: true
       },
       {
         title: "End Date",
         name: "end_date",
         type: "date",
-        required: true,
+        required: true
       },
       {
         title: "Holiday Open",
         name: "holiday_open",
-        type: "checkbox",
+        type: "checkbox"
       },
       {
         title: "Weekend Open",
         name: "weekend_open",
-        type: "checkbox",
+        type: "checkbox"
       },
       {
-        title: "Discount",
-        name: "discount",
+        title: "Amount",
+        name: "amount",
         type: "number",
-        required: true,
+        required: true
       },
       {
         title: "Day use",
         name: "day_use",
         type: "number",
-        required: true,
+        required: true
       },
       {
         title: "Not Refund",
         name: "not_refund",
-        type: "checkbox",
+        type: "checkbox"
       },
       {
         title: "Pet Allow",
         name: "pet_allow",
-        type: "checkbox",
-      },
-    ],
+        type: "checkbox"
+      }
+    ]
   }),
   methods: {
     addDetailMore() {
@@ -321,8 +321,8 @@ export default {
       const { data } = await this.form
         .get(this.$api(name), {
           params: {
-            item: 99,
-          },
+            item: 99
+          }
         })
         .catch();
 
@@ -367,7 +367,7 @@ export default {
     },
     setUploadName(a) {
       this.uploadName = a;
-    },
+    }
   },
   computed: {
     pageName() {
@@ -375,7 +375,7 @@ export default {
     },
     id() {
       return this.$route.params.id;
-    },
+    }
   },
   async created() {
     this.checkRelation();
@@ -384,7 +384,7 @@ export default {
     if (this.id) {
       this.isCreate = false;
       await this.fetchShow();
-      this.form.keys().forEach((key) => {
+      this.form.keys().forEach(key => {
         this.form[key] = this.item[key];
       });
 
@@ -400,7 +400,7 @@ export default {
         }
       });
     }
-  },
+  }
 };
 </script>
 
