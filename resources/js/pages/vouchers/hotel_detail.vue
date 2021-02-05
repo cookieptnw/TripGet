@@ -51,11 +51,12 @@
           </button>
         </div>
         <div class="col-md-6 text-center mb-2">
-          <router-link :to="{ name: 'hotel.detail', params: { id: id } }"
-            ><button class="btn btn-info btn-buy">
-              <i class="fas fa-money-bill-wave"></i> &nbsp; ซื้อเลย
-            </button></router-link
+          <button
+            class="btn btn-info btn-buy"
+            @click="addCartTo({ cart: voucher })"
           >
+            <i class="fas fa-money-bill-wave"></i> &nbsp; ซื้อเลย
+          </button>
         </div>
       </div>
     </div>
@@ -133,7 +134,7 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   middleware: "auth",
   data: () => ({
-    name: "Loading..",
+    name: "Loading.."
   }),
   computed: {
     key() {
@@ -144,14 +145,18 @@ export default {
     },
 
     ...mapGetters({
-      voucher: "voucher/item",
-    }),
+      voucher: "voucher/item"
+    })
   },
   methods: {
     ...mapActions({
       fetch: "voucher/show",
-      addCart: "cart/add",
+      addCart: "cart/add"
     }),
+    addCartTo(cart) {
+      this.addCart(cart);
+      this.$router.push("/cart");
+    }
   },
   async created() {
     console.log(this.query);
@@ -160,9 +165,8 @@ export default {
   },
   metaInfo() {
     return { title: this.name };
-  },
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -46,6 +46,9 @@ export const mutations = {
   },
   ["disc"](state, disc) {
     state.disc = disc
+  },
+  ["rmcarts"](state) {
+    state.carts = []
   }
 };
 

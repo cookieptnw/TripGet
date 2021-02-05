@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-    <h2 class="text-primary">พฤติกรรมการท่องเที่ยว</h2>
+    <div class="clearfix">
+      <div class="float-left">
+        <router-link to="/lifestyle">
+          <i class="fas fa-arrow-left fa-2x pr-2 text-dark"></i>
+        </router-link>
+      </div>
+      <div class="float-left">
+        <h2 class="text-primary">พฤติกรรมการท่องเที่ยว</h2>
+      </div>
+    </div>
     <hr />
 
     <button
@@ -23,28 +32,34 @@ export default {
   props: {
     vid: {
       default: false
-    },
+    }
   },
   data: () => ({
-    items: [],
+    items: []
   }),
   methods: {
     async getData() {
-      const { data } = await axios.get(`/api/lifestyle/lifestyle_travel/${this.vid ? `?voucher_id=${this.vid}`: ''}`);
+      const { data } = await axios.get(
+        `/api/lifestyle/lifestyle_travel/${
+          this.vid ? `?voucher_id=${this.vid}` : ""
+        }`
+      );
       this.items = data.result;
     },
     async setActive(id) {
-      let i = findIndex(this.items, (el) => el.id == id);
+      let i = findIndex(this.items, el => el.id == id);
       this.items[i].active = !this.items[i].active;
-      const { data } = await axios.post(`/api/lifestyle/set/${id}/${this.vid ? `?voucher_id=${this.vid}`: ''}`);
+      const { data } = await axios.post(
+        `/api/lifestyle/set/${id}/${this.vid ? `?voucher_id=${this.vid}` : ""}`
+      );
     },
     activeClass(status) {
       return status ? "btn-primary" : "btn-outline-primary";
-    },
+    }
   },
   created() {
     this.getData();
-  },
+  }
 };
 </script>
 

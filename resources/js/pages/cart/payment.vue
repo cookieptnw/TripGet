@@ -37,7 +37,7 @@
                       type="text"
                       class="form-control"
                       autocomplete="off"
-                      maxlength="20"
+                      maxlength="16"
                       pattern="\d{16}"
                       title="หมายเลขบัตรเครดิต"
                     />
@@ -146,6 +146,9 @@ export default {
     })
   },
   methods: {
+    ...mapMutations({
+      rm: "cart/rmcarts"
+    }),
     async addToCart() {
       const { data } = await axios.post("/api/carts", {
         sum: this.sum,
@@ -156,8 +159,8 @@ export default {
         autoHideDelay: 5000,
         appendToast: true
       });
-      this.$router.push({ name: "myvoucher" });
-      this.$router.go(0);
+      this.rm();
+      this.$router.push("myvoucher");
       console.log(data);
     }
   }

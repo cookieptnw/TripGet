@@ -6,8 +6,10 @@
 
     <div v-if="show.vouchers_approves && show.vouchers_approves.length">
       <div
-        class="hotel-list shadow mb-4"
-        v-for="(item, index) in show.vouchers_approves"
+        class="hotel-list shadow mb-4 m-2"
+        v-for="(item, index) in show.vouchers_approves.filter(
+          el => el.balance > 0
+        )"
         :key="index"
       >
         <div class="row">
@@ -48,7 +50,7 @@
                         <router-link
                           :to="{
                             name: 'hotel.detail',
-                            params: { id: item.id },
+                            params: { id: item.id }
                           }"
                           ><button class="btn btn-outline-primary btn-buy">
                             ซื้อเลย
@@ -73,7 +75,7 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   middleware: "auth",
   data: () => ({
-    name: "Loading..",
+    name: "Loading.."
   }),
   computed: {
     key() {
@@ -84,18 +86,18 @@ export default {
     },
 
     ...mapGetters({
-      show: "category/item",
-    }),
+      show: "category/item"
+    })
   },
   watch: {
     query() {
       this.fetch({ id: this.key, query: this.query });
-    },
+    }
   },
   methods: {
     ...mapActions({
-      fetch: "category/show",
-    }),
+      fetch: "category/show"
+    })
   },
   async created() {
     console.log(this.query);
@@ -104,7 +106,7 @@ export default {
   },
   metaInfo() {
     return { title: this.name };
-  },
+  }
 };
 </script>
 

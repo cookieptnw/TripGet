@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-    <h2 class="text-primary">จังหวัด</h2>
+    <div class="clearfix">
+      <div class="float-left">
+        <router-link to="/lifestyle">
+          <i class="fas fa-arrow-left fa-2x pr-2 text-dark"></i>
+        </router-link>
+      </div>
+      <div class="float-left">
+        <h2 class="text-primary">จังหวัด</h2>
+      </div>
+    </div>
     <hr />
     <section>
       <h3>ภาคเหนือ</h3>
@@ -130,40 +139,44 @@ import axios from "axios";
 import { findIndex, find } from "lodash";
 
 export default {
-    props: {
+  props: {
     vid: {
       default: false
-    },
+    }
   },
   data: () => ({
     provinces: [],
     g1: 6,
     g2: 6,
     g3: 6,
-    g4: 6,
+    g4: 6
   }),
   methods: {
     async getProvince() {
-      const { data } = await axios.get(`/api/lifestyle/province/${this.vid ? `?voucher_id=${this.vid}`: ''}`);
+      const { data } = await axios.get(
+        `/api/lifestyle/province/${this.vid ? `?voucher_id=${this.vid}` : ""}`
+      );
       this.provinces = data.result;
     },
     getProvinceByGeo(geo) {
-      return this.provinces.filter((el) => el.group == geo);
+      return this.provinces.filter(el => el.group == geo);
     },
     async setActive(id) {
-      let i = findIndex(this.provinces, (el) => el.id == id);
+      let i = findIndex(this.provinces, el => el.id == id);
       this.provinces[i].active = !this.provinces[i].active;
       console.log(this.provinces[i]);
-      const { data } = await axios.post(`/api/lifestyle/set/${id}/${this.vid ? `?voucher_id=${this.vid}`: ''}`);
+      const { data } = await axios.post(
+        `/api/lifestyle/set/${id}/${this.vid ? `?voucher_id=${this.vid}` : ""}`
+      );
     },
     activeClass(status) {
       return status ? "btn-primary" : "btn-outline-primary";
-    },
+    }
   },
   created() {
     this.getProvince();
-    console.log(this.vid ? `?voucher_id=${this.vid}`: '')
-  },
+    console.log(this.vid ? `?voucher_id=${this.vid}` : "");
+  }
 };
 </script>
 

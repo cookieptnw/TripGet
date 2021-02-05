@@ -37,7 +37,28 @@
           </div>
         </div>
       </b-tab>
-      <b-tab title="ใช้งานแล้ว"><p>ยังไม่มีรายการในขณะนี้</p></b-tab>
+      <b-tab title="ใช้งานแล้ว">
+        <div class="card p-4 m-4" v-for="m in myvoucherUse">
+          <h5>คำสั่งซื้อ#{{ m.key }}</h5>
+
+          <h6 class="text-primary">หมายเลขบิล #{{ m.no }}</h6>
+
+          <div class="row">
+            <div class="col-md-3">
+              <img :src="m.voucher.image_url" class="w-100" />
+            </div>
+            <div class="col-md-6 p-4">
+              <h1>{{ m.voucher.name }}</h1>
+              <p>{{ m.voucher.description }}</p>
+
+              <hr />
+              <router-link :to="{ name: 'myvoucherqr', params: { id: m.id } }">
+                <button class="btn btn-primary">ดูข้อมูล</button>
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </b-tab>
       <b-tab title="รายการยกเลิก">
         <div class="card p-4 m-4" v-for="m in myvoucherCancel" v-if="!m.status">
           <h5>คำสั่งซื้อ#{{ m.key }}</h5>
@@ -68,7 +89,8 @@ export default {
     ...mapGetters({
       myvouchers: "voucher/myvoucher",
       myvoucherNormal: "voucher/myvoucherNormal",
-      myvoucherCancel: "voucher/myvoucherCancel"
+      myvoucherCancel: "voucher/myvoucherCancel",
+      myvoucherUse: "voucher/myvoucherUse"
     })
   },
   methods: {
