@@ -10,6 +10,7 @@ class MyVoucher extends Model
     public function voucher()
     {
         return $this->belongsTo('App\Voucher');
+
     }
     public function user()
     {
@@ -24,5 +25,10 @@ class MyVoucher extends Model
     public function getStatusTextAttribute()
     {
         return $this->status == 1  ? "ซื้อแล้ว" : 'ยกเลิก';
+    }
+
+
+    public function getPriceSumAttribute($price){
+        return number_format($price,2).'';
     }
 }

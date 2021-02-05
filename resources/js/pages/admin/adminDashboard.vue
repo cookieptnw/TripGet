@@ -6,6 +6,7 @@
           <div class="col-8 title-home">
             <h1 class="display-4">Dashboard</h1>
             <p class="lead">สรุปสถิติเบื้องต้น</p>
+            {{dashboard.kk}}
           </div>
           <div class="col-4 text-right"></div>
         </div>

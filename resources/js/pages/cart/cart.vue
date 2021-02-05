@@ -6,31 +6,32 @@
           <div class="col-lg-8">
             <div class="main-heading">สินค้าในตะกร้าของคุณ</div>
 
-            <div class="table-cart">
-              <table>
-                <thead>
-                  <tr>
-                    <th>ชื่อสินค้า</th>
-                    <th>ราคา</th>
-                    <!-- <th>Total</th> -->
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="(cart, index) in carts" :key="cart.id">
-                    <td>
-                      <div class="display-flex align-center">
-                        <div class="img-product">
-                          <img
-                            :src="cart.image_url"
-                            alt=""
-                            class="mCS_img_loaded"
-                          />
-                        </div>
-                        <div class="name-product">{{ cart.name }} บาท</div>
-                      </div>
-                    </td>
-                    <!-- <td class="product-count">
+
+			        <div class="table-cart">
+	                    <table>
+	                        <thead>
+	                            <tr>
+	                                <th>ชื่อสินค้า</th>
+	                                <th>ราคา</th>
+									
+	                                <!-- <th>Total</th> -->
+	                                <th></th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                            <tr v-for="(cart,index) in carts" :key="cart.id">
+	                                <td>
+	                                	<div class="display-flex align-center">
+		                                    <div class="img-product">
+		                                        <img :src="cart.image_url" alt="" class="mCS_img_loaded">
+		                                    </div>
+		                                    <div class="name-product">
+		                                        {{cart.name}} บาท
+		                                    </div>
+
+	                                    </div>
+	                                </td>
+	                                <!-- <td class="product-count">
 	                                    <form action="#" class="count-inlineflex">
 										    <div class="qtyminus">-</div>
 										    <input type="text" name="quantity" value="1" class="qty">

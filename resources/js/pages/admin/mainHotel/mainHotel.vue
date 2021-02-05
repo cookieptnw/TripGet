@@ -129,8 +129,11 @@ export default {
     sortBy: "desc",
     fields: [
       { key: "id", sortable: true, sortDirection: "desc" },
-      "name",
-      "description",
+            { key: "name", label: "name" },
+            { key: "description", label: "description" },
+            { key: "tel", label: "tel" },
+            { key: "lat", label: "lat" },
+
       { key: "created_at_text", label: "Created At" },
       "actions",
     ],

@@ -15,6 +15,7 @@ class DashboardController extends Controller
 
     public function index()
     {
+
         $newUserCount = User::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
         $newUserCountPast = User::whereBetween('created_at', [Carbon::now()->subWeeks(1)->startOfWeek(), Carbon::now()->subWeeks(1)->endOfWeek()])->count();
         $totalHotel = Hotel::whereMonth('created_at', Carbon::now())->count();
@@ -33,7 +34,11 @@ class DashboardController extends Controller
                 "Voucher" => number_format($Voucher),
                 "VoucherPast" => number_format($VoucherPast),
                 "MyVoucher" => number_format($MyVoucher),
-                "MyVoucherPast" => number_format($MyVoucherPast)
+                "MyVoucherPast" => number_format($MyVoucherPast),
+                "ck"=> Carbon::now()->startOfWeek(),"au"=>Carbon::now()->endOfWeek()
+
+              
+            
 
             ]
         ];
