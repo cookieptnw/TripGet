@@ -20,15 +20,18 @@ class MyVoucherController extends Controller
         $myVouchers = MyVoucher::where('user_id', $user_id)->with('voucher')->with('voucher.details')->get();
 
         foreach ($myVouchers as $voucher) {
+
+            $id = $voucher->id;
             $voucher->can_cancel = $voucher->voucher->end_date > Carbon::now()->subDays(7);
 
 
             $voucher->used = false;
 
             foreach ($voucher->voucher->details as $detail) {
-                $mvu = MyVoucherUse::where([['my_voucher_id', $voucher->$voucher->id], ['user_id', $user_id], ['voucher_detail_id', $detail->id]])->count();
+                $mvu = MyVoucherUse::where([['my_voucher_id',   $id], ['user_id', $user_id], ['voucher_detail_id', $detail->id]])->count();
 
-                if ($detail->amount > 1) {
+                $detail->l = [$id,$user_id,$detail->id];
+                if ($detail->amount > 0) {
                     if ($mvu >= $detail->amount) {
                         $voucher->used = true;
                     }
