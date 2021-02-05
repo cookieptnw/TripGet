@@ -26,11 +26,14 @@ class MyVoucherController extends Controller
             $voucher->used = false;
 
             foreach ($voucher->voucher->details as $detail) {
-                $mvu = MyVoucherUse::where([['my_voucher_id', $voucher->id], ['user_id', $user_id], ['voucher_detail_id', $detail->id]])->count();
+                $mvu = MyVoucherUse::where([['my_voucher_id', $voucher->$voucher->id], ['user_id', $user_id], ['voucher_detail_id', $detail->id]])->count();
 
-                if ($mvu >= $detail->amount) {
-                    $voucher->used = true;
+                if ($detail->amount > 1) {
+                    if ($mvu >= $detail->amount) {
+                        $voucher->used = true;
+                    }
                 }
+
                 $detail->use = $mvu;
             }
 
